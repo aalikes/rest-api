@@ -1,0 +1,20 @@
+# Render blueprint — deploy in one click
+# https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: rest-api
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm ci
+    startCommand: node src/server.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: PORT
+        value: "3000"
