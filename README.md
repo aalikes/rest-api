@@ -1,6 +1,10 @@
 # REST API with JWT Authentication
 
+![Tests](https://github.com/aalikes/rest-api/actions/workflows/test.yml/badge.svg)
+
 A production-ready REST API built with **Express**, **JWT authentication**, **input validation** (Zod), and a comprehensive **test suite**.
+
+**🚀 Live:** `https://rest-api-wfsz.onrender.com`
 
 ## Features
 
@@ -11,7 +15,7 @@ A production-ready REST API built with **Express**, **JWT authentication**, **in
 - **Security** — Helmet headers, CORS, rate-limit ready
 - **Error handling** — Operational vs programming errors handled appropriately
 - **Graceful shutdown** — Handles SIGTERM/SIGINT cleanly
-- **Comprehensive tests** — 35 tests covering auth, CRUD, authorization, and edge cases
+- **Comprehensive tests** — 53 tests covering auth, CRUD, authorization, dashboard, search, webhooks, admin roles, and date filters
 
 ## Quick Start
 
@@ -125,6 +129,18 @@ The test suite validates:
 - Protected routes (valid token, missing token, malformed header, invalid token)
 - Todo CRUD (create, list, filter, get, update, delete, error cases)
 - Authorization (todo scoping per user)
+- Active Tasks CRUD (create, filter by category, update, delete)
+- Financial items CRUD (create with amount, filter by category)
+- Reading log CRUD (create with format, list)
+- Dashboard summary (overdue counts, high priority items, financial totals)
+- Search across all data types
+- Webhook endpoint (reminder creation, validation)
+- Admin role enforcement (non-admin rejected, admin allowed)
+- Date filters (due_before, due_after, due_this_week)
+
+## Continuous Integration
+
+Tests run automatically on every push via GitHub Actions. See `.github/workflows/test.yml`.
 
 ## Project Structure
 
