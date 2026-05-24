@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Trigger Notion sync via API
+      - name: Authenticate and sync
         env:
           API_BASE_URL: ${{ secrets.API_BASE_URL }}
           SYNC_USER_EMAIL: ${{ secrets.SYNC_USER_EMAIL }}
@@ -29,8 +29,16 @@ jobs:
 
           echo "✅ Authenticated"
 
-          # Trigger full Notion sync
-          RESULT=$(curl -sf "${API_BASE_URL}/api/integrations/notion/sync" \
+          # Sync Coinbase portfolio (if configured on server)
+          echo "--- Coinbase sync ---"
+          curl -sf "${API_BASE_URL}/api/integrations/coinbase/sync" \
+            -X POST \
+            -H "Authorization: Bearer $TOKEN" \
+            -H "Content-Type: application/json" | jq . || echo "⏭️ Coinbase not configured, skipping"
+
+          # Bidirectional Notion sync (pull from Notion, then push back)
+          echo "--- Bidirectional Notion sync ---"
+          RESULT=$(curl -sf "${API_BASE_URL}/api/integrations/notion/sync/bidirectional" \
             -X POST \
             -H "Authorization: Bearer $TOKEN" \
             -H "Content-Type: application/json")
@@ -45,4 +53,4 @@ jobs:
             exit 1
           fi
 
-          echo "✅ Notion sync completed successfully"
+          echo "✅ Bidirectional sync completed successfully"

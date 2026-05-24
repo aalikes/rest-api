@@ -1,8 +1,10 @@
 const { Router } = require('express');
 const { authenticate, authorize } = require('../middleware/auth');
 const notionSync = require('../services/notionSync');
+const notionPull = require('../services/notionPull');
 const { syncDashboard } = require('../services/notionDashboard');
-const TaskModel = require('../models/Task');
+const coinbaseSync = require('../services/coinbaseSync');
+const AppError = require('../utils/AppError');
 const { getDb } = require('../db');
 
 const router = Router();
@@ -17,9 +19,10 @@ router.use(authenticate);
 router.get('/status', async (req, res, next) => {
   try {
     const notion = await notionSync.getIntegrationStatus();
+    const coinbase = { configured: coinbaseSync.isConfigured() };
     res.json({
       status: 'success',
-      data: { notion },
+      data: { notion, coinbase },
     });
   } catch (err) {
     next(err);
@@ -128,6 +131,115 @@ router.post('/notion/sync/reading', async (req, res, next) => {
 router.post('/notion/sync/dashboard', async (req, res, next) => {
   try {
     const result = await syncDashboard(req.user.id);
+    res.json({ status: 'success', data: result });
+  } catch (err) {
+    next(err);
+  }
+});
+
+/**
+ * POST /api/integrations/notion/pull
+ * Pull changes from Notion databases into the local DB.
+ */
+router.post('/notion/pull', async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+    const results = {};
+
+    if (process.env.NOTION_TASKS_DB_ID) {
+      results.tasks = await notionPull.pullTasks(userId);
+    }
+    if (process.env.NOTION_FINANCIALS_DB_ID) {
+      results.financials = await notionPull.pullFinancials(userId);
+    }
+    if (process.env.NOTION_READING_DB_ID) {
+      results.reading = await notionPull.pullReadingLog(userId);
+    }
+
+    res.json({
+      status: 'success',
+      message: 'Notion pull completed',
+      data: results,
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+/**
+ * POST /api/integrations/notion/sync/bidirectional
+ * Pull from Notion first, then push local data back.
+ */
+router.post('/notion/sync/bidirectional', async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+    const db = getDb();
+    const results = { pull: {}, push: {} };
+
+    // Pull first (Notion → local)
+    if (process.env.NOTION_TASKS_DB_ID) {
+      results.pull.tasks = await notionPull.pullTasks(userId);
+    }
+    if (process.env.NOTION_FINANCIALS_DB_ID) {
+      results.pull.financials = await notionPull.pullFinancials(userId);
+    }
+    if (process.env.NOTION_READING_DB_ID) {
+      results.pull.reading = await notionPull.pullReadingLog(userId);
+    }
+
+    // Push back (local → Notion)
+    if (process.env.NOTION_TASKS_DB_ID) {
+      const tasks = db.prepare('SELECT * FROM tasks WHERE user_id = ?').all(userId);
+      results.push.tasks = await notionSync.syncTasks(tasks.map(mapTask));
+    }
+    if (process.env.NOTION_FINANCIALS_DB_ID) {
+      const financials = db.prepare('SELECT * FROM financials WHERE user_id = ?').all(userId);
+      results.push.financials = await notionSync.syncFinancials(financials.map(mapFinancial));
+    }
+    if (process.env.NOTION_READING_DB_ID) {
+      const reading = db.prepare('SELECT * FROM reading_log WHERE user_id = ?').all(userId);
+      results.push.reading = await notionSync.syncReadingLog(reading.map(mapReading));
+    }
+    if (process.env.NOTION_DASHBOARD_PAGE_ID) {
+      results.push.dashboard = await syncDashboard(userId);
+    }
+
+    res.json({
+      status: 'success',
+      message: 'Bidirectional sync completed',
+      data: results,
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+/**
+ * POST /api/integrations/coinbase/sync
+ * Fetch Coinbase portfolio balance and store as a financial entry.
+ */
+router.post('/coinbase/sync', async (req, res, next) => {
+  try {
+    if (!coinbaseSync.isConfigured()) {
+      return next(new AppError('Coinbase API credentials not configured. Set COINBASE_API_KEY_NAME and COINBASE_API_PRIVATE_KEY.', 422));
+    }
+    const result = await coinbaseSync.syncPortfolioToDb(req.user.id);
+    res.json({ status: 'success', data: result });
+  } catch (err) {
+    next(err);
+  }
+});
+
+/**
+ * GET /api/integrations/coinbase/balance
+ * Fetch current Coinbase portfolio balance without persisting.
+ */
+router.get('/coinbase/balance', async (req, res, next) => {
+  try {
+    if (!coinbaseSync.isConfigured()) {
+      return next(new AppError('Coinbase API credentials not configured. Set COINBASE_API_KEY_NAME and COINBASE_API_PRIVATE_KEY.', 422));
+    }
+    const result = await coinbaseSync.fetchPortfolioBalance();
     res.json({ status: 'success', data: result });
   } catch (err) {
     next(err);
