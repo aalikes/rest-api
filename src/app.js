@@ -20,6 +20,7 @@ const appointmentRoutes = require('./routes/appointments');
 const orderRoutes = require('./routes/orders');
 const documentRoutes = require('./routes/documents');
 const businessDashboardRoutes = require('./routes/businessDashboard');
+const apostilleWorkflowRoutes = require('./routes/apostilleWorkflow');
 const errorHandler = require('./middleware/errorHandler');
 const AppError = require('./utils/AppError');
 
@@ -61,6 +62,7 @@ app.use('/api/appointments', appointmentRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/documents', documentRoutes);
 app.use('/api/business/dashboard', businessDashboardRoutes);
+app.use('/api/apostille', apostilleWorkflowRoutes);
 
 // ── 404 Handler ───────────────────────────────────────────────────
 app.use((_req, _res, next) => {
