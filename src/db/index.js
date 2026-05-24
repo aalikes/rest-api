@@ -112,6 +112,34 @@ function runMigrations(database) {
         );
       `,
     },
+    {
+      version: 3,
+      sql: `
+        CREATE TABLE IF NOT EXISTS sync_state (
+          key   TEXT PRIMARY KEY,
+          value TEXT NOT NULL
+        );
+        ALTER TABLE tasks ADD COLUMN updated_at TEXT;
+        ALTER TABLE tasks ADD COLUMN notion_page_id TEXT;
+        ALTER TABLE financials ADD COLUMN updated_at TEXT;
+        ALTER TABLE financials ADD COLUMN notion_page_id TEXT;
+        ALTER TABLE reading_log ADD COLUMN updated_at TEXT;
+        ALTER TABLE reading_log ADD COLUMN notion_page_id TEXT;
+
+        CREATE TRIGGER IF NOT EXISTS tasks_updated_at
+          AFTER UPDATE ON tasks
+          FOR EACH ROW
+          BEGIN UPDATE tasks SET updated_at = datetime('now') WHERE id = OLD.id; END;
+        CREATE TRIGGER IF NOT EXISTS financials_updated_at
+          AFTER UPDATE ON financials
+          FOR EACH ROW
+          BEGIN UPDATE financials SET updated_at = datetime('now') WHERE id = OLD.id; END;
+        CREATE TRIGGER IF NOT EXISTS reading_log_updated_at
+          AFTER UPDATE ON reading_log
+          FOR EACH ROW
+          BEGIN UPDATE reading_log SET updated_at = datetime('now') WHERE id = OLD.id; END;
+      `,
+    },
   ];
 
   for (const m of migrations) {
