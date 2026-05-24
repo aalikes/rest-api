@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
@@ -63,6 +64,16 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/documents', documentRoutes);
 app.use('/api/business/dashboard', businessDashboardRoutes);
 app.use('/api/apostille', apostilleWorkflowRoutes);
+
+// ── Frontend (production) ─────────────────────────────────────────
+const frontendDist = path.join(__dirname, '..', 'frontend', 'dist');
+app.use(express.static(frontendDist));
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api/')) return next();
+  res.sendFile(path.join(frontendDist, 'index.html'), (err) => {
+    if (err) next();
+  });
+});
 
 // ── 404 Handler ───────────────────────────────────────────────────
 app.use((_req, _res, next) => {
