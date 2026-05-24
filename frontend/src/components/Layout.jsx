@@ -27,7 +27,7 @@ export default function Layout() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link to="/" className="flex items-center gap-2">
-              <span className="text-xl font-bold text-indigo-600">MetroPrints</span>
+              <span className="text-xl font-bold text-indigo-600">Eden</span>
               <span className="text-sm text-gray-500 hidden sm:block">Fingerprints &amp; Apostilles</span>
             </Link>
 
@@ -89,7 +89,7 @@ export default function Layout() {
 
       <footer className="bg-white border-t border-gray-200 py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
-          <p>MetroPrints &mdash; 2125 Biscayne Blvd Suite 303, Miami, FL 33137</p>
+          <p>Eden &mdash; 2125 Biscayne Blvd Suite 303, Miami, FL 33137</p>
           <p className="mt-1">Fingerprints &bull; Apostilles &bull; FBI Background Checks</p>
         </div>
       </footer>

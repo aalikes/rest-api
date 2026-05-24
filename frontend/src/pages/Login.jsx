@@ -45,7 +45,7 @@ export default function Login() {
             onChange={(e) => setEmail(e.target.value)}
             required
             className="mt-1 block w-full rounded-md border-gray-300 border px-3 py-2 text-sm"
-            placeholder="admin@metroprints.co"
+            placeholder="admin@eden.co"
           />
         </div>
         <div>

@@ -8,7 +8,7 @@ created: 2026-05-24
 
 ## Overview
 
-This SOP covers the end-to-end apostille process — from client intake to document delivery. Based on the [[Service Catalog]] and inspired by the Metroprints model.
+This SOP covers the end-to-end apostille process — from client intake to document delivery. Based on the [[Service Catalog]].
 
 ## Workflow Diagram
 
