@@ -1,0 +1,48 @@
+name: Sync to Notion
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Every 6 hours
+  workflow_dispatch:        # Allow manual runs
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Notion sync via API
+        env:
+          API_BASE_URL: ${{ secrets.API_BASE_URL }}
+          SYNC_USER_EMAIL: ${{ secrets.SYNC_USER_EMAIL }}
+          SYNC_USER_PASSWORD: ${{ secrets.SYNC_USER_PASSWORD }}
+        run: |
+          # Login to get JWT token
+          TOKEN=$(curl -sf "${API_BASE_URL}/api/auth/login" \
+            -H "Content-Type: application/json" \
+            -d "{\"email\": \"${SYNC_USER_EMAIL}\", \"password\": \"${SYNC_USER_PASSWORD}\"}" \
+            | jq -r '.token')
+
+          if [ "$TOKEN" = "null" ] || [ -z "$TOKEN" ]; then
+            echo "❌ Login failed"
+            exit 1
+          fi
+
+          echo "✅ Authenticated"
+
+          # Trigger full Notion sync
+          RESULT=$(curl -sf "${API_BASE_URL}/api/integrations/notion/sync" \
+            -X POST \
+            -H "Authorization: Bearer $TOKEN" \
+            -H "Content-Type: application/json")
+
+          echo "Sync result:"
+          echo "$RESULT" | jq .
+
+          # Check for success
+          STATUS=$(echo "$RESULT" | jq -r '.status')
+          if [ "$STATUS" != "success" ]; then
+            echo "❌ Sync failed"
+            exit 1
+          fi
+
+          echo "✅ Notion sync completed successfully"
