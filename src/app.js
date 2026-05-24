@@ -14,6 +14,7 @@ const dashboardRoutes = require('./routes/dashboard');
 const adminRoutes = require('./routes/admin');
 const searchRoutes = require('./routes/search');
 const hookRoutes = require('./routes/hooks');
+const integrationRoutes = require('./routes/integrations');
 const errorHandler = require('./middleware/errorHandler');
 const AppError = require('./utils/AppError');
 
@@ -49,6 +50,7 @@ app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/hooks', hookRoutes);
+app.use('/api/integrations', integrationRoutes);
 
 // ── 404 Handler ───────────────────────────────────────────────────
 app.use((_req, _res, next) => {
