@@ -8,7 +8,7 @@ export default function Appointments() {
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState({
-    client_id: '', service_id: '', scheduled_date: '', scheduled_time: '', notes: '',
+    client_id: '', service_id: '', appointment_date: '', appointment_time: '', notes: '',
   });
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
@@ -40,12 +40,12 @@ export default function Appointments() {
       await api.post('/appointments', {
         client_id: parseInt(form.client_id),
         service_id: parseInt(form.service_id),
-        scheduled_date: form.scheduled_date,
-        scheduled_time: form.scheduled_time,
+        appointment_date: form.appointment_date,
+        appointment_time: form.appointment_time,
         notes: form.notes || undefined,
       });
       setShowForm(false);
-      setForm({ client_id: '', service_id: '', scheduled_date: '', scheduled_time: '', notes: '' });
+      setForm({ client_id: '', service_id: '', appointment_date: '', appointment_time: '', notes: '' });
       loadData();
     } catch (err) {
       setError(err.message);
@@ -113,12 +113,12 @@ export default function Appointments() {
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700">Date *</label>
-              <input type="date" required value={form.scheduled_date} onChange={(e) => setForm({ ...form, scheduled_date: e.target.value })}
+              <input type="date" required value={form.appointment_date} onChange={(e) => setForm({ ...form, appointment_date: e.target.value })}
                 className="mt-1 block w-full rounded-md border px-3 py-2 text-sm" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">Time *</label>
-              <input type="time" required value={form.scheduled_time} onChange={(e) => setForm({ ...form, scheduled_time: e.target.value })}
+              <input type="time" required value={form.appointment_time} onChange={(e) => setForm({ ...form, appointment_time: e.target.value })}
                 className="mt-1 block w-full rounded-md border px-3 py-2 text-sm" />
             </div>
           </div>
@@ -144,7 +144,7 @@ export default function Appointments() {
               <div>
                 <p className="font-medium text-gray-900">{a.clientName || `Client #${a.clientId}`}</p>
                 <p className="text-sm text-gray-600">{a.serviceName || `Service #${a.serviceId}`}</p>
-                <p className="text-sm text-gray-500">{a.scheduledDate} at {a.scheduledTime}</p>
+                <p className="text-sm text-gray-500">{a.appointmentDate} at {a.appointmentTime}</p>
               </div>
               <div className="flex items-center gap-2">
                 <span className={`text-xs px-2 py-1 rounded-full font-medium ${statusColors[a.status] || 'bg-gray-100 text-gray-600'}`}>
