@@ -12,8 +12,6 @@ const createSchema = z.object({
   service_id: z.number().int().positive(),
   appointment_date: z.string().min(1, 'Appointment date is required'),
   appointment_time: z.string().optional(),
-  location_type: z.enum(['office', 'mobile']).optional(),
-  location_address: z.string().max(500).optional(),
   status: z.enum(['scheduled', 'completed', 'cancelled', 'no_show']).optional(),
   technician_notes: z.string().max(2000).optional(),
 });

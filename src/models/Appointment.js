@@ -8,8 +8,7 @@ const FIELDS = {
   userId: { column: 'user_id' },
   appointmentDate: { column: 'appointment_date' },
   appointmentTime: { column: 'appointment_time' },
-  locationType: { column: 'location_type' },
-  locationAddress: { column: 'location_address' },
+
   status: { column: 'status' },
   technicianNotes: { column: 'technician_notes' },
   createdAt: { column: 'created_at' },
@@ -21,16 +20,15 @@ const AppointmentModel = {
   create(data) {
     const db = getDb();
     const result = db.prepare(`
-      INSERT INTO appointments (client_id, service_id, user_id, appointment_date, appointment_time, location_type, location_address, status, technician_notes)
-      VALUES (@client_id, @service_id, @user_id, @appointment_date, @appointment_time, @location_type, @location_address, @status, @technician_notes)
+      INSERT INTO appointments (client_id, service_id, user_id, appointment_date, appointment_time, location_type, status, technician_notes)
+      VALUES (@client_id, @service_id, @user_id, @appointment_date, @appointment_time, 'office', @status, @technician_notes)
     `).run({
       client_id: data.client_id,
       service_id: data.service_id,
       user_id: data.user_id,
       appointment_date: data.appointment_date,
       appointment_time: data.appointment_time || null,
-      location_type: data.location_type || 'office',
-      location_address: data.location_address || null,
+
       status: data.status || 'scheduled',
       technician_notes: data.technician_notes || null,
     });
@@ -43,7 +41,7 @@ const AppointmentModel = {
     const params = [userId];
 
     if (filters.status) { sql += ' AND status = ?'; params.push(filters.status); }
-    if (filters.location_type) { sql += ' AND location_type = ?'; params.push(filters.location_type); }
+
     if (filters.client_id) { sql += ' AND client_id = ?'; params.push(filters.client_id); }
     if (filters.dateFrom) { sql += ' AND appointment_date >= ?'; params.push(filters.dateFrom); }
     if (filters.dateTo) { sql += ' AND appointment_date <= ?'; params.push(filters.dateTo); }
@@ -59,7 +57,7 @@ const AppointmentModel = {
 
   update(id, userId, fields) {
     const db = getDb();
-    const allowed = ['client_id', 'service_id', 'appointment_date', 'appointment_time', 'location_type', 'location_address', 'status', 'technician_notes'];
+    const allowed = ['client_id', 'service_id', 'appointment_date', 'appointment_time', 'status', 'technician_notes'];
     const sets = [];
     const params = [];
     for (const key of allowed) {

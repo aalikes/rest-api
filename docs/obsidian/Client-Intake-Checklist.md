@@ -28,9 +28,8 @@ created: 2026-05-24
 - [ ] Check if notarization is needed before apostille
 
 ### For Fingerprinting Appointments
-- [ ] Confirm appointment type (office $99 or mobile $149)
-- [ ] Confirm date and time preference
-- [ ] If mobile: get client's address for on-site service
+- [ ] Confirm appointment date and time preference
+- [ ] Remind client of office location: 2125 Biscayne Blvd Suite 303, Miami, FL 33137
 - [ ] Confirm purpose/agency (FDLE, FBI, DOH, DBPR, etc.)
 - [ ] Remind client to bring valid government photo ID
 

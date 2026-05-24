@@ -157,7 +157,6 @@ All appointment endpoints require authentication.
 
 **Query parameters for `GET /api/appointments`:**
 - `?status=scheduled` — filter by status (`scheduled`, `completed`, `cancelled`, `no_show`)
-- `?location_type=mobile` — filter by location type (`office`, `mobile`)
 - `?client_id=1` — filter by client
 - `?date_from=2026-06-01&date_to=2026-06-30` — filter by date range
 
@@ -235,7 +234,7 @@ The test suite validates:
 - Date filters (due_before, due_after, due_this_week)
 - Service catalog CRUD (admin-only create/update/delete, public listing)
 - Client management (create, list, scope per user, update, delete)
-- Appointment scheduling (office/mobile, status updates, date filtering)
+- Appointment scheduling (in-office, status updates, date filtering)
 - Order lifecycle (create, priority tiers, status tracking, shipping)
 - Document management (apostille status tracking, type filtering)
 - Business dashboard (revenue, appointments, order pipeline, apostille metrics)

@@ -22,11 +22,6 @@ async function getBusinessDashboard(req, res) {
     WHERE user_id = ? GROUP BY status
   `).all(userId);
 
-  results.appointmentsByLocationType = db.prepare(`
-    SELECT location_type as locationType, COUNT(*) as count FROM appointments
-    WHERE user_id = ? GROUP BY location_type
-  `).all(userId);
-
   // ── Order pipeline ───────────────────────────────────────────────
   results.ordersByStatus = db.prepare(`
     SELECT status, COUNT(*) as count FROM orders

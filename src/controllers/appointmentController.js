@@ -2,10 +2,9 @@ const AppointmentModel = require('../models/Appointment');
 const AppError = require('../utils/AppError');
 
 exports.list = (req, res) => {
-  const { status, location_type, client_id, date_from, date_to } = req.query;
+  const { status, client_id, date_from, date_to } = req.query;
   const filters = {};
   if (status) filters.status = status;
-  if (location_type) filters.location_type = location_type;
   if (client_id) filters.client_id = parseInt(client_id, 10);
   if (date_from) filters.dateFrom = date_from;
   if (date_to) filters.dateTo = date_to;

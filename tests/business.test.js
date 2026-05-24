@@ -238,28 +238,10 @@ describe('Appointments', () => {
           service_id: serviceId,
           appointment_date: '2026-06-15',
           appointment_time: '10:00',
-          location_type: 'office',
         });
       expect(res.status).toBe(201);
       expect(res.body.data.appointment.appointmentDate).toBe('2026-06-15');
-      expect(res.body.data.appointment.locationType).toBe('office');
       expect(res.body.data.appointment.status).toBe('scheduled');
-    });
-
-    it('should create a mobile appointment', async () => {
-      const res = await request(app)
-        .post('/api/appointments')
-        .set('Authorization', `Bearer ${authToken}`)
-        .send({
-          client_id: clientId,
-          service_id: serviceId,
-          appointment_date: '2026-06-16',
-          location_type: 'mobile',
-          location_address: '123 Main St, Miami, FL',
-        });
-      expect(res.status).toBe(201);
-      expect(res.body.data.appointment.locationType).toBe('mobile');
-      expect(res.body.data.appointment.locationAddress).toBe('123 Main St, Miami, FL');
     });
 
     it('should reject missing required fields', async () => {
@@ -274,22 +256,15 @@ describe('Appointments', () => {
   describe('GET /api/appointments', () => {
     beforeEach(async () => {
       await request(app).post('/api/appointments').set('Authorization', `Bearer ${authToken}`)
-        .send({ client_id: clientId, service_id: serviceId, appointment_date: '2026-06-15', location_type: 'office' });
+        .send({ client_id: clientId, service_id: serviceId, appointment_date: '2026-06-15' });
       await request(app).post('/api/appointments').set('Authorization', `Bearer ${authToken}`)
-        .send({ client_id: clientId, service_id: serviceId, appointment_date: '2026-06-16', location_type: 'mobile' });
+        .send({ client_id: clientId, service_id: serviceId, appointment_date: '2026-06-16' });
     });
 
     it('should list appointments', async () => {
       const res = await request(app).get('/api/appointments').set('Authorization', `Bearer ${authToken}`);
       expect(res.status).toBe(200);
       expect(res.body.results).toBe(2);
-    });
-
-    it('should filter by location_type', async () => {
-      const res = await request(app).get('/api/appointments?location_type=mobile')
-        .set('Authorization', `Bearer ${authToken}`);
-      expect(res.body.results).toBe(1);
-      expect(res.body.data.appointments[0].locationType).toBe('mobile');
     });
 
     it('should filter by status', async () => {

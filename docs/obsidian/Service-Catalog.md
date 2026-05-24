@@ -11,11 +11,12 @@ created: 2026-05-24
 | Service | Price | Type | Processing |
 |---|---|---|---|
 | Office Fingerprinting | $99 | `office` | Same day (~20 min) |
-| Mobile Fingerprinting | $149 | `mobile` | Same day (~20 min) |
+
+**All fingerprinting is in-office only.**
 
 **Use cases:** FDLE, FBI employment, DOH (healthcare), DBPR (real estate), DCF (childcare), concealed carry, USCIS (immigration), adoption, banking, TSA, bar admission, volunteer orgs.
 
-**Location:** 2125 Biscayne Blvd Suite 303, Miami, FL 33137 (office) or client's location (mobile).
+**Location:** 2125 Biscayne Blvd Suite 303, Miami, FL 33137.
 
 ## Apostille Services
 
