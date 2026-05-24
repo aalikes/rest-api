@@ -29,6 +29,20 @@ created: 2026-05-24
 | Processing time (standard) | ~5 weeks |
 | Processing time (priority) | ~10 business days |
 
+### FBI Background Check
+
+| Item | Price |
+|---|---|
+| Resident / U.S. Citizen | $129 + tax |
+| Non-Resident / Non-Citizen | $179 + tax |
+
+### Combo: FBI Background Check + Apostille
+
+| Client Type | FBI | Apostille | Total |
+|---|---|---|---|
+| Resident / U.S. Citizen | $129 | $200 | **$329** + tax |
+| Non-Resident / Non-Citizen | $179 | $200 | **$379** + tax |
+
 ## Pricing API
 
 ### Get Static Pricing
@@ -37,9 +51,9 @@ created: 2026-05-24
 GET /api/apostille/pricing
 ```
 
-Returns the full pricing matrix for both state and federal apostilles.
+Returns the full pricing matrix for apostilles, FBI checks, and fingerprinting.
 
-### Get a Quote
+### Get an Apostille Quote
 
 ```
 POST /api/apostille/quote
@@ -68,6 +82,49 @@ Response:
 }
 ```
 
+### Get an FBI Quote
+
+```
+POST /api/apostille/fbi-quote
+{
+  "residency_type": "non_resident"
+}
+```
+
+Response:
+```json
+{
+  "status": "success",
+  "data": { "base": 179, "note": "Plus applicable tax" }
+}
+```
+
+### Get a Combo Quote (FBI + Apostille)
+
+```
+POST /api/apostille/combo-quote
+{
+  "residency_type": "resident",
+  "apostille_type": "federal",
+  "priority": "standard"
+}
+```
+
+Response:
+```json
+{
+  "status": "success",
+  "data": {
+    "total": 329,
+    "breakdown": {
+      "fbi_background_check": 129,
+      "apostille": 200
+    },
+    "note": "FBI background check price is plus applicable tax"
+  }
+}
+```
+
 ## Common Scenarios
 
 | Scenario | Calculation | Total |
@@ -78,6 +135,10 @@ Response:
 | 1 FBI report, federal, priority | $200 + $200 | **$400** |
 | 2 docs, federal, priority, intl mail | $200 + $200 + $50 + $200 | **$650** |
 | 1 doc, state, priority, expedited mail | $200 + $200 + $100 | **$500** |
+| FBI check (resident) + apostille | $129 + $200 | **$329** + tax |
+| FBI check (non-resident) + apostille | $179 + $200 | **$379** + tax |
+| FBI check (resident) only | $129 | **$129** + tax |
+| FBI check (non-resident) only | $179 | **$179** + tax |
 
 ## Related
 

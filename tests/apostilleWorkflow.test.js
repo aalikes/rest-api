@@ -257,3 +257,65 @@ describe('Apostille Pipeline', () => {
     expect(res.status).toBe(401);
   });
 });
+
+// ── FBI & Combo Pricing ───────────────────────────────────────────
+
+describe('FBI Pricing', () => {
+  it('should return pricing matrix with FBI pricing', async () => {
+    const res = await request(app).get('/api/apostille/pricing');
+    expect(res.status).toBe(200);
+    expect(res.body.data.fbi_background_check).toBeDefined();
+    expect(res.body.data.fbi_background_check.resident).toBe(129);
+    expect(res.body.data.fbi_background_check.non_resident).toBe(179);
+  });
+
+  it('should calculate FBI quote for resident ($129)', async () => {
+    const res = await request(app).post('/api/apostille/fbi-quote')
+      .send({ residency_type: 'resident' });
+    expect(res.status).toBe(200);
+    expect(res.body.data.base).toBe(129);
+    expect(res.body.data.note).toMatch(/tax/i);
+  });
+
+  it('should calculate FBI quote for non-resident ($179)', async () => {
+    const res = await request(app).post('/api/apostille/fbi-quote')
+      .send({ residency_type: 'non_resident' });
+    expect(res.status).toBe(200);
+    expect(res.body.data.base).toBe(179);
+  });
+
+  it('should default to resident pricing', async () => {
+    const res = await request(app).post('/api/apostille/fbi-quote').send({});
+    expect(res.status).toBe(200);
+    expect(res.body.data.base).toBe(129);
+  });
+});
+
+describe('Combo Pricing (FBI + Apostille)', () => {
+  it('should calculate combo: resident FBI + federal apostille = $329', async () => {
+    const res = await request(app).post('/api/apostille/combo-quote')
+      .send({ residency_type: 'resident', apostille_type: 'federal' });
+    expect(res.status).toBe(200);
+    expect(res.body.data.total).toBe(329);
+    expect(res.body.data.breakdown.fbi_background_check).toBe(129);
+    expect(res.body.data.breakdown.apostille).toBe(200);
+  });
+
+  it('should calculate combo: non-resident FBI + federal apostille = $379', async () => {
+    const res = await request(app).post('/api/apostille/combo-quote')
+      .send({ residency_type: 'non_resident', apostille_type: 'federal' });
+    expect(res.status).toBe(200);
+    expect(res.body.data.total).toBe(379);
+    expect(res.body.data.breakdown.fbi_background_check).toBe(179);
+    expect(res.body.data.breakdown.apostille).toBe(200);
+  });
+
+  it('should calculate combo with priority: non-resident + priority = $579', async () => {
+    const res = await request(app).post('/api/apostille/combo-quote')
+      .send({ residency_type: 'non_resident', apostille_type: 'federal', priority: 'priority' });
+    expect(res.status).toBe(200);
+    expect(res.body.data.total).toBe(579);
+    expect(res.body.data.breakdown.fbi_background_check).toBe(179);
+    expect(res.body.data.breakdown.apostille).toBe(400);
+  });
+});

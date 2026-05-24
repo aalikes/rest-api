@@ -44,6 +44,14 @@ const PRICING = {
     additional_document: 50,
     processing_days: { standard: 35, priority: 10 },
   },
+  fbi_background_check: {
+    resident: 129,
+    non_resident: 179,
+    note: 'Plus applicable tax',
+  },
+  fingerprint: {
+    base: 99,
+  },
 };
 
 function calculateApostillePrice({ apostille_type, priority, document_count, shipping }) {
@@ -69,6 +77,29 @@ function calculateApostillePrice({ apostille_type, priority, document_count, shi
   const days = tier.processing_days[priority] || tier.processing_days.standard;
 
   return { total, processingDays: days, breakdown: { base: tier.base, priority: priority === 'priority' ? tier.priority_surcharge : 0, additionalDocs: document_count > 1 ? (document_count - 1) * (tier.additional_document || tier.base) : 0, shipping: (shipping === 'expedited' ? (tier.expedited_mail || 0) : 0) + (shipping === 'international' ? (tier.international_mail || 0) : 0) } };
+}
+
+function calculateFbiPrice({ residency_type }) {
+  const price = residency_type === 'non_resident'
+    ? PRICING.fbi_background_check.non_resident
+    : PRICING.fbi_background_check.resident;
+  return { base: price, note: 'Plus applicable tax' };
+}
+
+function calculateComboPrice({ residency_type, apostille_type, priority, document_count, shipping }) {
+  const fbi = calculateFbiPrice({ residency_type });
+  const apostille = calculateApostillePrice({ apostille_type: apostille_type || 'federal', priority, document_count: document_count || 1, shipping });
+  const comboTotal = fbi.base + apostille.total;
+  return {
+    total: comboTotal,
+    processingDays: apostille.processingDays,
+    breakdown: {
+      fbi_background_check: fbi.base,
+      apostille: apostille.total,
+      apostille_detail: apostille.breakdown,
+    },
+    note: 'FBI background check price is plus applicable tax',
+  };
 }
 
 // ── Intake (full apostille order creation) ────────────────────────
@@ -244,6 +275,8 @@ module.exports = {
   isValidOrderTransition,
   isValidApostilleTransition,
   calculateApostillePrice,
+  calculateFbiPrice,
+  calculateComboPrice,
   createApostilleOrder,
   transitionOrder,
   transitionApostille,

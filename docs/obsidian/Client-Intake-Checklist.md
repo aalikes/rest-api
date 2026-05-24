@@ -35,6 +35,10 @@ created: 2026-05-24
 
 ### For FBI Background Checks
 - [ ] Schedule fingerprinting appointment first
+- [ ] Determine residency status:
+  - **Resident / U.S. Citizen:** $129 + tax
+  - **Non-Resident / Non-Citizen:** $179 + tax
+- [ ] Ask if client also needs an apostille (+$200) — common for immigration
 - [ ] Confirm the purpose (employment, immigration, adoption, etc.)
 - [ ] Explain timeline expectations
 

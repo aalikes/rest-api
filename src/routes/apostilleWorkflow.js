@@ -13,6 +13,18 @@ const quoteSchema = z.object({
   shipping: z.enum(['standard', 'expedited', 'international']).optional().nullable(),
 });
 
+const fbiQuoteSchema = z.object({
+  residency_type: z.enum(['resident', 'non_resident']).optional(),
+});
+
+const comboQuoteSchema = z.object({
+  residency_type: z.enum(['resident', 'non_resident']).optional(),
+  apostille_type: z.enum(['state', 'federal']).optional(),
+  priority: z.enum(['standard', 'priority']).optional(),
+  document_count: z.number().int().min(1).optional(),
+  shipping: z.enum(['standard', 'expedited', 'international']).optional().nullable(),
+});
+
 const documentSchema = z.object({
   document_type: z.enum([
     'birth_certificate', 'marriage_certificate', 'fbi_report',
@@ -42,6 +54,8 @@ const transitionDocSchema = z.object({
 // Public
 router.get('/pricing', ctrl.pricing);
 router.post('/quote', validate(quoteSchema), ctrl.quote);
+router.post('/fbi-quote', validate(fbiQuoteSchema), ctrl.fbiQuote);
+router.post('/combo-quote', validate(comboQuoteSchema), ctrl.comboQuote);
 
 // Authenticated
 router.post('/intake', authenticate, validate(intakeSchema), ctrl.intake);

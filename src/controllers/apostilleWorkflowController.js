@@ -1,5 +1,7 @@
 const {
   calculateApostillePrice,
+  calculateFbiPrice,
+  calculateComboPrice,
   createApostilleOrder,
   transitionOrder,
   transitionApostille,
@@ -16,6 +18,24 @@ exports.quote = (req, res) => {
   const { apostille_type, priority, document_count, shipping } = req.body;
   const result = calculateApostillePrice({
     apostille_type: apostille_type || 'state',
+    priority: priority || 'standard',
+    document_count: parseInt(document_count, 10) || 1,
+    shipping: shipping || null,
+  });
+  res.json({ status: 'success', data: result });
+};
+
+exports.fbiQuote = (req, res) => {
+  const { residency_type } = req.body;
+  const result = calculateFbiPrice({ residency_type: residency_type || 'resident' });
+  res.json({ status: 'success', data: result });
+};
+
+exports.comboQuote = (req, res) => {
+  const { residency_type, apostille_type, priority, document_count, shipping } = req.body;
+  const result = calculateComboPrice({
+    residency_type: residency_type || 'resident',
+    apostille_type: apostille_type || 'federal',
     priority: priority || 'standard',
     document_count: parseInt(document_count, 10) || 1,
     shipping: shipping || null,

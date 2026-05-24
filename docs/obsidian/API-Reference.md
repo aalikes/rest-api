@@ -12,9 +12,9 @@ created: 2026-05-24
 ```
 GET /api/apostille/pricing
 ```
-Returns the full pricing structure for state and federal apostilles.
+Returns the full pricing structure for apostilles, FBI background checks, and fingerprinting.
 
-### Get a Quote (Public)
+### Get an Apostille Quote (Public)
 ```
 POST /api/apostille/quote
 Content-Type: application/json
@@ -26,6 +26,32 @@ Content-Type: application/json
   "shipping": "international"      // "standard", "expedited", or "international"
 }
 ```
+
+### Get an FBI Quote (Public)
+```
+POST /api/apostille/fbi-quote
+Content-Type: application/json
+
+{
+  "residency_type": "resident"    // "resident" or "non_resident"
+}
+```
+Returns: `{ "base": 129, "note": "Plus applicable tax" }`
+
+### Get a Combo Quote — FBI + Apostille (Public)
+```
+POST /api/apostille/combo-quote
+Content-Type: application/json
+
+{
+  "residency_type": "resident",       // "resident" or "non_resident"
+  "apostille_type": "federal",        // "state" or "federal"
+  "priority": "standard",             // "standard" or "priority"
+  "document_count": 1,
+  "shipping": null
+}
+```
+Returns combined total (e.g. $329 for resident FBI + federal apostille).
 
 ### Submit Apostille Order (Authenticated)
 ```

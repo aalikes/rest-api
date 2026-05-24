@@ -47,9 +47,14 @@ created: 2026-05-24
 
 | Service | Price | Type | Processing |
 |---|---|---|---|
-| FBI Identity History Summary | $150 | `fbi` | Varies |
+| FBI Background Check (Resident / U.S. Citizen) | $129 + tax | `fbi` | Varies |
+| FBI Background Check (Non-Resident / Non-Citizen) | $179 + tax | `fbi` | Varies |
 
 **Includes:** Electronic fingerprint capture + submission to FBI CJIS for identity history summary (rap sheet).
+
+**Combo Pricing (FBI + Apostille):**
+- Resident/Citizen: $129 + $200 = **$329** + tax
+- Non-Resident/Non-Citizen: $179 + $200 = **$379** + tax
 
 ## API Endpoints
 
