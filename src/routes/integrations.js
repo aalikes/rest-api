@@ -4,6 +4,7 @@ const notionSync = require('../services/notionSync');
 const notionPull = require('../services/notionPull');
 const { syncDashboard } = require('../services/notionDashboard');
 const coinbaseSync = require('../services/coinbaseSync');
+const AppError = require('../utils/AppError');
 const { getDb } = require('../db');
 
 const router = Router();
@@ -219,6 +220,9 @@ router.post('/notion/sync/bidirectional', async (req, res, next) => {
  */
 router.post('/coinbase/sync', async (req, res, next) => {
   try {
+    if (!coinbaseSync.isConfigured()) {
+      return next(new AppError('Coinbase API credentials not configured. Set COINBASE_API_KEY_NAME and COINBASE_API_PRIVATE_KEY.', 422));
+    }
     const result = await coinbaseSync.syncPortfolioToDb(req.user.id);
     res.json({ status: 'success', data: result });
   } catch (err) {
@@ -232,6 +236,9 @@ router.post('/coinbase/sync', async (req, res, next) => {
  */
 router.get('/coinbase/balance', async (req, res, next) => {
   try {
+    if (!coinbaseSync.isConfigured()) {
+      return next(new AppError('Coinbase API credentials not configured. Set COINBASE_API_KEY_NAME and COINBASE_API_PRIVATE_KEY.', 422));
+    }
     const result = await coinbaseSync.fetchPortfolioBalance();
     res.json({ status: 'success', data: result });
   } catch (err) {
