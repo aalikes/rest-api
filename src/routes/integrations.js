@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const { authenticate, authorize } = require('../middleware/auth');
 const notionSync = require('../services/notionSync');
+const { syncDashboard } = require('../services/notionDashboard');
 const TaskModel = require('../models/Task');
 const { getDb } = require('../db');
 
@@ -57,6 +58,11 @@ router.post('/notion/sync', async (req, res, next) => {
       results.reading = await notionSync.syncReadingLog(mapped);
     }
 
+    // Sync dashboard page
+    if (process.env.NOTION_DASHBOARD_PAGE_ID) {
+      results.dashboard = await syncDashboard(userId);
+    }
+
     res.json({
       status: 'success',
       message: 'Notion sync completed',
@@ -109,6 +115,19 @@ router.post('/notion/sync/reading', async (req, res, next) => {
     const reading = db.prepare('SELECT * FROM reading_log WHERE user_id = ?').all(req.user.id);
     const mapped = reading.map(mapReading);
     const result = await notionSync.syncReadingLog(mapped);
+    res.json({ status: 'success', data: result });
+  } catch (err) {
+    next(err);
+  }
+});
+
+/**
+ * POST /api/integrations/notion/sync/dashboard
+ * Sync dashboard overview to a Notion page.
+ */
+router.post('/notion/sync/dashboard', async (req, res, next) => {
+  try {
+    const result = await syncDashboard(req.user.id);
     res.json({ status: 'success', data: result });
   } catch (err) {
     next(err);
