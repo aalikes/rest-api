@@ -2,7 +2,7 @@
 
 ![Tests](https://github.com/aalikes/rest-api/actions/workflows/test.yml/badge.svg)
 
-A production-ready REST API built with **Express**, **JWT authentication**, **input validation** (Zod), and a comprehensive **test suite**.
+A production-ready REST API built with **Express**, **JWT authentication**, **input validation** (Zod), and a comprehensive **test suite**. Includes a full **fingerprinting, apostille, and FBI background check** business management system.
 
 **🚀 Live:** `https://rest-api-wfsz.onrender.com`
 
@@ -15,7 +15,9 @@ A production-ready REST API built with **Express**, **JWT authentication**, **in
 - **Security** — Helmet headers, CORS, rate-limit ready
 - **Error handling** — Operational vs programming errors handled appropriately
 - **Graceful shutdown** — Handles SIGTERM/SIGINT cleanly
-- **Comprehensive tests** — 53 tests covering auth, CRUD, authorization, dashboard, search, webhooks, admin roles, and date filters
+- **Fingerprint & Apostille Business** — Services catalog, client management, appointment scheduling, order tracking, and document/apostille status management
+- **Business Dashboard** — Revenue tracking, appointment metrics, order pipeline, apostille status, and client analytics
+- **Comprehensive tests** — 96 tests covering auth, CRUD, authorization, dashboard, search, webhooks, admin roles, date filters, and the full business domain
 
 ## Quick Start
 
@@ -113,6 +115,100 @@ All todo endpoints require authentication (`Authorization: Bearer <token>`).
 - `?completed=true` — filter to completed todos
 - `?completed=false` — filter to incomplete todos
 
+### Services (Public Catalog)
+
+| Method | Endpoint              | Description              | Auth Required |
+|--------|-----------------------|--------------------------|---------------|
+| GET    | `/api/services`       | List all active services | No            |
+| GET    | `/api/services/:id`   | Get service details      | No            |
+| POST   | `/api/services`       | Create a service         | Admin         |
+| PATCH  | `/api/services/:id`   | Update a service         | Admin         |
+| DELETE | `/api/services/:id`   | Delete a service         | Admin         |
+
+**Categories:** `fingerprint`, `apostille`, `fbi`
+
+**Query parameters for `GET /api/services`:**
+- `?category=fingerprint` — filter by service category
+- `?active=true` — filter by active status
+
+### Clients
+
+All client endpoints require authentication.
+
+| Method | Endpoint              | Description         | Auth Required |
+|--------|-----------------------|---------------------|---------------|
+| GET    | `/api/clients`        | List user's clients | Yes           |
+| POST   | `/api/clients`        | Create a client     | Yes           |
+| GET    | `/api/clients/:id`    | Get client details  | Yes           |
+| PATCH  | `/api/clients/:id`    | Update a client     | Yes           |
+| DELETE | `/api/clients/:id`    | Delete a client     | Yes           |
+
+### Appointments
+
+All appointment endpoints require authentication.
+
+| Method | Endpoint                  | Description              | Auth Required |
+|--------|---------------------------|--------------------------|---------------|
+| GET    | `/api/appointments`       | List appointments        | Yes           |
+| POST   | `/api/appointments`       | Schedule an appointment  | Yes           |
+| GET    | `/api/appointments/:id`   | Get appointment details  | Yes           |
+| PATCH  | `/api/appointments/:id`   | Update an appointment    | Yes           |
+| DELETE | `/api/appointments/:id`   | Cancel an appointment    | Yes           |
+
+**Query parameters for `GET /api/appointments`:**
+- `?status=scheduled` — filter by status (`scheduled`, `completed`, `cancelled`, `no_show`)
+- `?location_type=mobile` — filter by location type (`office`, `mobile`)
+- `?client_id=1` — filter by client
+- `?date_from=2026-06-01&date_to=2026-06-30` — filter by date range
+
+### Orders
+
+All order endpoints require authentication.
+
+| Method | Endpoint            | Description          | Auth Required |
+|--------|---------------------|----------------------|---------------|
+| GET    | `/api/orders`       | List orders          | Yes           |
+| POST   | `/api/orders`       | Create an order      | Yes           |
+| GET    | `/api/orders/:id`   | Get order details    | Yes           |
+| PATCH  | `/api/orders/:id`   | Update order/status  | Yes           |
+| DELETE | `/api/orders/:id`   | Cancel an order      | Yes           |
+
+**Query parameters for `GET /api/orders`:**
+- `?status=processing` — filter by status (`received`, `processing`, `submitted_to_agency`, `completed`, `shipped`, `rejected`)
+- `?priority=priority` — filter by priority (`standard`, `priority`, `expedited`)
+- `?client_id=1` — filter by client
+- `?service_id=1` — filter by service
+
+### Documents
+
+All document endpoints require authentication.
+
+| Method | Endpoint               | Description             | Auth Required |
+|--------|------------------------|-------------------------|---------------|
+| GET    | `/api/documents`       | List documents          | Yes           |
+| POST   | `/api/documents`       | Register a document     | Yes           |
+| GET    | `/api/documents/:id`   | Get document details    | Yes           |
+| PATCH  | `/api/documents/:id`   | Update document status  | Yes           |
+| DELETE | `/api/documents/:id`   | Remove a document       | Yes           |
+
+**Document types:** `birth_certificate`, `marriage_certificate`, `fbi_report`, `diploma`, `corporate`, `court_document`, `power_of_attorney`, `other`
+
+**Apostille statuses:** `pending`, `submitted`, `apostilled`, `rejected`, `not_applicable`
+
+### Business Dashboard
+
+```
+GET /api/business/dashboard
+```
+
+Returns a comprehensive summary including:
+- Today's and upcoming appointments
+- Order pipeline by status and priority
+- Revenue totals and breakdown by service
+- Apostille tracking (pending, submitted, completed)
+- Client metrics (total, verified)
+- Active services by category
+
 ## Running Tests
 
 ```bash
@@ -137,6 +233,13 @@ The test suite validates:
 - Webhook endpoint (reminder creation, validation)
 - Admin role enforcement (non-admin rejected, admin allowed)
 - Date filters (due_before, due_after, due_this_week)
+- Service catalog CRUD (admin-only create/update/delete, public listing)
+- Client management (create, list, scope per user, update, delete)
+- Appointment scheduling (office/mobile, status updates, date filtering)
+- Order lifecycle (create, priority tiers, status tracking, shipping)
+- Document management (apostille status tracking, type filtering)
+- Business dashboard (revenue, appointments, order pipeline, apostille metrics)
+- Extended search (clients, orders, documents)
 
 ## Continuous Integration
 
@@ -151,18 +254,35 @@ src/
 ├── config/
 │   └── index.js           # Centralised configuration from environment variables
 ├── controllers/
-│   ├── authController.js  # Auth request handlers
-│   └── todoController.js  # Todo request handlers
+│   ├── authController.js            # Auth request handlers
+│   ├── todoController.js            # Todo request handlers
+│   ├── serviceController.js         # Service catalog handlers
+│   ├── clientController.js          # Client management handlers
+│   ├── appointmentController.js     # Appointment scheduling handlers
+│   ├── orderController.js           # Order tracking handlers
+│   ├── documentController.js        # Document/apostille handlers
+│   └── businessDashboardController.js # Business analytics
 ├── middleware/
 │   ├── auth.js            # JWT verification + role authorization
 │   ├── errorHandler.js    # Global error handler
 │   └── validate.js        # Zod schema validation middleware
 ├── models/
-│   ├── User.js            # In-memory user store (swappable for DB)
-│   └── Todo.js            # In-memory todo store (swappable for DB)
+│   ├── User.js            # User store (SQLite)
+│   ├── Todo.js            # Todo store (SQLite)
+│   ├── Service.js         # Service catalog model
+│   ├── Client.js          # Client model
+│   ├── Appointment.js     # Appointment model
+│   ├── Order.js           # Order model
+│   └── Document.js        # Document/apostille model
 ├── routes/
-│   ├── auth.js            # Auth route definitions
-│   └── todos.js           # Todo route definitions
+│   ├── auth.js              # Auth route definitions
+│   ├── todos.js             # Todo route definitions
+│   ├── services.js          # Service catalog routes
+│   ├── clients.js           # Client routes
+│   ├── appointments.js      # Appointment routes
+│   ├── orders.js            # Order routes
+│   ├── documents.js         # Document routes
+│   └── businessDashboard.js # Business dashboard route
 └── utils/
     ├── AppError.js        # Custom operational error class
     ├── jwt.js             # JWT sign/verify helpers

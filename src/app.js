@@ -14,6 +14,12 @@ const dashboardRoutes = require('./routes/dashboard');
 const adminRoutes = require('./routes/admin');
 const searchRoutes = require('./routes/search');
 const hookRoutes = require('./routes/hooks');
+const serviceRoutes = require('./routes/services');
+const clientRoutes = require('./routes/clients');
+const appointmentRoutes = require('./routes/appointments');
+const orderRoutes = require('./routes/orders');
+const documentRoutes = require('./routes/documents');
+const businessDashboardRoutes = require('./routes/businessDashboard');
 const errorHandler = require('./middleware/errorHandler');
 const AppError = require('./utils/AppError');
 
@@ -49,6 +55,12 @@ app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/hooks', hookRoutes);
+app.use('/api/services', serviceRoutes);
+app.use('/api/clients', clientRoutes);
+app.use('/api/appointments', appointmentRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/documents', documentRoutes);
+app.use('/api/business/dashboard', businessDashboardRoutes);
 
 // ── 404 Handler ───────────────────────────────────────────────────
 app.use((_req, _res, next) => {

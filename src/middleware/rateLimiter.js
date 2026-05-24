@@ -1,11 +1,14 @@
 const rateLimit = require('express-rate-limit');
 
+const isTest = process.env.NODE_ENV === 'test';
+
 /**
  * General API rate limiter — 100 requests per 15 minutes per IP.
  */
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
+  skip: () => isTest,
   standardHeaders: true,
   legacyHeaders: false,
   message: {
@@ -20,6 +23,7 @@ const apiLimiter = rateLimit({
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 10,
+  skip: () => isTest,
   standardHeaders: true,
   legacyHeaders: false,
   message: {
