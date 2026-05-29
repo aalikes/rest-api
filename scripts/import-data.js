@@ -24,7 +24,7 @@ async function main() {
   const db = getDb();
 
   // ── Create or fetch a default user for imported items ──────────
-  const defaultUserEmail = 'shah@eden.co';
+  const defaultUserEmail = 'shah@provn.co';
   let user = db.prepare('SELECT * FROM users WHERE email = ?').get(defaultUserEmail);
 
   if (!user) {
@@ -34,7 +34,7 @@ async function main() {
       'INSERT INTO users (id, name, email, password, role) VALUES (?, ?, ?, ?, ?)'
     ).run(id, 'Shah Saint-Cyr', defaultUserEmail, hashed, 'user');
     user = { id };
-    console.log('  ✓ Created default user: shah@eden.co / changeme123');
+    console.log('  ✓ Created default user: shah@provn.co / changeme123');
   } else {
     console.log('  ✓ Using existing user:', defaultUserEmail);
   }
