@@ -2,13 +2,14 @@
 tags: [sop, apostille, workflow]
 aliases: [Apostille Process, Apostille SOP]
 created: 2026-05-24
+workspace: Provn
 ---
 
 # SOP: Apostille Workflow
 
 ## Overview
 
-This SOP covers the end-to-end apostille process — from client intake to document delivery. Based on the [[Service Catalog]].
+This SOP covers the end-to-end apostille process — from client intake to document delivery.
 
 ## Workflow Diagram
 
@@ -47,14 +48,14 @@ At any stage before SHIPPED, an order can transition to **REJECTED** if document
 
 ### Step 1: Client Intake
 
-1. Client fills out the intake form ([[API Reference#Apostille Intake]])
+1. Client fills out the intake form
 2. System validates required fields:
    - Client ID (existing client record)
    - Service ID (must be an apostille service)
    - At least 1 document with type classification
    - Priority level (standard or priority)
    - Shipping preference
-3. System auto-calculates pricing (see [[Apostille Pricing]])
+3. System auto-calculates pricing (see [[Apostille-Pricing]])
 4. Order created with status `received` and estimated completion date
 
 **API Endpoint:** `POST /api/apostille/intake`
@@ -85,20 +86,12 @@ At any stage before SHIPPED, an order can transition to **REJECTED** if document
 4. Update each document's apostille_status to `submitted`
 5. Transition order to `submitted_to_agency`
 
-**API Endpoints:**
-- `PATCH /api/apostille/documents/:id/transition` with `{"apostille_status": "submitted"}`
-- `PATCH /api/apostille/orders/:id/transition` with `{"status": "submitted_to_agency"}`
-
 ### Step 4: Agency Processing (Wait Period)
 
 **Standard processing times:**
 - State apostille: 3–10 business days
 - Federal apostille (standard): ~5 weeks
 - Federal apostille (priority): ~10 business days
-
-**During this period:**
-- Monitor agency portals for status updates
-- Update client if delays occur (add notes to order)
 
 ### Step 5: Apostille Received (SUBMITTED_TO_AGENCY → COMPLETED)
 
@@ -107,30 +100,13 @@ At any stage before SHIPPED, an order can transition to **REJECTED** if document
 3. Update each document's apostille_status to `apostilled`
 4. Transition order to `completed`
 
-**API Endpoints:**
-- `PATCH /api/apostille/documents/:id/transition` with `{"apostille_status": "apostilled"}`
-- `PATCH /api/apostille/orders/:id/transition` with `{"status": "completed"}`
-
 ### Step 6: Shipping (COMPLETED → SHIPPED)
 
 1. Package apostilled documents securely
-2. Ship via client's chosen method:
-   - Standard USPS
-   - Expedited (Priority Mail) — +$100
-   - International — +$200
+2. Ship via client's chosen method
 3. Update order with tracking number and shipping method
 4. Transition order to `shipped`
 5. Notify client with tracking information
-
-**API Endpoint:**
-```
-PATCH /api/orders/:id
-{
-  "tracking_number": "USPS123456789",
-  "shipping_method": "USPS Priority"
-}
-```
-Then: `PATCH /api/apostille/orders/:id/transition` with `{"status": "shipped"}`
 
 ## Rejection Handling
 
@@ -145,7 +121,7 @@ If documents are rejected at any stage:
 
 ## Related Notes
 
-- [[Apostille Pricing]]
-- [[Service Catalog]]
-- [[Client Intake Checklist]]
-- [[Agent Automations]]
+- [[Apostille-Pricing]]
+- [[Service-Catalog]]
+- [[Client-Intake-Checklist]]
+- [[Agent-Automations]]

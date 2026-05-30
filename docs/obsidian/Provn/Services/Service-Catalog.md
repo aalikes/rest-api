@@ -2,6 +2,7 @@
 tags: [services, catalog, reference]
 aliases: [Services, Service List]
 created: 2026-05-24
+workspace: Provn
 ---
 
 # Service Catalog
@@ -14,7 +15,9 @@ created: 2026-05-24
 
 **All fingerprinting is in-office only.**
 
-**Use cases:** FDLE, FBI employment, DOH (healthcare), DBPR (real estate), DCF (childcare), concealed carry, USCIS (immigration), adoption, banking, TSA, bar admission, volunteer orgs.
+**What it is:** Professional ink fingerprint cards for out-of-state submissions, concealed weapons permits, security guard licenses, and FBI background checks. Cards can be sent as a PDF — not electronically.
+
+**Use cases:** FDLE, FBI employment, DOH (healthcare), DBPR (real estate), DCF (childcare), concealed carry, USCIS (immigration), adoption, banking, TSA, bar admission, volunteer orgs, out-of-state licensing submissions.
 
 **Location:** 2125 Biscayne Blvd Suite 303, Miami, FL 33137.
 
@@ -50,7 +53,9 @@ created: 2026-05-24
 | FBI Background Check (Resident / U.S. Citizen) | $129 + tax | `fbi` | Varies |
 | FBI Background Check (Non-Resident / Non-Citizen) | $179 + tax | `fbi` | Varies |
 
-**Includes:** Electronic fingerprint capture + submission to FBI CJIS for identity history summary (rap sheet).
+**What it is:** Identity history summary (rap sheet) required for immigration & visa applications, international adoption, overseas employment, professional licensing, and foreign residency.
+
+**Includes:** Electronic fingerprint capture + submission to FBI CJIS for identity history summary.
 
 **Combo Pricing (FBI + Apostille):**
 - Resident/Citizen: $129 + $200 = **$329** + tax
@@ -68,5 +73,5 @@ POST /api/services              — Create (admin only)
 ## Related
 
 - [[SOP-Apostille-Workflow]]
-- [[Apostille Pricing]]
-- [[Client Intake Checklist]]
+- [[Apostille-Pricing]]
+- [[Client-Intake-Checklist]]
