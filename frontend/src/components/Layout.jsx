@@ -16,8 +16,9 @@ export default function Layout() {
 
   const publicNav = [
     { to: '/', label: t.nav.services },
+    { to: '/apostille', label: 'Apostille Services' },
+    { to: '/book-appointment', label: 'Book Appointment' },
     { to: '/faq', label: t.nav.faq },
-    { to: '/blog', label: t.nav.blog },
   ];
 
   const staffMenuItems = [
@@ -150,6 +151,11 @@ export default function Layout() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
           <p>Provn &mdash; {t.footer.address}</p>
           <p className="mt-1">{t.footer.tagline}</p>
+          <div className="mt-3 flex justify-center gap-4">
+            <Link to="/privacy" className="hover:text-gray-700">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-gray-700">Terms of Service</Link>
+            <Link to="/apostille" className="hover:text-gray-700">Apostille Services</Link>
+          </div>
         </div>
       </footer>
     </div>

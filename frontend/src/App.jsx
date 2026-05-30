@@ -12,6 +12,11 @@ import Clients from './pages/Clients';
 import Appointments from './pages/Appointments';
 import Pipeline from './pages/Pipeline';
 import OriCodes from './pages/OriCodes';
+import ApostilleLanding from './pages/ApostilleLanding';
+import ApostilleOrder from './pages/ApostilleOrder';
+import BookAppointment from './pages/BookAppointment';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 
 export default function App() {
   return (
@@ -30,6 +35,11 @@ export default function App() {
               <Route path="/appointments" element={<Appointments />} />
               <Route path="/pipeline" element={<Pipeline />} />
               <Route path="/ori-codes" element={<OriCodes />} />
+              <Route path="/apostille" element={<ApostilleLanding />} />
+              <Route path="/apostille-order" element={<ApostilleOrder />} />
+              <Route path="/book-appointment" element={<BookAppointment />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="/terms" element={<TermsOfService />} />
             </Route>
           </Routes>
         </BrowserRouter>
