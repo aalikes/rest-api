@@ -11,7 +11,7 @@ const stats = [
 
 const testimonials = [
   {
-    text: 'I needed my birth certificate apostilled for my visa application in Spain. MetroPrints handled everything in under a week. So easy!',
+    text: 'I needed my birth certificate apostilled for my visa application in Spain. Provn handled everything in under a week. So easy!',
     name: 'Maria G.',
     location: 'Miami, FL',
     rating: 5,
