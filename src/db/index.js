@@ -112,6 +112,92 @@ function runMigrations(database) {
         );
       `,
     },
+    {
+      version: 3,
+      sql: `
+        CREATE TABLE IF NOT EXISTS services (
+          id              INTEGER PRIMARY KEY AUTOINCREMENT,
+          name            TEXT NOT NULL,
+          category        TEXT NOT NULL CHECK (category IN ('fingerprint', 'apostille', 'fbi')),
+          description     TEXT,
+          base_price      REAL NOT NULL DEFAULT 0,
+          processing_days INTEGER DEFAULT 0,
+          service_type    TEXT,
+          active          INTEGER NOT NULL DEFAULT 1,
+          created_at      TEXT NOT NULL DEFAULT (datetime('now'))
+        );
+
+        CREATE TABLE IF NOT EXISTS clients (
+          id              INTEGER PRIMARY KEY AUTOINCREMENT,
+          user_id         TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+          first_name      TEXT NOT NULL,
+          last_name       TEXT NOT NULL,
+          email           TEXT,
+          phone           TEXT,
+          address         TEXT,
+          city            TEXT,
+          state           TEXT,
+          zip             TEXT,
+          date_of_birth   TEXT,
+          id_verified     INTEGER NOT NULL DEFAULT 0,
+          notes           TEXT,
+          created_at      TEXT NOT NULL DEFAULT (datetime('now'))
+        );
+        CREATE INDEX IF NOT EXISTS idx_clients_user ON clients(user_id);
+
+        CREATE TABLE IF NOT EXISTS appointments (
+          id                INTEGER PRIMARY KEY AUTOINCREMENT,
+          client_id         INTEGER NOT NULL REFERENCES clients(id) ON DELETE CASCADE,
+          service_id        INTEGER NOT NULL REFERENCES services(id),
+          user_id           TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+          appointment_date  TEXT NOT NULL,
+          appointment_time  TEXT,
+          location_type     TEXT NOT NULL DEFAULT 'office' CHECK (location_type IN ('office', 'mobile')),
+          location_address  TEXT,
+          status            TEXT NOT NULL DEFAULT 'scheduled' CHECK (status IN ('scheduled', 'completed', 'cancelled', 'no_show')),
+          technician_notes  TEXT,
+          created_at        TEXT NOT NULL DEFAULT (datetime('now'))
+        );
+        CREATE INDEX IF NOT EXISTS idx_appointments_user ON appointments(user_id);
+        CREATE INDEX IF NOT EXISTS idx_appointments_client ON appointments(client_id);
+        CREATE INDEX IF NOT EXISTS idx_appointments_date ON appointments(appointment_date);
+
+        CREATE TABLE IF NOT EXISTS orders (
+          id                    INTEGER PRIMARY KEY AUTOINCREMENT,
+          client_id             INTEGER NOT NULL REFERENCES clients(id) ON DELETE CASCADE,
+          user_id               TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+          service_id            INTEGER NOT NULL REFERENCES services(id),
+          status                TEXT NOT NULL DEFAULT 'received' CHECK (status IN ('received', 'processing', 'submitted_to_agency', 'completed', 'shipped', 'rejected')),
+          priority              TEXT NOT NULL DEFAULT 'standard' CHECK (priority IN ('standard', 'priority', 'expedited')),
+          document_type         TEXT,
+          total_amount          REAL NOT NULL DEFAULT 0,
+          shipping_method       TEXT,
+          tracking_number       TEXT,
+          notes                 TEXT,
+          estimated_completion  TEXT,
+          created_at            TEXT NOT NULL DEFAULT (datetime('now')),
+          updated_at            TEXT NOT NULL DEFAULT (datetime('now'))
+        );
+        CREATE INDEX IF NOT EXISTS idx_orders_user ON orders(user_id);
+        CREATE INDEX IF NOT EXISTS idx_orders_client ON orders(client_id);
+        CREATE INDEX IF NOT EXISTS idx_orders_status ON orders(status);
+
+        CREATE TABLE IF NOT EXISTS documents (
+          id                INTEGER PRIMARY KEY AUTOINCREMENT,
+          order_id          INTEGER REFERENCES orders(id) ON DELETE SET NULL,
+          client_id         INTEGER NOT NULL REFERENCES clients(id) ON DELETE CASCADE,
+          user_id           TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+          document_type     TEXT NOT NULL CHECK (document_type IN ('birth_certificate', 'marriage_certificate', 'fbi_report', 'diploma', 'corporate', 'court_document', 'power_of_attorney', 'other')),
+          original_filename TEXT,
+          apostille_status  TEXT NOT NULL DEFAULT 'pending' CHECK (apostille_status IN ('pending', 'submitted', 'apostilled', 'rejected', 'not_applicable')),
+          notes             TEXT,
+          created_at        TEXT NOT NULL DEFAULT (datetime('now'))
+        );
+        CREATE INDEX IF NOT EXISTS idx_documents_order ON documents(order_id);
+        CREATE INDEX IF NOT EXISTS idx_documents_client ON documents(client_id);
+        CREATE INDEX IF NOT EXISTS idx_documents_user ON documents(user_id);
+      `,
+    },
   ];
 
   for (const m of migrations) {

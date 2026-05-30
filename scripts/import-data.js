@@ -23,21 +23,36 @@ const { getDb, closeDb } = require('../src/db');
 async function main() {
   const db = getDb();
 
-  // ── Create or fetch a default user for imported items ──────────
-  const defaultUserEmail = 'shah@metroprints.co';
-  let user = db.prepare('SELECT * FROM users WHERE email = ?').get(defaultUserEmail);
+  // ── Create all technician accounts ──────────────────────────────
+  const demoAccounts = [
+    { name: 'Shah Saint-Cyr', email: 'shah@provn.co' },
+    { name: 'Jenny', email: 'jenny@provn.co' },
+    { name: 'Sam', email: 'sam@provn.co' },
+    { name: 'Micah', email: 'micah@provn.co' },
+    { name: 'Gary', email: 'gary@provn.co' },
+    { name: 'Nigel', email: 'nigel@provn.co' },
+  ];
 
-  if (!user) {
-    const id = crypto.randomUUID();
-    const hashed = await bcrypt.hash('changeme123', 12);
-    db.prepare(
-      'INSERT INTO users (id, name, email, password, role) VALUES (?, ?, ?, ?, ?)'
-    ).run(id, 'Shah Saint-Cyr', defaultUserEmail, hashed, 'user');
-    user = { id };
-    console.log('  ✓ Created default user: shah@metroprints.co / changeme123');
-  } else {
-    console.log('  ✓ Using existing user:', defaultUserEmail);
+  const demoPassword = 'ProvnDemo2026!';
+  const hashed = await bcrypt.hash(demoPassword, 12);
+
+  for (const acct of demoAccounts) {
+    const existing = db.prepare('SELECT id FROM users WHERE email = ?').get(acct.email);
+    if (!existing) {
+      const id = crypto.randomUUID();
+      db.prepare(
+        'INSERT INTO users (id, name, email, password, role) VALUES (?, ?, ?, ?, ?)'
+      ).run(id, acct.name, acct.email, hashed, 'admin');
+      console.log(`  ✓ Created technician: ${acct.email}`);
+    } else {
+      db.prepare('UPDATE users SET password = ?, role = ? WHERE email = ?').run(hashed, 'admin', acct.email);
+      console.log(`  ✓ Updated technician: ${acct.email}`);
+    }
   }
+
+  const defaultUserEmail = 'shah@provn.co';
+  let user = db.prepare('SELECT * FROM users WHERE email = ?').get(defaultUserEmail);
+  console.log('  ✓ All accounts set to password: ProvnDemo2026!');
 
   const userId = user.id;
 
