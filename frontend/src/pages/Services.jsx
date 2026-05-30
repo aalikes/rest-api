@@ -34,6 +34,15 @@ export default function Services() {
 
   return (
     <div>
+      {/* Hero Image */}
+      <div className="mb-10 rounded-xl overflow-hidden shadow-lg">
+        <img
+          src="/provn-hero.jpg"
+          alt="Provn biometric technician capturing fingerprints"
+          className="w-full h-64 sm:h-80 object-cover"
+        />
+      </div>
+
       <div className="text-center mb-10">
         <h1 className="text-3xl font-bold text-gray-900">{t.services.title}</h1>
         <p className="mt-2 text-gray-600">{t.services.subtitle}</p>

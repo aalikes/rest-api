@@ -3,7 +3,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useI18n } from '../lib/i18n';
 
 const services = [
-  { id: 'fingerprint', price: 99, label: 'Fingerprinting', desc: 'Ink & electronic fingerprint cards for out-of-state submissions, concealed weapons permits, security guard licenses, and other professional requirements.' },
+  { id: 'fingerprint', price: 99, label: 'Fingerprinting', desc: 'Professional ink fingerprint cards for out-of-state submissions, concealed weapons permits, security guard licenses, and FBI background checks. Cards can be sent as a PDF — not electronically.' },
   { id: 'apostille', price: 200, label: 'Apostille', desc: 'Document authentication for international use — birth certificates, marriage certificates, diplomas, court documents, and corporate filings accepted in 124+ countries.' },
   { id: 'fbi', price: 129, label: 'FBI Background Check', desc: 'Identity history summary (rap sheet) required for immigration & visa applications, international adoption, overseas employment, professional licensing, and foreign residency.' },
   { id: 'fbi-apostille', price: 329, label: 'FBI + Apostille Bundle', desc: 'Complete package: FBI background check with federal apostille from the U.S. Department of State — the most common requirement for living or working abroad.' },

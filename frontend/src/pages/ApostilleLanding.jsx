@@ -103,12 +103,12 @@ export default function ApostilleLanding() {
       <section className="relative bg-gray-900 text-white py-24 px-6">
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 to-gray-900/60" />
         <div className="relative max-w-3xl mx-auto">
-          <p className="text-sm text-green-400 mb-2 flex items-center gap-2">
+          <p className="text-sm text-blue-400 mb-2 flex items-center gap-2">
             <span>🏛️</span> Trusted by 2,000+ Customers Nationwide
           </p>
           <h1 className="text-4xl md:text-5xl font-bold leading-tight">
             Fast Apostille Services<br />
-            <span className="text-green-400">— Done For You</span>
+            <span className="text-blue-400">— Done For You</span>
           </h1>
           <p className="mt-4 text-gray-300 max-w-xl">
             Skip the confusion and government hassle. We handle your entire apostille
@@ -125,7 +125,7 @@ export default function ApostilleLanding() {
           <div className="mt-8 flex flex-wrap gap-4">
             <button
               onClick={() => navigate('/apostille-order')}
-              className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition flex items-center gap-2"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition flex items-center gap-2"
             >
               Get Your Apostille Now →
             </button>
@@ -144,7 +144,7 @@ export default function ApostilleLanding() {
         <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {stats.map((s) => (
             <div key={s.label}>
-              <div className="text-2xl font-bold text-green-600">{s.value}</div>
+              <div className="text-2xl font-bold text-blue-600">{s.value}</div>
               <div className="text-sm text-gray-500">{s.label}</div>
             </div>
           ))}
@@ -159,7 +159,7 @@ export default function ApostilleLanding() {
               <div className="text-yellow-400 text-sm mb-2">{'★'.repeat(t.rating)}</div>
               <p className="text-sm text-gray-700 italic mb-4">"{t.text}"</p>
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-700 text-sm font-bold">
+                <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 text-sm font-bold">
                   {t.name[0]}
                 </div>
                 <div>
@@ -186,7 +186,7 @@ export default function ApostilleLanding() {
             {howItWorks.map((step, i) => (
               <div key={i} className="text-center">
                 <div className="text-4xl mb-3">{step.icon}</div>
-                <div className="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm font-bold mx-auto mb-3">
+                <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold mx-auto mb-3">
                   {i + 1}
                 </div>
                 <h3 className="font-bold text-gray-900">{step.title}</h3>
@@ -196,7 +196,7 @@ export default function ApostilleLanding() {
           </div>
           <button
             onClick={() => navigate('/apostille-order')}
-            className="mt-10 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition"
+            className="mt-10 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition"
           >
             Start Your Apostille Order →
           </button>
@@ -218,7 +218,7 @@ export default function ApostilleLanding() {
                     <p className="mt-2 text-sm text-gray-600">{card.desc}</p>
                     <div className="mt-3 flex flex-wrap gap-2">
                       {card.tags.map((tag) => (
-                        <span key={tag} className="text-xs bg-green-50 text-green-700 px-2 py-1 rounded-full">{tag}</span>
+                        <span key={tag} className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-full">{tag}</span>
                       ))}
                     </div>
                   </div>
@@ -237,7 +237,7 @@ export default function ApostilleLanding() {
           <div className="mt-10 grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {/* State Apostille */}
             <div className="border border-gray-200 rounded-lg p-6">
-              <span className="inline-block bg-green-100 text-green-700 text-xs font-medium px-3 py-1 rounded-full mb-4">
+              <span className="inline-block bg-blue-100 text-blue-700 text-xs font-medium px-3 py-1 rounded-full mb-4">
                 State Apostille
               </span>
               <div className="text-4xl font-bold text-gray-900">$200</div>
@@ -250,16 +250,16 @@ export default function ApostilleLanding() {
               </ul>
               <button
                 onClick={() => navigate('/apostille-order')}
-                className="mt-4 text-green-600 hover:text-green-700 text-sm font-medium"
+                className="mt-4 text-blue-600 hover:text-blue-700 text-sm font-medium"
               >
                 Order now →
               </button>
             </div>
 
             {/* Federal Apostille */}
-            <div className="border-2 border-green-500 rounded-lg p-6 relative">
+            <div className="border-2 border-blue-500 rounded-lg p-6 relative">
               <div className="absolute -top-3 right-4 flex gap-2">
-                <span className="inline-block bg-green-100 text-green-700 text-xs font-medium px-3 py-1 rounded-full">
+                <span className="inline-block bg-blue-100 text-blue-700 text-xs font-medium px-3 py-1 rounded-full">
                   Federal Apostille
                 </span>
                 <span className="inline-block bg-orange-100 text-orange-700 text-xs font-medium px-3 py-1 rounded-full">
@@ -276,14 +276,14 @@ export default function ApostilleLanding() {
               </ul>
               <button
                 onClick={() => navigate('/apostille-order')}
-                className="mt-4 text-green-600 hover:text-green-700 text-sm font-medium"
+                className="mt-4 text-blue-600 hover:text-blue-700 text-sm font-medium"
               >
                 Order now →
               </button>
             </div>
           </div>
           <p className="mt-6 text-sm text-gray-500">Additional documents: <strong>$50 each</strong></p>
-          <p className="mt-2 text-sm text-green-600">💡 Most customers choose Priority Processing to avoid delays</p>
+          <p className="mt-2 text-sm text-blue-600">💡 Most customers choose Priority Processing to avoid delays</p>
         </div>
       </section>
 
@@ -312,15 +312,15 @@ export default function ApostilleLanding() {
       <ApostilleFAQ />
 
       {/* CTA Footer */}
-      <section className="bg-green-700 text-white py-12 px-6 text-center">
+      <section className="bg-blue-700 text-white py-12 px-6 text-center">
         <h2 className="text-2xl font-bold">Ready to Get Your Documents Apostilled?</h2>
-        <p className="mt-2 text-green-100">Start your order in under 5 minutes. No government offices, no confusing paperwork.</p>
-        <p className="mt-2 text-sm text-green-200">
+        <p className="mt-2 text-blue-100">Start your order in under 5 minutes. No government offices, no confusing paperwork.</p>
+        <p className="mt-2 text-sm text-blue-200">
           Questions? Call us at <a href="tel:+13053402911" className="underline">+1 (305) 340-2911</a>
         </p>
         <button
           onClick={() => navigate('/apostille-order')}
-          className="mt-6 bg-white text-green-700 hover:bg-green-50 px-6 py-3 rounded-lg font-medium transition"
+          className="mt-6 bg-white text-blue-700 hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition"
         >
           Get Your Apostille Now →
         </button>

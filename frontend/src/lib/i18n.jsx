@@ -6,7 +6,7 @@ const translations = {
     services: {
       title: 'Our Services',
       subtitle: 'Professional fingerprinting, apostille, and FBI background check services in Miami, FL',
-      fingerprint: 'Fingerprinting', fingerprintDesc: 'Professional ink and electronic fingerprint capture for all purposes.',
+      fingerprint: 'Fingerprinting', fingerprintDesc: 'Professional ink fingerprint cards for out-of-state submissions, concealed weapons permits, security guards, and FBI background checks. Cards can be sent as a PDF — not electronically.',
       perCard: 'per card', inOffice: 'In-office only', processing: '~20 min processing',
       apostille: 'Apostille', apostilleDesc: 'State and federal document authentication for international use.',
       perDoc: 'per document', stateFederal: 'State & Federal documents',
@@ -45,7 +45,7 @@ const translations = {
     services: {
       title: 'Nuestros Servicios',
       subtitle: 'Servicios profesionales de huellas dactilares, apostillas y verificación de antecedentes FBI en Miami, FL',
-      fingerprint: 'Huellas Dactilares', fingerprintDesc: 'Captura profesional de huellas dactilares con tinta y electrónica para todos los propósitos.',
+      fingerprint: 'Huellas Dactilares', fingerprintDesc: 'Tarjetas de huellas dactilares profesionales con tinta para envíos fuera del estado, permisos de armas ocultas, guardias de seguridad y verificaciones FBI. Las tarjetas se pueden enviar como PDF — no electrónicamente.',
       perCard: 'por tarjeta', inOffice: 'Solo en oficina', processing: '~20 min de procesamiento',
       apostille: 'Apostilla', apostilleDesc: 'Autenticación de documentos estatales y federales para uso internacional.',
       perDoc: 'por documento', stateFederal: 'Documentos estatales y federales',
@@ -84,7 +84,7 @@ const translations = {
     services: {
       title: 'Sèvis Nou Yo',
       subtitle: 'Sèvis pwofesyonèl anprent, apostiy, ak verifikasyon antecedents FBI nan Miami, FL',
-      fingerprint: 'Anprent', fingerprintDesc: 'Kaptire anprent pwofesyonèl avèk lank ak elektronik pou tout rezon.',
+      fingerprint: 'Anprent', fingerprintDesc: 'Kat anprent pwofesyonèl avèk lank pou soumisyon deyò eta, pèmi zam kache, gad sekirite, ak verifikasyon FBI. Kat yo kapab voye kòm PDF — pa elektronikman.',
       perCard: 'pa kat', inOffice: 'Nan biwo sèlman', processing: '~20 min tretman',
       apostille: 'Apostiy', apostilleDesc: 'Otantifikasyon dokiman leta ak federal pou itilizasyon entènasyonal.',
       perDoc: 'pa dokiman', stateFederal: 'Dokiman Leta ak Federal',
@@ -123,7 +123,7 @@ const translations = {
     services: {
       title: 'Nossos Serviços',
       subtitle: 'Serviços profissionais de impressão digital, apostila e verificação de antecedentes FBI em Miami, FL',
-      fingerprint: 'Impressão Digital', fingerprintDesc: 'Captura profissional de impressões digitais com tinta e eletrônica para todos os fins.',
+      fingerprint: 'Impressão Digital', fingerprintDesc: 'Cartões de impressão digital profissionais com tinta para envios fora do estado, licenças de armas ocultas, seguranças e verificações FBI. Os cartões podem ser enviados como PDF — não eletronicamente.',
       perCard: 'por cartão', inOffice: 'Somente no escritório', processing: '~20 min de processamento',
       apostille: 'Apostila', apostilleDesc: 'Autenticação de documentos estaduais e federais para uso internacional.',
       perDoc: 'por documento', stateFederal: 'Documentos estaduais e federais',
