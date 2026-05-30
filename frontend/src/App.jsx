@@ -17,6 +17,7 @@ import ApostilleOrder from './pages/ApostilleOrder';
 import BookAppointment from './pages/BookAppointment';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
+import ManageAppointment from './pages/ManageAppointment';
 
 export default function App() {
   return (
@@ -40,6 +41,7 @@ export default function App() {
               <Route path="/book-appointment" element={<BookAppointment />} />
               <Route path="/privacy" element={<PrivacyPolicy />} />
               <Route path="/terms" element={<TermsOfService />} />
+              <Route path="/manage-appointment" element={<ManageAppointment />} />
             </Route>
           </Routes>
         </BrowserRouter>

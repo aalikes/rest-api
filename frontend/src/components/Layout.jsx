@@ -127,13 +127,24 @@ export default function Layout() {
                         </div>
                       </>
                     ) : (
-                      <Link
-                        to="/login"
-                        onClick={() => setMenuOpen(false)}
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
-                      >
-                        {t.menu.staffLogin}
-                      </Link>
+                      <>
+                        <Link
+                          to="/manage-appointment"
+                          onClick={() => setMenuOpen(false)}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                        >
+                          Manage My Appointment
+                        </Link>
+                        <div className="border-t border-gray-100 mt-1 pt-1">
+                          <Link
+                            to="/login"
+                            onClick={() => setMenuOpen(false)}
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                          >
+                            {t.menu.staffLogin}
+                          </Link>
+                        </div>
+                      </>
                     )}
                   </div>
                 )}
@@ -151,7 +162,8 @@ export default function Layout() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
           <p>Provn &mdash; {t.footer.address}</p>
           <p className="mt-1">{t.footer.tagline}</p>
-          <div className="mt-3 flex justify-center gap-4">
+          <div className="mt-3 flex flex-wrap justify-center gap-4">
+            <Link to="/manage-appointment" className="hover:text-gray-700">Manage Appointment</Link>
             <Link to="/privacy" className="hover:text-gray-700">Privacy Policy</Link>
             <Link to="/terms" className="hover:text-gray-700">Terms of Service</Link>
             <Link to="/apostille" className="hover:text-gray-700">Apostille Services</Link>
