@@ -14,8 +14,9 @@ export default function Intake() {
   const [params] = useSearchParams();
   const navigate = useNavigate();
   const initialService = params.get('service') || 'fingerprint';
+  const cameFromServicePage = !!params.get('service');
 
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(cameFromServicePage ? 2 : 1);
   const [form, setForm] = useState({
     service: initialService,
     residency: 'resident',
@@ -208,6 +209,13 @@ export default function Intake() {
       {/* Step 2: Your Details */}
       {step === 2 && (
         <div className="bg-white border border-gray-200 rounded-lg p-6">
+          {cameFromServicePage && (
+            <div className="mb-4 bg-indigo-50 border border-indigo-100 rounded-lg px-4 py-3">
+              <p className="text-sm text-indigo-800">
+                <span className="font-medium">Booking:</span> {services.find((s) => s.id === form.service)?.label}
+              </p>
+            </div>
+          )}
           <h2 className="text-xl font-bold text-gray-900 mb-1">Your Details</h2>
           <p className="text-sm text-gray-500 mb-6">We need your information to schedule the appointment.</p>
 
@@ -268,8 +276,8 @@ export default function Intake() {
           </div>
 
           <div className="mt-6 flex items-center justify-between">
-            <button onClick={prevStep} className="text-sm text-gray-500 hover:text-gray-700">
-              ← Back
+            <button onClick={cameFromServicePage ? () => navigate('/') : prevStep} className="text-sm text-gray-500 hover:text-gray-700">
+              ← {cameFromServicePage ? 'Back to Services' : 'Back'}
             </button>
             <button onClick={nextStep} className="bg-indigo-600 text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-indigo-700 transition">
               Next Step →
