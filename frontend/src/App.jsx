@@ -11,6 +11,7 @@ import Dashboard from './pages/Dashboard';
 import Clients from './pages/Clients';
 import Appointments from './pages/Appointments';
 import Pipeline from './pages/Pipeline';
+import OriCodes from './pages/OriCodes';
 
 export default function App() {
   return (
@@ -28,6 +29,7 @@ export default function App() {
               <Route path="/clients" element={<Clients />} />
               <Route path="/appointments" element={<Appointments />} />
               <Route path="/pipeline" element={<Pipeline />} />
+              <Route path="/ori-codes" element={<OriCodes />} />
             </Route>
           </Routes>
         </BrowserRouter>

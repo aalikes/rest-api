@@ -1,19 +1,13 @@
 import { useState } from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../lib/auth';
 import { useI18n } from '../lib/i18n';
-
-const staffNav = [
-  { to: '/dashboard', label: 'Dashboard' },
-  { to: '/clients', label: 'Clients' },
-  { to: '/appointments', label: 'Appointments' },
-  { to: '/pipeline', label: 'Pipeline' },
-];
 
 export default function Layout() {
   const { isAuthenticated, user, logout } = useAuth();
   const { lang, setLanguage, t } = useI18n();
   const location = useLocation();
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
   function isActive(path) {
@@ -24,6 +18,14 @@ export default function Layout() {
     { to: '/', label: t.nav.services },
     { to: '/faq', label: t.nav.faq },
     { to: '/blog', label: t.nav.blog },
+  ];
+
+  const staffMenuItems = [
+    { to: '/dashboard', label: t.menu.dashboard },
+    { to: '/pipeline', label: t.menu.apostilleServices },
+    { to: '/book', label: t.menu.clientIntake },
+    { to: '/ori-codes', label: t.menu.oriCodes },
+    { to: '/book?service=fingerprint', label: t.menu.walkIn },
   ];
 
   return (
@@ -51,20 +53,6 @@ export default function Layout() {
                     {item.label}
                   </Link>
                 ))}
-
-                {isAuthenticated && staffNav.map((item) => (
-                  <Link
-                    key={item.to}
-                    to={item.to}
-                    className={`px-3 py-2 rounded-md text-sm font-medium transition ${
-                      isActive(item.to)
-                        ? 'bg-indigo-50 text-indigo-700'
-                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
               </nav>
 
               {/* Language Selector */}
@@ -75,6 +63,8 @@ export default function Layout() {
               >
                 <option value="en">EN</option>
                 <option value="es">ES</option>
+                <option value="ht">HT</option>
+                <option value="pt">PT</option>
               </select>
 
               {/* Hamburger Menu */}
@@ -114,24 +104,26 @@ export default function Layout() {
                         <div className="px-4 py-2 text-xs text-gray-500 border-b border-gray-100">
                           {user?.email}
                         </div>
-                        <div className="sm:hidden border-b border-gray-100 py-1">
-                          {staffNav.map((item) => (
-                            <Link
-                              key={item.to}
-                              to={item.to}
-                              onClick={() => setMenuOpen(false)}
-                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
-                            >
-                              {item.label}
-                            </Link>
-                          ))}
+                        {staffMenuItems.map((item) => (
+                          <Link
+                            key={item.to + item.label}
+                            to={item.to}
+                            onClick={() => setMenuOpen(false)}
+                            className={`block px-4 py-2 text-sm hover:bg-gray-50 ${
+                              isActive(item.to) ? 'text-indigo-700 font-medium' : 'text-gray-700'
+                            }`}
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                        <div className="border-t border-gray-100 mt-1 pt-1">
+                          <button
+                            onClick={() => { logout(); setMenuOpen(false); navigate('/'); }}
+                            className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                          >
+                            {t.menu.signOut}
+                          </button>
                         </div>
-                        <button
-                          onClick={() => { logout(); setMenuOpen(false); }}
-                          className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
-                        >
-                          Logout
-                        </button>
                       </>
                     ) : (
                       <Link
@@ -139,7 +131,7 @@ export default function Layout() {
                         onClick={() => setMenuOpen(false)}
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
                       >
-                        Staff Login
+                        {t.menu.staffLogin}
                       </Link>
                     )}
                   </div>
