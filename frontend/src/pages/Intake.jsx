@@ -3,10 +3,10 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useI18n } from '../lib/i18n';
 
 const services = [
-  { id: 'fingerprint', price: 99, label: 'Fingerprinting' },
-  { id: 'apostille', price: 200, label: 'Apostille' },
-  { id: 'fbi', price: 129, label: 'FBI Background Check' },
-  { id: 'fbi-apostille', price: 329, label: 'FBI + Apostille Bundle' },
+  { id: 'fingerprint', price: 99, label: 'Fingerprinting', desc: 'Ink & electronic fingerprint cards for out-of-state submissions, concealed weapons permits, security guard licenses, and other professional requirements.' },
+  { id: 'apostille', price: 200, label: 'Apostille', desc: 'Document authentication for international use — birth certificates, marriage certificates, diplomas, court documents, and corporate filings accepted in 124+ countries.' },
+  { id: 'fbi', price: 129, label: 'FBI Background Check', desc: 'Identity history summary (rap sheet) required for immigration & visa applications, international adoption, overseas employment, professional licensing, and foreign residency.' },
+  { id: 'fbi-apostille', price: 329, label: 'FBI + Apostille Bundle', desc: 'Complete package: FBI background check with federal apostille from the U.S. Department of State — the most common requirement for living or working abroad.' },
 ];
 
 export default function Intake() {
@@ -142,11 +142,19 @@ export default function Intake() {
                     />
                     <div>
                       <p className="text-sm font-medium text-gray-900">{svc.label}</p>
-                      <p className="text-xs text-gray-500">from ${svc.price}</p>
                     </div>
                   </label>
                 ))}
               </div>
+
+              {/* Service description */}
+              {form.service && (
+                <div className="mt-3 bg-gray-50 border border-gray-200 rounded-lg p-4">
+                  <p className="text-sm text-gray-700 leading-relaxed">
+                    {services.find((s) => s.id === form.service)?.desc}
+                  </p>
+                </div>
+              )}
             </div>
 
             {(form.service === 'fbi' || form.service === 'fbi-apostille') && (
@@ -158,14 +166,12 @@ export default function Intake() {
                   }`}>
                     <input type="radio" name="residency" value="resident" checked={form.residency === 'resident'} onChange={handleChange} className="sr-only" />
                     <p className="text-sm font-medium">{t.intake.residentOption}</p>
-                    <p className="text-xs text-gray-500">$129</p>
                   </label>
                   <label className={`flex-1 border rounded-lg p-3 cursor-pointer text-center transition ${
                     form.residency === 'non-resident' ? 'border-indigo-600 bg-indigo-50' : 'border-gray-200'
                   }`}>
                     <input type="radio" name="residency" value="non-resident" checked={form.residency === 'non-resident'} onChange={handleChange} className="sr-only" />
                     <p className="text-sm font-medium">{t.intake.nonResidentOption}</p>
-                    <p className="text-xs text-gray-500">$179</p>
                   </label>
                 </div>
               </div>
