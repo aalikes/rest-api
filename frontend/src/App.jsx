@@ -21,6 +21,7 @@ import ManageAppointment from './pages/ManageAppointment';
 import FBIIntakeForm from './pages/FBIIntakeForm';
 import SOPTraining from './pages/SOPTraining';
 import ConsulateDirectory from './pages/ConsulateDirectory';
+import ApostilleProcess from './pages/ApostilleProcess';
 
 export default function App() {
   return (
@@ -48,6 +49,7 @@ export default function App() {
               <Route path="/fbi-intake" element={<FBIIntakeForm />} />
               <Route path="/sop-training" element={<SOPTraining />} />
               <Route path="/consulates" element={<ConsulateDirectory />} />
+              <Route path="/apostille-process" element={<ApostilleProcess />} />
             </Route>
           </Routes>
         </BrowserRouter>

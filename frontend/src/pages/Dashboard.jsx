@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { api } from '../lib/api';
 import { useAuth } from '../lib/auth';
 
-const TABS = ['Today', 'Scheduled', 'Intakes', 'Calendar', 'Earnings', 'History', 'Performance'];
+const TECH_TABS = ['Today', 'Scheduled', 'Intakes', 'Calendar', 'Earnings', 'History', 'Performance'];
+const ADMIN_TABS = ['Today', 'Scheduled', 'Intakes', 'Calendar', 'Earnings', 'History', 'Performance', 'Admin'];
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -10,6 +11,8 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('Today');
   const [outOfOffice, setOutOfOffice] = useState(false);
+  const [role, setRole] = useState('technician');
+  const TABS = role === 'admin' ? ADMIN_TABS : TECH_TABS;
 
   useEffect(() => {
     api.get('/business/dashboard')
@@ -34,8 +37,16 @@ export default function Dashboard() {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Technician Dashboard</h1>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{role === 'admin' ? 'Admin' : 'Technician'} Dashboard</h1>
           <p className="text-gray-600 dark:text-gray-400 mt-1">Welcome back, {displayName}</p>
+          <div className="flex gap-2 mt-2">
+            <button onClick={() => setRole('technician')} className={`text-xs px-3 py-1 rounded-full font-medium transition ${
+              role === 'technician' ? 'bg-teal-600 text-white' : 'bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200'
+            }`}>Technician</button>
+            <button onClick={() => setRole('admin')} className={`text-xs px-3 py-1 rounded-full font-medium transition ${
+              role === 'admin' ? 'bg-teal-600 text-white' : 'bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200'
+            }`}>Admin</button>
+          </div>
         </div>
         {/* Out of Office Toggle */}
         <div className="flex items-center gap-3 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg px-4 py-3">
@@ -108,6 +119,7 @@ export default function Dashboard() {
         {activeTab === 'Earnings' && <EarningsTab data={data} />}
         {activeTab === 'History' && <HistoryTab data={data} />}
         {activeTab === 'Performance' && <PerformanceTab data={data} />}
+        {activeTab === 'Admin' && <AdminTab />}
       </div>
     </div>
   );
@@ -407,15 +419,84 @@ function PerformanceTab({ data }) {
 
   return (
     <div>
-      <h3 className="text-lg font-semibold text-gray-900 mb-4">Performance Metrics</h3>
+      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Performance Metrics</h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {metrics.map((m, i) => (
-          <div key={i} className="bg-white border border-gray-200 rounded-lg p-4">
-            <p className="text-xs text-gray-500 font-medium">{m.label}</p>
-            <p className="text-2xl font-bold text-gray-900 mt-1">{m.value}</p>
+          <div key={i} className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg p-4">
+            <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">{m.label}</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white mt-1">{m.value}</p>
             <p className="text-xs text-green-600 mt-1">{m.change} vs last month</p>
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+function AdminTab() {
+  const technicians = [
+    { name: 'Shah', email: 'shah@provn.co', role: 'Admin', status: 'active', appointments: 142 },
+    { name: 'Jenny', email: 'jenny@provn.co', role: 'Technician', status: 'active', appointments: 98 },
+    { name: 'Sam', email: 'sam@provn.co', role: 'Technician', status: 'active', appointments: 76 },
+    { name: 'Micah', email: 'micah@provn.co', role: 'Technician', status: 'active', appointments: 64 },
+    { name: 'Gary', email: 'gary@provn.co', role: 'Technician', status: 'active', appointments: 51 },
+    { name: 'Nigel', email: 'nigel@provn.co', role: 'Technician', status: 'out of office', appointments: 33 },
+  ];
+
+  return (
+    <div className="space-y-6">
+      <div>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Team Management</h3>
+        <div className="bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-lg overflow-hidden">
+          <table className="min-w-full divide-y divide-gray-200 dark:divide-slate-700">
+            <thead className="bg-gray-50 dark:bg-slate-900">
+              <tr>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Name</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Email</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Role</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Status</th>
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Appointments</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 dark:divide-slate-700">
+              {technicians.map((tech) => (
+                <tr key={tech.email} className="hover:bg-gray-50 dark:hover:bg-slate-700">
+                  <td className="px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">{tech.name}</td>
+                  <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-300">{tech.email}</td>
+                  <td className="px-4 py-3">
+                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                      tech.role === 'Admin' ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400' : 'bg-teal-100 text-teal-700 dark:bg-teal-900/30 dark:text-teal-400'
+                    }`}>{tech.role}</span>
+                  </td>
+                  <td className="px-4 py-3">
+                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                      tech.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'
+                    }`}>{tech.status}</span>
+                  </td>
+                  <td className="px-4 py-3 text-sm text-right text-gray-900 dark:text-white">{tech.appointments}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-lg p-5">
+          <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">Total Revenue (All Time)</p>
+          <p className="text-2xl font-bold text-gray-900 dark:text-white mt-1">$24,580</p>
+          <p className="text-xs text-green-600 mt-1">+18% vs last quarter</p>
+        </div>
+        <div className="bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-lg p-5">
+          <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">Active Technicians</p>
+          <p className="text-2xl font-bold text-gray-900 dark:text-white mt-1">5 / 6</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">1 out of office</p>
+        </div>
+        <div className="bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-lg p-5">
+          <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">Locations</p>
+          <p className="text-2xl font-bold text-gray-900 dark:text-white mt-1">1 Active</p>
+          <p className="text-xs text-amber-600 mt-1">Ft. Lauderdale opening Q3 2026</p>
+        </div>
       </div>
     </div>
   );

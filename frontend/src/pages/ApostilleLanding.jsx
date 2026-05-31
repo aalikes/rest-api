@@ -140,7 +140,7 @@ export default function ApostilleLanding() {
       </section>
 
       {/* Stats Bar */}
-      <section className="bg-white border-b py-8 px-6">
+      <section className="bg-white dark:bg-slate-800 border-b dark:border-slate-700 py-8 px-6">
         <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {stats.map((s) => (
             <div key={s.label}>
@@ -152,10 +152,10 @@ export default function ApostilleLanding() {
       </section>
 
       {/* Testimonials */}
-      <section className="bg-gray-50 py-12 px-6">
+      <section className="bg-gray-50 dark:bg-slate-900 py-12 px-6">
         <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-6">
           {testimonials.map((t) => (
-            <div key={t.name} className="bg-white border border-gray-200 rounded-lg p-5">
+            <div key={t.name} className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg p-5">
               <div className="text-yellow-400 text-sm mb-2">{'★'.repeat(t.rating)}</div>
               <p className="text-sm text-gray-700 italic mb-4">"{t.text}"</p>
               <div className="flex items-center gap-2">
@@ -178,9 +178,9 @@ export default function ApostilleLanding() {
       </section>
 
       {/* How It Works */}
-      <section className="py-16 px-6 bg-white">
+      <section className="py-16 px-6 bg-white dark:bg-slate-800">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-900">How It Works — 3 Simple Steps</h2>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">How It Works — 3 Simple Steps</h2>
           <p className="mt-2 text-gray-600">No government offices. No confusing forms. We handle everything so you don't have to.</p>
           <div className="mt-12 grid md:grid-cols-3 gap-8">
             {howItWorks.map((step, i) => (
@@ -204,13 +204,13 @@ export default function ApostilleLanding() {
       </section>
 
       {/* Services We Offer */}
-      <section className="py-16 px-6 bg-gray-50">
+      <section className="py-16 px-6 bg-gray-50 dark:bg-slate-900">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-900">Apostille Services We Offer</h2>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Apostille Services We Offer</h2>
           <p className="mt-2 text-gray-600">Professional apostille processing for every document type. Federal and state — we handle both.</p>
           <div className="mt-10 grid md:grid-cols-2 gap-6">
             {serviceCards.map((card) => (
-              <div key={card.title} className="bg-white border border-gray-200 rounded-lg p-6 text-left hover:shadow-md transition">
+              <div key={card.title} className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg p-6 text-left hover:shadow-md transition">
                 <div className="flex items-start gap-3">
                   <span className="text-2xl">{card.icon}</span>
                   <div>
@@ -230,9 +230,9 @@ export default function ApostilleLanding() {
       </section>
 
       {/* Pricing */}
-      <section className="py-16 px-6 bg-white">
+      <section className="py-16 px-6 bg-white dark:bg-slate-800">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-900">Transparent Apostille Pricing</h2>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Transparent Apostille Pricing</h2>
           <p className="mt-2 text-gray-600">No hidden fees. No surprises. You see exactly what you pay for.</p>
           <div className="mt-10 grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {/* State Apostille */}

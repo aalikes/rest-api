@@ -75,7 +75,7 @@ export default function Services() {
 
         {/* Apostille Card */}
         <div
-          onClick={() => navigate('/book?service=apostille')}
+          onClick={() => navigate('/apostille-order')}
           className={`rounded-xl border-2 p-6 cursor-pointer transition-all ${categoryColors.apostille}`}
         >
           <div className="text-3xl mb-3">{categoryIcons.apostille}</div>

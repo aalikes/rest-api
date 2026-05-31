@@ -71,8 +71,8 @@ export default function ManageAppointment() {
   if (!found) {
     return (
       <div className="max-w-md mx-auto">
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">Manage My Appointment</h1>
-        <p className="text-gray-600 mb-6">Look up your appointment to make changes or check your status.</p>
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Manage My Appointment</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">Look up your appointment to make changes or check your status.</p>
 
         <form onSubmit={handleLookup} className="space-y-4">
           <div>
@@ -82,7 +82,7 @@ export default function ManageAppointment() {
               value={lookupEmail}
               onChange={(e) => setLookupEmail(e.target.value)}
               required
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
               placeholder="Enter the email you booked with"
             />
           </div>
@@ -93,13 +93,13 @@ export default function ManageAppointment() {
               value={confirmationCode}
               onChange={(e) => setConfirmationCode(e.target.value)}
               required
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
               placeholder="e.g. APT-X7K2M9"
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 rounded-lg transition"
+            className="w-full bg-teal-600 hover:bg-teal-700 text-white font-medium py-2.5 rounded-lg transition"
           >
             Look Up Appointment
           </button>
@@ -110,7 +110,7 @@ export default function ManageAppointment() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold text-gray-900 mb-2">Manage My Appointment</h1>
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Manage My Appointment</h1>
 
       {saved && (
         <div className="mb-4 bg-green-50 border border-green-200 text-green-700 rounded-lg px-4 py-3 text-sm">
@@ -122,7 +122,7 @@ export default function ManageAppointment() {
       <div className="bg-white border border-gray-200 rounded-xl p-6 mb-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold text-gray-900">Appointment Details</h2>
-          <span className="text-xs bg-blue-100 text-blue-700 px-3 py-1 rounded-full font-medium">
+          <span className="text-xs bg-teal-100 text-teal-700 px-3 py-1 rounded-full font-medium">
             {appointment.id}
           </span>
         </div>
@@ -164,7 +164,7 @@ export default function ManageAppointment() {
             {editing !== 'date' && (
               <button
                 onClick={() => { setEditing('date'); setNewDate(appointment.date); setNewTime(appointment.time); }}
-                className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                className="text-sm text-teal-600 hover:text-teal-700 font-medium"
               >
                 Change
               </button>
@@ -180,7 +180,7 @@ export default function ManageAppointment() {
                     value={newDate}
                     onChange={(e) => setNewDate(e.target.value)}
                     min={new Date().toISOString().split('T')[0]}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                   />
                 </div>
                 <div>
@@ -188,7 +188,7 @@ export default function ManageAppointment() {
                   <select
                     value={newTime}
                     onChange={(e) => setNewTime(e.target.value)}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                   >
                     {['8:00 AM','8:30 AM','9:00 AM','9:30 AM','10:00 AM','10:30 AM','11:00 AM','11:30 AM',
                       '12:00 PM','12:30 PM','1:00 PM','1:30 PM','2:00 PM','2:30 PM','3:00 PM','3:30 PM',
@@ -199,7 +199,7 @@ export default function ManageAppointment() {
                 </div>
               </div>
               <div className="flex gap-2">
-                <button onClick={handleSaveDate} className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-lg transition">
+                <button onClick={handleSaveDate} className="bg-teal-600 hover:bg-teal-700 text-white text-sm px-4 py-2 rounded-lg transition">
                   Save Changes
                 </button>
                 <button onClick={() => setEditing(null)} className="text-sm text-gray-500 hover:text-gray-700 px-4 py-2">
@@ -220,7 +220,7 @@ export default function ManageAppointment() {
             {editing !== 'ori' && (
               <button
                 onClick={() => { setEditing('ori'); setOriNumber(appointment.ori || ''); }}
-                className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                className="text-sm text-teal-600 hover:text-teal-700 font-medium"
               >
                 {appointment.ori ? 'Edit' : 'Add'}
               </button>
@@ -235,12 +235,12 @@ export default function ManageAppointment() {
                   value={oriNumber}
                   onChange={(e) => setOriNumber(e.target.value.toUpperCase())}
                   placeholder="e.g. FL920010Z"
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 uppercase"
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:border-teal-500 uppercase"
                 />
                 <p className="mt-1 text-xs text-gray-400">The ORI code identifies the requesting agency for your fingerprints</p>
               </div>
               <div className="flex gap-2">
-                <button onClick={handleSaveOri} className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-lg transition">
+                <button onClick={handleSaveOri} className="bg-teal-600 hover:bg-teal-700 text-white text-sm px-4 py-2 rounded-lg transition">
                   Save ORI
                 </button>
                 <button onClick={() => setEditing(null)} className="text-sm text-gray-500 hover:text-gray-700 px-4 py-2">
@@ -262,16 +262,16 @@ export default function ManageAppointment() {
                 const isActive = i <= currentIdx;
                 return (
                   <div key={step.key} className="flex-1">
-                    <div className={`h-2 rounded-full ${isActive ? 'bg-blue-600' : 'bg-gray-200'}`} />
-                    <p className={`mt-1 text-xs ${isActive ? 'text-blue-700 font-medium' : 'text-gray-400'}`}>
+                    <div className={`h-2 rounded-full ${isActive ? 'bg-teal-600' : 'bg-gray-200'}`} />
+                    <p className={`mt-1 text-xs ${isActive ? 'text-teal-700 font-medium' : 'text-gray-400'}`}>
                       {step.label}
                     </p>
                   </div>
                 );
               })}
             </div>
-            <div className="mt-4 bg-blue-50 border border-blue-100 rounded-lg px-4 py-3">
-              <p className="text-sm text-blue-800">
+            <div className="mt-4 bg-teal-50 border border-teal-100 rounded-lg px-4 py-3">
+              <p className="text-sm text-teal-800">
                 <strong>Current status:</strong> FBI Processing — Your fingerprints have been submitted to the FBI CJIS Division. Results are typically returned within 3-5 business days.
               </p>
             </div>
@@ -289,8 +289,8 @@ export default function ManageAppointment() {
                 const isActive = i <= currentIdx;
                 return (
                   <div key={step.key} className="flex-1">
-                    <div className={`h-2 rounded-full ${isActive ? 'bg-blue-600' : 'bg-gray-200'}`} />
-                    <p className={`mt-1 text-xs ${isActive ? 'text-blue-700 font-medium' : 'text-gray-400'}`}>
+                    <div className={`h-2 rounded-full ${isActive ? 'bg-teal-600' : 'bg-gray-200'}`} />
+                    <p className={`mt-1 text-xs ${isActive ? 'text-teal-700 font-medium' : 'text-gray-400'}`}>
                       {step.label}
                     </p>
                   </div>

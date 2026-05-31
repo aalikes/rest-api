@@ -5,7 +5,6 @@ import ReviewTipModal from '../components/ReviewTipModal';
 
 const services = [
   { id: 'fingerprint', price: 99, label: 'Fingerprinting', desc: 'Professional ink fingerprint cards for out-of-state submissions, concealed weapons permits, security guard licenses, and FBI background checks. Cards can be sent as a PDF — not electronically.' },
-  { id: 'apostille', price: 200, label: 'Apostille', desc: 'Document authentication for international use — birth certificates, marriage certificates, diplomas, court documents, and corporate filings accepted in 124+ countries.' },
   { id: 'fbi', price: 129, label: 'FBI Background Check', desc: 'Identity history summary (rap sheet) required for immigration & visa applications, international adoption, overseas employment, professional licensing, and foreign residency.' },
   { id: 'fbi-apostille', price: 329, label: 'FBI + Apostille Bundle', desc: 'Complete package: FBI background check with federal apostille from the U.S. Department of State — the most common requirement for living or working abroad.' },
 ];
@@ -29,6 +28,7 @@ export default function Intake() {
     time: '',
     notes: '',
     coupon: '',
+    location: 'miami',
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -278,10 +278,28 @@ export default function Intake() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700">{t.intake.notes}</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Preferred Location</label>
+              <div className="mt-1 flex gap-3">
+                <label className={`flex-1 border rounded-lg p-3 cursor-pointer text-center transition ${
+                  form.location === 'miami' ? 'border-teal-600 bg-teal-50 dark:bg-teal-900/20' : 'border-gray-200 dark:border-slate-600'
+                }`}>
+                  <input type="radio" name="location" value="miami" checked={form.location === 'miami'} onChange={handleChange} className="sr-only" />
+                  <p className="text-sm font-medium text-gray-900 dark:text-white">Miami — Edgewater</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">2125 Biscayne Blvd Suite 336</p>
+                </label>
+                <label className="flex-1 border rounded-lg p-3 cursor-not-allowed text-center border-gray-200 dark:border-slate-600 opacity-60">
+                  <input type="radio" name="location" value="ftlauderdale" disabled className="sr-only" />
+                  <p className="text-sm font-medium text-gray-900 dark:text-white">Ft. Lauderdale</p>
+                  <p className="text-xs text-amber-600">Coming Soon — Q3 2026</p>
+                </label>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">{t.intake.notes}</label>
               <textarea
                 name="notes" value={form.notes} onChange={handleChange} rows={2}
-                className="mt-1 block w-full rounded-lg border-gray-300 border px-3 py-2.5 text-sm focus:ring-teal-500 focus:border-teal-500"
+                className="mt-1 block w-full rounded-lg border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white border px-3 py-2.5 text-sm focus:ring-teal-500 focus:border-teal-500"
                 placeholder="Any special requirements or questions..."
               />
             </div>
@@ -355,9 +373,17 @@ export default function Intake() {
           </div>
 
           {/* Payment Section (Demo) */}
-          <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-            <p className="text-sm text-blue-800 font-medium">Payment</p>
-            <p className="text-xs text-blue-600 mt-1">Payment will be collected at the office on your appointment date.</p>
+          <div className="mb-6 p-4 bg-teal-50 dark:bg-teal-900/20 border border-teal-200 dark:border-teal-700 rounded-lg">
+            <p className="text-sm text-teal-800 dark:text-teal-300 font-medium">Payment</p>
+            <p className="text-xs text-teal-600 dark:text-teal-400 mt-1">Payment will be collected at the office on your appointment date.</p>
+          </div>
+
+          {/* Privacy & Disclaimer */}
+          <div className="mb-6 p-4 bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg">
+            <p className="text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Privacy & Disclaimer</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
+              By completing this booking, you consent to the collection and processing of your personal information for the purpose of providing the requested service. Your data is handled in accordance with the Privacy Act of 1974 (5 U.S.C. § 552a) and the Fair Credit Reporting Act (FCRA). Fingerprint data and personal identifiers are transmitted securely and are not shared with unauthorized third parties. You have the right to request access to, correction of, or deletion of your personal data at any time by contacting us at info@provn.co or (305) 340-2911.
+            </p>
           </div>
 
           <div className="flex items-center justify-between">

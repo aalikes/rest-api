@@ -208,6 +208,7 @@ export default function Layout() {
             <Link to="/terms" className="hover:text-teal-600">Terms of Service</Link>
             <Link to="/apostille" className="hover:text-teal-600">Apostille Services</Link>
             <Link to="/consulates" className="hover:text-teal-600">Consulate Directory</Link>
+            <Link to="/apostille-process" className="hover:text-teal-600">Apostille Process Guide</Link>
           </div>
         </div>
       </footer>

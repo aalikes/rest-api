@@ -17,17 +17,23 @@ Provn/
 ├── Pricing/           — Pricing sheets, quote logic, scenarios
 ├── Technical/         — API reference, database schema, integrations
 ├── Automations/       — Agent workflows, automation opportunities
-└── Clients/           — Client intake checklists, onboarding flows
+├── Clients/           — Client intake checklists, onboarding flows
+├── Locations/         — Office locations and contact info
+└── Staff/             — Team directory, roles, permissions
 ```
 
 ## Quick Links
 
 - [[Service-Catalog]] — Full list of services and use cases
 - [[SOP-Apostille-Workflow]] — End-to-end apostille process
+- [[SOP-Fingerprint-Capture]] — Fingerprint capture procedure
+- [[SOP-FBI-Background-Check]] — FBI background check processing
 - [[Apostille-Pricing]] — Pricing matrix and quote scenarios
 - [[API-Reference]] — REST API endpoints
 - [[Agent-Automations]] — Automation & AI agent opportunities
 - [[Client-Intake-Checklist]] — New client onboarding flow
+- [[Miami-Edgewater]] — Miami office details
+- [[Team-Directory]] — Staff roles and contact info
 
 ## About Provn
 
