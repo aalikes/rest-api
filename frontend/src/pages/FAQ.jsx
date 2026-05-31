@@ -49,7 +49,7 @@ const faqs = {
     },
     {
       q: 'Where are you located?',
-      a: '2125 Biscayne Blvd Suite 303, Miami, FL 33137. We are conveniently located in the Edgewater neighborhood with easy access from I-95 and plenty of nearby parking.',
+      a: '2125 Biscayne Blvd Suite 336, Miami, FL 33137. We are conveniently located in the Edgewater neighborhood with easy access from I-95 and plenty of nearby parking.',
     },
     {
       q: 'Can I mail in my fingerprints or get them as a PDF?',
@@ -123,7 +123,7 @@ const faqs = {
     },
     {
       q: '¿Dónde están ubicados?',
-      a: '2125 Biscayne Blvd Suite 303, Miami, FL 33137. Estamos convenientemente ubicados en el vecindario de Edgewater con fácil acceso desde la I-95 y mucho estacionamiento cercano.',
+      a: '2125 Biscayne Blvd Suite 336, Miami, FL 33137. Estamos convenientemente ubicados en el vecindario de Edgewater con fácil acceso desde la I-95 y mucho estacionamiento cercano.',
     },
   ],
 };

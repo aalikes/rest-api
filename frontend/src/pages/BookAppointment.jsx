@@ -324,7 +324,7 @@ export default function BookAppointment() {
             </div>
             <div className="flex justify-between text-sm">
               <span className="text-gray-500">Location</span>
-              <span className="font-medium">2125 Biscayne Blvd Suite 303, Miami FL</span>
+              <span className="font-medium">2125 Biscayne Blvd Suite 336, Miami FL</span>
             </div>
             <div className="border-t pt-3 mt-3">
               <p className="text-sm text-gray-500">Payment will be collected at the office on your appointment date.</p>

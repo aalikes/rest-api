@@ -29,7 +29,7 @@ const referralOptions = [
 ];
 
 const locationOptions = [
-  { id: 'miami', label: 'Miami — 2125 Biscayne Blvd Suite 303, Miami, FL 33137' },
+  { id: 'miami', label: 'Miami — 2125 Biscayne Blvd Suite 336, Miami, FL 33137' },
   { id: 'ftlauderdale', label: 'Ft. Lauderdale — Coming Soon' },
 ];
 

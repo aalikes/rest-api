@@ -131,7 +131,7 @@ export default function PrivacyPolicy() {
           <p className="text-gray-700">If you have any questions or concerns regarding this Privacy Policy, please contact:</p>
           <div className="bg-gray-50 rounded-lg p-4 mt-2 text-sm text-gray-700">
             <p className="font-medium">Provn LLC</p>
-            <p>2125 Biscayne Blvd, Suite 303</p>
+            <p>2125 Biscayne Blvd, Suite 336</p>
             <p>Miami, FL 33137</p>
             <p>Phone: +1 (305) 340-2911</p>
             <p>Email: info@provn.co</p>

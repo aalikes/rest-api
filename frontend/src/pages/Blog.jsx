@@ -99,7 +99,7 @@ The most popular package is our FBI + Apostille combo ($329/$379), which covers 
 
 The entire appointment typically takes 15-20 minutes. Electronic results are submitted immediately. For ink cards, we prepare them the same day.
 
-**Walk-ins welcome** — While appointments are preferred, we accept walk-ins during business hours. Visit us at 2125 Biscayne Blvd Suite 303, Miami.`,
+**Walk-ins welcome** — While appointments are preferred, we accept walk-ins during business hours. Visit us at 2125 Biscayne Blvd Suite 336, Miami.`,
       date: '2026-05-05',
       category: 'Fingerprinting',
     },

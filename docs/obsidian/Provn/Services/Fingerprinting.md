@@ -14,7 +14,7 @@ Professional ink fingerprint cards for clients who need physical fingerprint car
 ## Key Details
 
 - **Price:** $99 per card
-- **Location:** In-office only — 2125 Biscayne Blvd Suite 303, Miami, FL 33137
+- **Location:** In-office only — 2125 Biscayne Blvd Suite 336, Miami, FL 33137
 - **Processing time:** ~20 minutes
 - **Format:** Ink cards (can be sent as PDF — not electronically)
 

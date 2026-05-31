@@ -40,7 +40,7 @@ export default function TermsOfService() {
         <section>
           <h2 className="text-xl font-bold text-gray-900">3. Service Area & Appointments</h2>
           <p className="text-gray-700">
-            Services are provided at our office location at 2125 Biscayne Blvd Suite 303, Miami, FL 33137.
+            Services are provided at our office location at 2125 Biscayne Blvd Suite 336, Miami, FL 33137.
             Appointment times are approximate; unforeseen delays (traffic, technical issues, etc.) may occur.
           </p>
         </section>
@@ -131,7 +131,7 @@ export default function TermsOfService() {
           <p className="text-gray-700">For questions about these Terms, please contact:</p>
           <div className="bg-gray-50 rounded-lg p-4 mt-2 text-sm text-gray-700">
             <p className="font-medium">Provn LLC</p>
-            <p>2125 Biscayne Blvd, Suite 303</p>
+            <p>2125 Biscayne Blvd, Suite 336</p>
             <p>Miami, FL 33137</p>
             <p>Phone: +1 (305) 340-2911</p>
             <p>Email: info@provn.co</p>

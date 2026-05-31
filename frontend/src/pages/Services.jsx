@@ -64,7 +64,7 @@ export default function Services() {
           <ul className="mt-4 space-y-1 text-sm text-gray-600">
             <li>{t.services.inOffice}</li>
             <li>{t.services.processing}</li>
-            <li>2125 Biscayne Blvd Suite 303</li>
+            <li>2125 Biscayne Blvd Suite 336</li>
           </ul>
           <div className="mt-5">
             <span className="inline-block bg-teal-600 text-white text-sm font-medium px-4 py-2 rounded-md">
@@ -167,7 +167,7 @@ export default function Services() {
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="border dark:border-slate-700 rounded-lg p-4 text-center">
             <p className="font-semibold text-gray-900 dark:text-white">Miami — Edgewater</p>
-            <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">2125 Biscayne Blvd Suite 303</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">2125 Biscayne Blvd Suite 336</p>
             <p className="text-sm text-gray-600 dark:text-gray-300">Miami, FL 33137</p>
             <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">Mon–Sat 8AM–8PM</p>
           </div>

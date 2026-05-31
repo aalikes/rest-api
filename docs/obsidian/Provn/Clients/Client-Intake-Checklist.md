@@ -30,7 +30,7 @@ workspace: Provn
 
 ### For Fingerprinting Appointments
 - [ ] Confirm appointment date and time preference
-- [ ] Remind client of office location: 2125 Biscayne Blvd Suite 303, Miami, FL 33137
+- [ ] Remind client of office location: 2125 Biscayne Blvd Suite 336, Miami, FL 33137
 - [ ] Confirm purpose/agency (FDLE, FBI, DOH, DBPR, etc.)
 - [ ] Ask for ORI number if applicable
 - [ ] Remind client to bring valid government photo ID
