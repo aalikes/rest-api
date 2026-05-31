@@ -79,7 +79,7 @@ export default function Appointments() {
         </div>
         <button
           onClick={() => setShowForm(!showForm)}
-          className="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700 transition"
+          className="bg-teal-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-teal-700 transition"
         >
           {showForm ? 'Cancel' : '+ New Appointment'}
         </button>
@@ -128,7 +128,7 @@ export default function Appointments() {
               className="mt-1 block w-full rounded-md border px-3 py-2 text-sm" rows={2} />
           </div>
           <button type="submit" disabled={saving}
-            className="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700 transition disabled:opacity-50">
+            className="bg-teal-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-teal-700 transition disabled:opacity-50">
             {saving ? 'Saving...' : 'Book Appointment'}
           </button>
         </form>

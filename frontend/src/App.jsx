@@ -18,6 +18,9 @@ import BookAppointment from './pages/BookAppointment';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import ManageAppointment from './pages/ManageAppointment';
+import FBIIntakeForm from './pages/FBIIntakeForm';
+import SOPTraining from './pages/SOPTraining';
+import ConsulateDirectory from './pages/ConsulateDirectory';
 
 export default function App() {
   return (
@@ -42,6 +45,9 @@ export default function App() {
               <Route path="/privacy" element={<PrivacyPolicy />} />
               <Route path="/terms" element={<TermsOfService />} />
               <Route path="/manage-appointment" element={<ManageAppointment />} />
+              <Route path="/fbi-intake" element={<FBIIntakeForm />} />
+              <Route path="/sop-training" element={<SOPTraining />} />
+              <Route path="/consulates" element={<ConsulateDirectory />} />
             </Route>
           </Routes>
         </BrowserRouter>

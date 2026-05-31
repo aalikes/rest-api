@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useI18n } from '../lib/i18n';
+import ReviewTipModal from '../components/ReviewTipModal';
 
 const services = [
   { id: 'fingerprint', price: 99, label: 'Fingerprinting', desc: 'Professional ink fingerprint cards for out-of-state submissions, concealed weapons permits, security guard licenses, and FBI background checks. Cards can be sent as a PDF — not electronically.' },
@@ -63,22 +64,33 @@ export default function Intake() {
     setLoading(false);
   }
 
+  const [showReviewModal, setShowReviewModal] = useState(false);
+
   if (submitted) {
     return (
       <div className="max-w-lg mx-auto text-center py-12">
-        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+        <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
           <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">Booking Confirmed!</h2>
-        <p className="text-gray-600">{t.intake.success}</p>
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Booking Confirmed!</h2>
+        <p className="text-gray-600 dark:text-gray-300">{t.intake.success}</p>
+        {!showReviewModal && (
+          <button
+            onClick={() => setShowReviewModal(true)}
+            className="mt-4 bg-teal-600 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-teal-700 transition"
+          >
+            Leave a Review & Tip
+          </button>
+        )}
         <button
           onClick={() => navigate('/')}
-          className="mt-6 text-indigo-600 hover:text-indigo-800 font-medium"
+          className="mt-3 block mx-auto text-teal-600 hover:text-teal-800 font-medium text-sm"
         >
           {t.intake.back}
         </button>
+        {showReviewModal && <ReviewTipModal onClose={() => setShowReviewModal(false)} />}
       </div>
     );
   }
@@ -90,8 +102,8 @@ export default function Intake() {
         {[1, 2, 3].map((s) => (
           <div key={s} className="flex items-center">
             <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
-              s < step ? 'bg-indigo-600 text-white' :
-              s === step ? 'bg-indigo-600 text-white' :
+              s < step ? 'bg-teal-600 text-white' :
+              s === step ? 'bg-teal-600 text-white' :
               'bg-gray-200 text-gray-500'
             }`}>
               {s < step ? (
@@ -101,7 +113,7 @@ export default function Intake() {
               ) : s}
             </div>
             {s < 3 && (
-              <div className={`w-16 sm:w-24 h-0.5 ${s < step ? 'bg-indigo-600' : 'bg-gray-200'}`} />
+              <div className={`w-16 sm:w-24 h-0.5 ${s < step ? 'bg-teal-600' : 'bg-gray-200'}`} />
             )}
           </div>
         ))}
@@ -109,9 +121,9 @@ export default function Intake() {
 
       {/* Step Labels */}
       <div className="flex justify-between mb-8 text-xs text-gray-500 px-2">
-        <span className={step >= 1 ? 'text-indigo-600 font-medium' : ''}>Customize Service</span>
-        <span className={step >= 2 ? 'text-indigo-600 font-medium' : ''}>Your Details</span>
-        <span className={step >= 3 ? 'text-indigo-600 font-medium' : ''}>Complete Booking</span>
+        <span className={step >= 1 ? 'text-teal-600 font-medium' : ''}>Customize Service</span>
+        <span className={step >= 2 ? 'text-teal-600 font-medium' : ''}>Your Details</span>
+        <span className={step >= 3 ? 'text-teal-600 font-medium' : ''}>Complete Booking</span>
       </div>
 
       {/* Step 1: Customize Service */}
@@ -129,7 +141,7 @@ export default function Intake() {
                     key={svc.id}
                     className={`flex items-center gap-3 border rounded-lg p-4 cursor-pointer transition ${
                       form.service === svc.id
-                        ? 'border-indigo-600 bg-indigo-50 ring-1 ring-indigo-600'
+                        ? 'border-teal-600 bg-teal-50 ring-1 ring-teal-600'
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
                   >
@@ -139,7 +151,7 @@ export default function Intake() {
                       value={svc.id}
                       checked={form.service === svc.id}
                       onChange={handleChange}
-                      className="text-indigo-600"
+                      className="text-teal-600"
                     />
                     <div>
                       <p className="text-sm font-medium text-gray-900">{svc.label}</p>
@@ -163,13 +175,13 @@ export default function Intake() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">{t.intake.residency}</label>
                 <div className="flex gap-3">
                   <label className={`flex-1 border rounded-lg p-3 cursor-pointer text-center transition ${
-                    form.residency === 'resident' ? 'border-indigo-600 bg-indigo-50' : 'border-gray-200'
+                    form.residency === 'resident' ? 'border-teal-600 bg-teal-50' : 'border-gray-200'
                   }`}>
                     <input type="radio" name="residency" value="resident" checked={form.residency === 'resident'} onChange={handleChange} className="sr-only" />
                     <p className="text-sm font-medium">{t.intake.residentOption}</p>
                   </label>
                   <label className={`flex-1 border rounded-lg p-3 cursor-pointer text-center transition ${
-                    form.residency === 'non-resident' ? 'border-indigo-600 bg-indigo-50' : 'border-gray-200'
+                    form.residency === 'non-resident' ? 'border-teal-600 bg-teal-50' : 'border-gray-200'
                   }`}>
                     <input type="radio" name="residency" value="non-resident" checked={form.residency === 'non-resident'} onChange={handleChange} className="sr-only" />
                     <p className="text-sm font-medium">{t.intake.nonResidentOption}</p>
@@ -185,7 +197,7 @@ export default function Intake() {
                   name="priority"
                   checked={form.priority}
                   onChange={handleChange}
-                  className="rounded text-indigo-600"
+                  className="rounded text-teal-600"
                 />
                 <div>
                   <p className="text-sm font-medium text-gray-900">Priority Processing</p>
@@ -199,7 +211,7 @@ export default function Intake() {
             <button onClick={() => navigate('/')} className="text-sm text-gray-500 hover:text-gray-700">
               {t.intake.back}
             </button>
-            <button onClick={nextStep} className="bg-indigo-600 text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-indigo-700 transition">
+            <button onClick={nextStep} className="bg-teal-600 text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-teal-700 transition">
               Next Step →
             </button>
           </div>
@@ -210,8 +222,8 @@ export default function Intake() {
       {step === 2 && (
         <div className="bg-white border border-gray-200 rounded-lg p-6">
           {cameFromServicePage && (
-            <div className="mb-4 bg-indigo-50 border border-indigo-100 rounded-lg px-4 py-3">
-              <p className="text-sm text-indigo-800">
+            <div className="mb-4 bg-teal-50 border border-teal-100 rounded-lg px-4 py-3">
+              <p className="text-sm text-teal-800">
                 <span className="font-medium">Booking:</span> {services.find((s) => s.id === form.service)?.label}
               </p>
             </div>
@@ -224,7 +236,7 @@ export default function Intake() {
               <label className="block text-sm font-medium text-gray-700">{t.intake.name}</label>
               <input
                 type="text" name="name" value={form.name} onChange={handleChange} required
-                className="mt-1 block w-full rounded-lg border-gray-300 border px-3 py-2.5 text-sm focus:ring-indigo-500 focus:border-indigo-500"
+                className="mt-1 block w-full rounded-lg border-gray-300 border px-3 py-2.5 text-sm focus:ring-teal-500 focus:border-teal-500"
                 placeholder="John Doe"
               />
             </div>
@@ -234,7 +246,7 @@ export default function Intake() {
                 <label className="block text-sm font-medium text-gray-700">{t.intake.email}</label>
                 <input
                   type="email" name="email" value={form.email} onChange={handleChange} required
-                  className="mt-1 block w-full rounded-lg border-gray-300 border px-3 py-2.5 text-sm focus:ring-indigo-500 focus:border-indigo-500"
+                  className="mt-1 block w-full rounded-lg border-gray-300 border px-3 py-2.5 text-sm focus:ring-teal-500 focus:border-teal-500"
                   placeholder="john@example.com"
                 />
               </div>
@@ -242,7 +254,7 @@ export default function Intake() {
                 <label className="block text-sm font-medium text-gray-700">{t.intake.phone}</label>
                 <input
                   type="tel" name="phone" value={form.phone} onChange={handleChange} required
-                  className="mt-1 block w-full rounded-lg border-gray-300 border px-3 py-2.5 text-sm focus:ring-indigo-500 focus:border-indigo-500"
+                  className="mt-1 block w-full rounded-lg border-gray-300 border px-3 py-2.5 text-sm focus:ring-teal-500 focus:border-teal-500"
                   placeholder="(305) 555-0123"
                 />
               </div>
@@ -253,14 +265,14 @@ export default function Intake() {
                 <label className="block text-sm font-medium text-gray-700">{t.intake.date}</label>
                 <input
                   type="date" name="date" value={form.date} onChange={handleChange} required
-                  className="mt-1 block w-full rounded-lg border-gray-300 border px-3 py-2.5 text-sm focus:ring-indigo-500 focus:border-indigo-500"
+                  className="mt-1 block w-full rounded-lg border-gray-300 border px-3 py-2.5 text-sm focus:ring-teal-500 focus:border-teal-500"
                 />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">{t.intake.time}</label>
                 <input
                   type="time" name="time" value={form.time} onChange={handleChange} required
-                  className="mt-1 block w-full rounded-lg border-gray-300 border px-3 py-2.5 text-sm focus:ring-indigo-500 focus:border-indigo-500"
+                  className="mt-1 block w-full rounded-lg border-gray-300 border px-3 py-2.5 text-sm focus:ring-teal-500 focus:border-teal-500"
                 />
               </div>
             </div>
@@ -269,7 +281,7 @@ export default function Intake() {
               <label className="block text-sm font-medium text-gray-700">{t.intake.notes}</label>
               <textarea
                 name="notes" value={form.notes} onChange={handleChange} rows={2}
-                className="mt-1 block w-full rounded-lg border-gray-300 border px-3 py-2.5 text-sm focus:ring-indigo-500 focus:border-indigo-500"
+                className="mt-1 block w-full rounded-lg border-gray-300 border px-3 py-2.5 text-sm focus:ring-teal-500 focus:border-teal-500"
                 placeholder="Any special requirements or questions..."
               />
             </div>
@@ -279,7 +291,7 @@ export default function Intake() {
             <button onClick={cameFromServicePage ? () => navigate('/') : prevStep} className="text-sm text-gray-500 hover:text-gray-700">
               ← {cameFromServicePage ? 'Back to Services' : 'Back'}
             </button>
-            <button onClick={nextStep} className="bg-indigo-600 text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-indigo-700 transition">
+            <button onClick={nextStep} className="bg-teal-600 text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-teal-700 transition">
               Next Step →
             </button>
           </div>
@@ -322,7 +334,7 @@ export default function Intake() {
               </div>
               <div className="border-t border-gray-200 pt-2 mt-2 flex justify-between">
                 <span className="font-semibold text-gray-900">Total</span>
-                <span className="font-bold text-lg text-indigo-600">${getPrice()}</span>
+                <span className="font-bold text-lg text-teal-600">${getPrice()}</span>
               </div>
             </div>
           </div>
@@ -355,7 +367,7 @@ export default function Intake() {
             <button
               onClick={handleSubmit}
               disabled={loading}
-              className="bg-indigo-600 text-white px-8 py-2.5 rounded-lg text-sm font-medium hover:bg-indigo-700 transition disabled:opacity-50"
+              className="bg-teal-600 text-white px-8 py-2.5 rounded-lg text-sm font-medium hover:bg-teal-700 transition disabled:opacity-50"
             >
               {loading ? 'Processing...' : `Complete Booking — $${getPrice()}`}
             </button>

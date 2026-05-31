@@ -34,11 +34,11 @@ export default function Dashboard() {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Technician Dashboard</h1>
-          <p className="text-gray-600 mt-1">Welcome back, {displayName}</p>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Technician Dashboard</h1>
+          <p className="text-gray-600 dark:text-gray-400 mt-1">Welcome back, {displayName}</p>
         </div>
         {/* Out of Office Toggle */}
-        <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-lg px-4 py-3">
+        <div className="flex items-center gap-3 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg px-4 py-3">
           <div className="text-right">
             <p className="text-sm font-medium text-gray-700">Out of Office</p>
             <p className="text-xs text-gray-500">2-hour advance booking required</p>
@@ -89,7 +89,7 @@ export default function Dashboard() {
               onClick={() => setActiveTab(tab)}
               className={`px-4 py-3 text-sm font-medium border-b-2 whitespace-nowrap transition ${
                 activeTab === tab
-                  ? 'border-indigo-600 text-indigo-600'
+                  ? 'border-teal-600 text-teal-600'
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >
@@ -194,7 +194,7 @@ function ScheduledTab({ data }) {
                 <p className="text-xs text-gray-500">{apt.service}</p>
               </div>
             </div>
-            <button className="text-xs text-indigo-600 hover:text-indigo-800 font-medium">View</button>
+            <button className="text-xs text-teal-600 hover:text-teal-800 font-medium">View</button>
           </div>
         ))}
       </div>
@@ -280,13 +280,13 @@ function CalendarTab() {
               <div
                 key={day}
                 className={`h-10 flex items-center justify-center rounded-lg text-sm relative ${
-                  isToday ? 'bg-indigo-600 text-white font-bold' :
+                  isToday ? 'bg-teal-600 text-white font-bold' :
                   'text-gray-700 hover:bg-gray-100'
                 }`}
               >
                 {day}
                 {isBusy && !isToday && (
-                  <span className="absolute bottom-1 w-1.5 h-1.5 bg-indigo-400 rounded-full" />
+                  <span className="absolute bottom-1 w-1.5 h-1.5 bg-teal-400 rounded-full" />
                 )}
               </div>
             );
@@ -295,7 +295,7 @@ function CalendarTab() {
       </div>
       <div className="mt-3 flex items-center gap-4 text-xs text-gray-500">
         <span className="flex items-center gap-1">
-          <span className="w-2 h-2 bg-indigo-400 rounded-full" /> Appointments booked
+          <span className="w-2 h-2 bg-teal-400 rounded-full" /> Appointments booked
         </span>
       </div>
     </div>
@@ -323,7 +323,7 @@ function EarningsTab({ data }) {
             <div key={m} className="flex-1 flex flex-col items-center gap-1">
               <div className="w-full flex flex-col items-center justify-end h-32">
                 <div
-                  className="w-8 bg-indigo-500 rounded-t"
+                  className="w-8 bg-teal-500 rounded-t"
                   style={{ height: `${(earnings[i] / maxEarning) * 100}%` }}
                 />
               </div>

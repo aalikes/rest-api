@@ -29,7 +29,7 @@ export default function OriCodes() {
           <tbody className="divide-y divide-gray-200">
             {codes.map((c, i) => (
               <tr key={i} className="hover:bg-gray-50">
-                <td className="px-4 py-3 text-sm font-mono font-medium text-indigo-700">{c.ori}</td>
+                <td className="px-4 py-3 text-sm font-mono font-medium text-teal-700">{c.ori}</td>
                 <td className="px-4 py-3 text-sm text-gray-900">{c.agency}</td>
                 <td className="px-4 py-3">
                   <span className={`px-2 py-1 rounded-full text-xs font-medium ${

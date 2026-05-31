@@ -10,9 +10,9 @@ const categoryIcons = {
 };
 
 const categoryColors = {
-  fingerprint: 'bg-blue-50 border-blue-200 hover:shadow-lg hover:border-blue-400',
-  apostille: 'bg-purple-50 border-purple-200 hover:shadow-lg hover:border-purple-400',
-  fbi: 'bg-green-50 border-green-200 hover:shadow-lg hover:border-green-400',
+  fingerprint: 'bg-sky-50 border-sky-200 hover:shadow-lg hover:border-sky-400 dark:bg-sky-900/20 dark:border-sky-700',
+  apostille: 'bg-amber-50 border-amber-200 hover:shadow-lg hover:border-amber-400 dark:bg-amber-900/20 dark:border-amber-700',
+  fbi: 'bg-emerald-50 border-emerald-200 hover:shadow-lg hover:border-emerald-400 dark:bg-emerald-900/20 dark:border-emerald-700',
 };
 
 export default function Services() {
@@ -58,7 +58,7 @@ export default function Services() {
           <h2 className="text-xl font-bold text-gray-900">{t.services.fingerprint}</h2>
           <p className="text-gray-600 mt-2 text-sm">{t.services.fingerprintDesc}</p>
           <div className="mt-4">
-            <span className="text-3xl font-bold text-blue-700">${pricing?.fingerprint?.base || 99}</span>
+            <span className="text-3xl font-bold text-sky-700 dark:text-sky-400">${pricing?.fingerprint?.base || 99}</span>
             <span className="text-gray-500 ml-1">{t.services.perCard}</span>
           </div>
           <ul className="mt-4 space-y-1 text-sm text-gray-600">
@@ -67,7 +67,7 @@ export default function Services() {
             <li>2125 Biscayne Blvd Suite 303</li>
           </ul>
           <div className="mt-5">
-            <span className="inline-block bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-md">
+            <span className="inline-block bg-teal-600 text-white text-sm font-medium px-4 py-2 rounded-md">
               {t.services.bookNow}
             </span>
           </div>
@@ -82,7 +82,7 @@ export default function Services() {
           <h2 className="text-xl font-bold text-gray-900">{t.services.apostille}</h2>
           <p className="text-gray-600 mt-2 text-sm">{t.services.apostilleDesc}</p>
           <div className="mt-4">
-            <span className="text-3xl font-bold text-purple-700">
+            <span className="text-3xl font-bold text-amber-700 dark:text-amber-400">
               ${pricing?.state_apostille?.base || 200}
             </span>
             <span className="text-gray-500 ml-1">{t.services.perDoc}</span>
@@ -94,7 +94,7 @@ export default function Services() {
             <li>{t.services.intlShipping}</li>
           </ul>
           <div className="mt-5">
-            <span className="inline-block bg-purple-600 text-white text-sm font-medium px-4 py-2 rounded-md">
+            <span className="inline-block bg-teal-600 text-white text-sm font-medium px-4 py-2 rounded-md">
               {t.services.bookNow}
             </span>
           </div>
@@ -110,13 +110,13 @@ export default function Services() {
           <p className="text-gray-600 mt-2 text-sm">{t.services.fbiDesc}</p>
           <div className="mt-4">
             <div>
-              <span className="text-3xl font-bold text-green-700">
+              <span className="text-3xl font-bold text-emerald-700 dark:text-emerald-400">
                 ${pricing?.fbi_background_check?.resident || 129}
               </span>
               <span className="text-gray-500 ml-1">{t.services.resident}</span>
             </div>
             <div className="mt-1">
-              <span className="text-2xl font-bold text-green-700">
+              <span className="text-2xl font-bold text-emerald-700 dark:text-emerald-400">
                 ${pricing?.fbi_background_check?.non_resident || 179}
               </span>
               <span className="text-gray-500 ml-1">{t.services.nonResident}</span>
@@ -128,7 +128,7 @@ export default function Services() {
             <li>{t.services.includesFingerprint}</li>
           </ul>
           <div className="mt-5">
-            <span className="inline-block bg-green-600 text-white text-sm font-medium px-4 py-2 rounded-md">
+            <span className="inline-block bg-teal-600 text-white text-sm font-medium px-4 py-2 rounded-md">
               {t.services.bookNow}
             </span>
           </div>
@@ -138,34 +138,47 @@ export default function Services() {
       {/* Combo Pricing */}
       <div
         onClick={() => navigate('/book?service=fbi-apostille')}
-        className="mt-10 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl border border-indigo-200 p-6 cursor-pointer hover:shadow-lg hover:border-indigo-400 transition-all"
+        className="mt-10 bg-gradient-to-r from-teal-50 to-emerald-50 dark:from-teal-900/20 dark:to-emerald-900/20 rounded-xl border border-teal-200 dark:border-teal-700 p-6 cursor-pointer hover:shadow-lg hover:border-teal-400 transition-all"
       >
         <h2 className="text-xl font-bold text-gray-900">{t.services.bundle}</h2>
         <p className="text-gray-600 mt-1 text-sm">{t.services.bundleDesc}</p>
         <div className="mt-4 grid sm:grid-cols-2 gap-4">
           <div className="bg-white rounded-lg p-4 border">
             <p className="text-sm font-medium text-gray-500">{t.services.residentCitizen}</p>
-            <p className="text-2xl font-bold text-indigo-700 mt-1">$329 <span className="text-sm font-normal text-gray-500">+ tax</span></p>
+            <p className="text-2xl font-bold text-teal-700 dark:text-teal-400 mt-1">$329 <span className="text-sm font-normal text-gray-500">+ tax</span></p>
             <p className="text-xs text-gray-500 mt-1">$129 FBI + $200 Apostille</p>
           </div>
           <div className="bg-white rounded-lg p-4 border">
             <p className="text-sm font-medium text-gray-500">{t.services.nonResidentCitizen}</p>
-            <p className="text-2xl font-bold text-indigo-700 mt-1">$379 <span className="text-sm font-normal text-gray-500">+ tax</span></p>
+            <p className="text-2xl font-bold text-teal-700 dark:text-teal-400 mt-1">$379 <span className="text-sm font-normal text-gray-500">+ tax</span></p>
             <p className="text-xs text-gray-500 mt-1">$179 FBI + $200 Apostille</p>
           </div>
         </div>
         <div className="mt-5">
-          <span className="inline-block bg-indigo-600 text-white text-sm font-medium px-4 py-2 rounded-md">
+          <span className="inline-block bg-teal-600 text-white text-sm font-medium px-4 py-2 rounded-md">
             {t.services.bookNow}
           </span>
         </div>
       </div>
 
-      {/* Location */}
-      <div className="mt-10 text-center bg-white rounded-xl border p-6">
-        <h2 className="text-lg font-bold text-gray-900">{t.services.visitUs}</h2>
-        <p className="text-gray-600 mt-2">{t.services.location}</p>
-        <p className="text-sm text-gray-500 mt-1">{t.services.locationNote}</p>
+      {/* Locations */}
+      <div className="mt-10 bg-white dark:bg-slate-800 rounded-xl border dark:border-slate-700 p-6">
+        <h2 className="text-lg font-bold text-gray-900 dark:text-white text-center mb-4">{t.services.visitUs}</h2>
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div className="border dark:border-slate-700 rounded-lg p-4 text-center">
+            <p className="font-semibold text-gray-900 dark:text-white">Miami — Edgewater</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">2125 Biscayne Blvd Suite 303</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300">Miami, FL 33137</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">Mon–Sat 8AM–8PM</p>
+          </div>
+          <div className="border dark:border-slate-700 rounded-lg p-4 text-center">
+            <p className="font-semibold text-gray-900 dark:text-white">Ft. Lauderdale <span className="text-xs bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 px-2 py-0.5 rounded-full">Coming Soon</span></p>
+            <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">Broward County</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300">Ft. Lauderdale, FL</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">Opening Q3 2026</p>
+          </div>
+        </div>
+        <p className="text-sm text-gray-500 dark:text-gray-400 mt-4 text-center">{t.services.locationNote}</p>
       </div>
     </div>
   );

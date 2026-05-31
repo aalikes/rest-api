@@ -108,7 +108,7 @@ export default function BookAppointment() {
           {monthNames[currentMonth]} {selectedDate}, {currentYear} at {selectedTime}
         </p>
         <p className="text-sm text-gray-500 mt-2">A confirmation email will be sent to {form.email}</p>
-        <button onClick={() => navigate('/')} className="mt-6 text-blue-600 hover:text-blue-700 font-medium">
+        <button onClick={() => navigate('/')} className="mt-6 text-teal-600 hover:text-teal-700 font-medium">
           ← Back to Services
         </button>
       </div>
@@ -133,11 +133,11 @@ export default function BookAppointment() {
         {[1, 2, 3, 4].map((s) => (
           <div key={s} className="flex items-center">
             <div className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold ${
-              s <= step ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-500'
+              s <= step ? 'bg-teal-600 text-white' : 'bg-gray-200 text-gray-500'
             }`}>
               {s}
             </div>
-            {s < 4 && <div className={`w-12 sm:w-20 h-0.5 ${s < step ? 'bg-blue-600' : 'bg-gray-200'}`} />}
+            {s < 4 && <div className={`w-12 sm:w-20 h-0.5 ${s < step ? 'bg-teal-600' : 'bg-gray-200'}`} />}
           </div>
         ))}
       </div>
@@ -172,8 +172,8 @@ export default function BookAppointment() {
                     className={`py-2 rounded-lg text-sm transition ${
                       !d.currentMonth ? 'text-gray-300' :
                       isPast(d.day) ? 'text-gray-300 cursor-not-allowed' :
-                      selectedDate === d.day ? 'bg-blue-600 text-white font-bold' :
-                      isToday(d.day) ? 'text-blue-600 font-bold border border-blue-300' :
+                      selectedDate === d.day ? 'bg-teal-600 text-white font-bold' :
+                      isToday(d.day) ? 'text-teal-600 font-bold border border-teal-300' :
                       'hover:bg-gray-100 text-gray-700'
                     }`}
                   >
@@ -197,8 +197,8 @@ export default function BookAppointment() {
                     onClick={() => setSelectedTime(t)}
                     className={`py-2.5 px-2 rounded-lg text-sm border transition ${
                       selectedTime === t
-                        ? 'bg-blue-600 text-white border-blue-600'
-                        : 'border-gray-200 text-gray-700 hover:border-blue-300 hover:bg-blue-50'
+                        ? 'bg-teal-600 text-white border-teal-600'
+                        : 'border-gray-200 text-gray-700 hover:border-teal-300 hover:bg-teal-50'
                     }`}
                   >
                     {t}
@@ -216,7 +216,7 @@ export default function BookAppointment() {
           <button
             onClick={() => setStep(2)}
             disabled={!selectedDate || !selectedTime}
-            className="w-full mt-8 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white py-3.5 rounded-lg font-medium transition"
+            className="w-full mt-8 bg-teal-600 hover:bg-teal-700 disabled:bg-gray-300 text-white py-3.5 rounded-lg font-medium transition"
           >
             Continue
           </button>
@@ -234,7 +234,7 @@ export default function BookAppointment() {
               { id: 'fbi-apostille', label: 'FBI + Apostille Bundle', price: '$329+', desc: 'Background check + federal apostille' },
             ].map(s => (
               <label key={s.id} className={`flex items-center justify-between border-2 rounded-lg p-4 cursor-pointer transition ${
-                form.service === s.id ? 'border-blue-500 bg-blue-50' : 'border-gray-200'
+                form.service === s.id ? 'border-teal-500 bg-teal-50' : 'border-gray-200'
               }`}>
                 <div className="flex items-center gap-3">
                   <input type="radio" name="service" value={s.id} checked={form.service === s.id}
@@ -250,7 +250,7 @@ export default function BookAppointment() {
           </div>
           <button
             onClick={() => setStep(3)}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3.5 rounded-lg font-medium transition"
+            className="w-full bg-teal-600 hover:bg-teal-700 text-white py-3.5 rounded-lg font-medium transition"
           >
             Continue
           </button>
@@ -290,7 +290,7 @@ export default function BookAppointment() {
           <button
             onClick={() => setStep(4)}
             disabled={!form.name || !form.email || !form.phone}
-            className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white py-3.5 rounded-lg font-medium transition"
+            className="w-full bg-teal-600 hover:bg-teal-700 disabled:bg-gray-300 text-white py-3.5 rounded-lg font-medium transition"
           >
             Continue to Review
           </button>
@@ -332,7 +332,7 @@ export default function BookAppointment() {
           </div>
           <button
             onClick={handleSubmit}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3.5 rounded-lg font-bold transition"
+            className="w-full bg-teal-600 hover:bg-teal-700 text-white py-3.5 rounded-lg font-bold transition"
           >
             Confirm Booking
           </button>

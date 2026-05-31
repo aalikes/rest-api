@@ -81,7 +81,7 @@ export default function Quote() {
             key={t.id}
             onClick={() => { setTab(t.id); setResult(null); }}
             className={`flex-1 py-2 px-4 text-sm font-medium rounded-md transition ${
-              tab === t.id ? 'bg-white text-indigo-700 shadow-sm' : 'text-gray-600 hover:text-gray-900'
+              tab === t.id ? 'bg-white text-teal-700 shadow-sm' : 'text-gray-600 hover:text-gray-900'
             }`}
           >
             {t.label}
@@ -140,7 +140,7 @@ export default function Quote() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md font-medium hover:bg-indigo-700 transition disabled:opacity-50"
+            className="w-full bg-teal-600 text-white py-2 px-4 rounded-md font-medium hover:bg-teal-700 transition disabled:opacity-50"
           >
             {loading ? 'Calculating...' : 'Get Apostille Quote'}
           </button>
@@ -164,7 +164,7 @@ export default function Quote() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md font-medium hover:bg-indigo-700 transition disabled:opacity-50"
+            className="w-full bg-teal-600 text-white py-2 px-4 rounded-md font-medium hover:bg-teal-700 transition disabled:opacity-50"
           >
             {loading ? 'Calculating...' : 'Get FBI Quote'}
           </button>
@@ -233,7 +233,7 @@ export default function Quote() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md font-medium hover:bg-indigo-700 transition disabled:opacity-50"
+            className="w-full bg-teal-600 text-white py-2 px-4 rounded-md font-medium hover:bg-teal-700 transition disabled:opacity-50"
           >
             {loading ? 'Calculating...' : 'Get Combo Quote'}
           </button>
@@ -248,7 +248,7 @@ export default function Quote() {
           ) : result.type === 'apostille' ? (
             <div>
               <h3 className="font-bold text-lg text-gray-900">Apostille Quote</h3>
-              <p className="text-3xl font-bold text-indigo-700 mt-2">${result.data.total}</p>
+              <p className="text-3xl font-bold text-teal-700 mt-2">${result.data.total}</p>
               <p className="text-sm text-gray-500 mt-1">Estimated {result.data.processingDays} business days</p>
               <div className="mt-3 text-sm text-gray-600 space-y-1">
                 <p>Base: ${result.data.breakdown.base}</p>
@@ -266,7 +266,7 @@ export default function Quote() {
           ) : (
             <div>
               <h3 className="font-bold text-lg text-gray-900">FBI + Apostille Combo Quote</h3>
-              <p className="text-3xl font-bold text-indigo-700 mt-2">${result.data.total} <span className="text-sm font-normal text-gray-500">+ tax</span></p>
+              <p className="text-3xl font-bold text-teal-700 mt-2">${result.data.total} <span className="text-sm font-normal text-gray-500">+ tax</span></p>
               <p className="text-sm text-gray-500 mt-1">Estimated {result.data.processingDays} business days</p>
               <div className="mt-3 text-sm text-gray-600 space-y-1">
                 <p>FBI Background Check: ${result.data.breakdown.fbi_background_check}</p>

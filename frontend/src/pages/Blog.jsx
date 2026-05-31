@@ -263,13 +263,13 @@ export default function Blog() {
       <div className="max-w-3xl mx-auto">
         <button
           onClick={() => setSelectedArticle(null)}
-          className="text-indigo-600 hover:text-indigo-800 text-sm font-medium mb-6 inline-block"
+          className="text-teal-600 hover:text-teal-800 text-sm font-medium mb-6 inline-block"
         >
           ← {t.blog.title}
         </button>
         <article>
           <div className="flex items-center gap-3 mb-4">
-            <span className="text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded-full font-medium">
+            <span className="text-xs bg-teal-100 text-teal-700 px-2 py-1 rounded-full font-medium">
               {article.category}
             </span>
             <span className="text-xs text-gray-500">{article.date}</span>
@@ -298,14 +298,14 @@ export default function Blog() {
             onClick={() => setSelectedArticle(article.id)}
           >
             <div className="flex items-center gap-3 mb-3">
-              <span className="text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded-full font-medium">
+              <span className="text-xs bg-teal-100 text-teal-700 px-2 py-1 rounded-full font-medium">
                 {article.category}
               </span>
               <span className="text-xs text-gray-500">{article.date}</span>
             </div>
             <h2 className="text-lg font-bold text-gray-900 mb-2">{article.title}</h2>
             <p className="text-sm text-gray-600 mb-4">{article.excerpt}</p>
-            <span className="text-indigo-600 text-sm font-medium hover:text-indigo-800">
+            <span className="text-teal-600 text-sm font-medium hover:text-teal-800">
               {t.blog.readMore} →
             </span>
           </div>

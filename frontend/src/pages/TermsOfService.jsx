@@ -7,7 +7,7 @@ export default function TermsOfService() {
     <div className="max-w-3xl mx-auto py-8">
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Terms of Service</h1>
-        <button onClick={() => navigate('/')} className="text-sm text-indigo-600 hover:text-indigo-700 flex items-center gap-1">
+        <button onClick={() => navigate('/')} className="text-sm text-teal-600 hover:text-teal-700 flex items-center gap-1">
           ← Back to Home
         </button>
       </div>
