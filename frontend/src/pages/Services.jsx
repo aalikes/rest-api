@@ -73,33 +73,6 @@ export default function Services() {
           </div>
         </div>
 
-        {/* Apostille Card */}
-        <div
-          onClick={() => navigate('/apostille-order')}
-          className={`rounded-xl border-2 p-6 cursor-pointer transition-all ${categoryColors.apostille}`}
-        >
-          <div className="text-3xl mb-3">{categoryIcons.apostille}</div>
-          <h2 className="text-xl font-bold text-gray-900">{t.services.apostille}</h2>
-          <p className="text-gray-600 mt-2 text-sm">{t.services.apostilleDesc}</p>
-          <div className="mt-4">
-            <span className="text-3xl font-bold text-amber-700 dark:text-amber-400">
-              ${pricing?.state_apostille?.base || 200}
-            </span>
-            <span className="text-gray-500 ml-1">{t.services.perDoc}</span>
-          </div>
-          <ul className="mt-4 space-y-1 text-sm text-gray-600">
-            <li>{t.services.stateFederal}</li>
-            <li>{t.services.priorityProcessing}</li>
-            <li>{t.services.expeditedMail}</li>
-            <li>{t.services.intlShipping}</li>
-          </ul>
-          <div className="mt-5">
-            <span className="inline-block bg-teal-600 text-white text-sm font-medium px-4 py-2 rounded-md">
-              {t.services.bookNow}
-            </span>
-          </div>
-        </div>
-
         {/* FBI Background Check Card */}
         <div
           onClick={() => navigate('/book?service=fbi')}
@@ -126,6 +99,33 @@ export default function Services() {
             <li>{t.services.residentsLabel}</li>
             <li>{t.services.nonResidentsLabel}</li>
             <li>{t.services.includesFingerprint}</li>
+          </ul>
+          <div className="mt-5">
+            <span className="inline-block bg-teal-600 text-white text-sm font-medium px-4 py-2 rounded-md">
+              {t.services.bookNow}
+            </span>
+          </div>
+        </div>
+
+        {/* Apostille Card */}
+        <div
+          onClick={() => navigate('/apostille-order')}
+          className={`rounded-xl border-2 p-6 cursor-pointer transition-all ${categoryColors.apostille}`}
+        >
+          <div className="text-3xl mb-3">{categoryIcons.apostille}</div>
+          <h2 className="text-xl font-bold text-gray-900">{t.services.apostille}</h2>
+          <p className="text-gray-600 mt-2 text-sm">{t.services.apostilleDesc}</p>
+          <div className="mt-4">
+            <span className="text-3xl font-bold text-amber-700 dark:text-amber-400">
+              ${pricing?.state_apostille?.base || 200}
+            </span>
+            <span className="text-gray-500 ml-1">{t.services.perDoc}</span>
+          </div>
+          <ul className="mt-4 space-y-1 text-sm text-gray-600">
+            <li>{t.services.stateFederal}</li>
+            <li>{t.services.priorityProcessing}</li>
+            <li>{t.services.expeditedMail}</li>
+            <li>{t.services.intlShipping}</li>
           </ul>
           <div className="mt-5">
             <span className="inline-block bg-teal-600 text-white text-sm font-medium px-4 py-2 rounded-md">
