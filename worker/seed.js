@@ -6,12 +6,13 @@
 
 export async function seedDatabase(db) {
   const accounts = [
-    { name: 'Shah', email: 'shah@provn.co' },
-    { name: 'Jenny', email: 'jenny@provn.co' },
-    { name: 'Sam', email: 'sam@provn.co' },
-    { name: 'Micah', email: 'micah@provn.co' },
-    { name: 'Gary', email: 'gary@provn.co' },
-    { name: 'Nigel', email: 'nigel@provn.co' },
+    { name: 'Shah Saint-Cyr', email: 'shah@provn.co' },
+    { name: 'Gary Pierre', email: 'gary@provn.co' },
+    { name: 'Nigel Lewis', email: 'nigel@provn.co' },
+    { name: 'Jenny Jeannot', email: 'jenny@provn.co' },
+    { name: 'Anthony Goldstiewn', email: 'anthony@provn.co' },
+    { name: 'Zarron', email: 'zarron@provn.co' },
+    { name: 'Abner', email: 'abner@provn.co' },
   ];
 
   const password = 'ProvnDemo2026!';
@@ -23,11 +24,23 @@ export async function seedDatabase(db) {
 
   for (const account of accounts) {
     const existing = await db.prepare('SELECT id FROM users WHERE email = ?').bind(account.email).first();
-    if (!existing) {
+    if (existing) {
+      await db.prepare('UPDATE users SET name = ?, password = ?, role = ? WHERE email = ?')
+        .bind(account.name, hashedPassword, 'admin', account.email).run();
+    } else {
       const id = crypto.randomUUID();
       await db.prepare(
         'INSERT INTO users (id, name, email, password, role) VALUES (?, ?, ?, ?, ?)'
       ).bind(id, account.name, account.email, hashedPassword, 'admin').run();
+    }
+  }
+
+  // Remove old accounts not in the current list
+  const validEmails = accounts.map(a => a.email);
+  const { results: allUsers } = await db.prepare('SELECT email FROM users').all();
+  for (const user of allUsers) {
+    if (!validEmails.includes(user.email)) {
+      await db.prepare('DELETE FROM users WHERE email = ?').bind(user.email).run();
     }
   }
 
