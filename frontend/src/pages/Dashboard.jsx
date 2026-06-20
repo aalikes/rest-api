@@ -529,6 +529,37 @@ function ClientDetailModal({ client, onClose }) {
     service: client.service || '',
   });
   const [saved, setSaved] = useState(false);
+  const [jobStarted, setJobStarted] = useState(false);
+  const [jobStartTime, setJobStartTime] = useState(null);
+  const [jobCompleted, setJobCompleted] = useState(false);
+  const [jobCompleteTime, setJobCompleteTime] = useState(null);
+  const [elapsed, setElapsed] = useState(0);
+
+  const formatTime = (date) => date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+  const formatDateTime = (date) => date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + ' - ' + formatTime(date);
+  const formatElapsed = (s) => { const m = Math.floor(s / 60); const sec = s % 60; return `${m}:${sec.toString().padStart(2, '0')}`; };
+
+  useEffect(() => {
+    if (jobStarted && !jobCompleted) {
+      const interval = setInterval(() => setElapsed(e => e + 1), 1000);
+      return () => clearInterval(interval);
+    }
+  }, [jobStarted, jobCompleted]);
+
+  const handleStartJob = () => {
+    const now = new Date();
+    setJobStarted(true);
+    setJobStartTime(now);
+    setForm({ ...form, status: 'in-progress' });
+    setElapsed(0);
+  };
+
+  const handleCompleteJob = () => {
+    const now = new Date();
+    setJobCompleted(true);
+    setJobCompleteTime(now);
+    setForm({ ...form, status: 'completed' });
+  };
 
   const name = client.client || client.name || 'Unknown';
   const isCompleted = form.status === 'completed' || form.status === 'shipped';
@@ -556,6 +587,7 @@ function ClientDetailModal({ client, onClose }) {
               <option value="scheduled">Scheduled</option>
               <option value="confirmed">Confirmed</option>
               <option value="pending">Pending</option>
+              <option value="in-progress">In Progress</option>
               <option value="completed">Completed</option>
               <option value="shipped">Shipped</option>
               <option value="cancelled">Cancelled</option>
@@ -565,6 +597,7 @@ function ClientDetailModal({ client, onClose }) {
               form.status === 'completed' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' :
               form.status === 'shipped' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' :
               form.status === 'confirmed' ? 'bg-green-100 text-green-700' :
+              form.status === 'in-progress' ? 'bg-teal-100 text-teal-700 dark:bg-teal-900/30 dark:text-teal-400' :
               form.status === 'pending' || form.status === 'new' ? 'bg-yellow-100 text-yellow-700' :
               form.status === 'cancelled' ? 'bg-red-100 text-red-700' :
               'bg-gray-100 text-gray-700'
@@ -710,6 +743,34 @@ function ClientDetailModal({ client, onClose }) {
             </div>
           )}
 
+          {/* Job Timer */}
+          {(jobStarted || form.status === 'in-progress') && (
+            <div className={`rounded-lg p-4 ${jobCompleted ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700' : 'bg-teal-50 dark:bg-teal-900/20 border border-teal-200 dark:border-teal-700'}`}>
+              <div className="flex items-center justify-between mb-2">
+                <p className={`text-xs font-semibold uppercase tracking-wide ${jobCompleted ? 'text-green-600 dark:text-green-400' : 'text-teal-600 dark:text-teal-400'}`}>
+                  {jobCompleted ? 'Job Complete' : 'Job In Progress'}
+                </p>
+                {!jobCompleted && (
+                  <span className="text-lg font-mono font-bold text-teal-700 dark:text-teal-300">{formatElapsed(elapsed)}</span>
+                )}
+              </div>
+              {jobStartTime && (
+                <p className="text-sm text-gray-600 dark:text-gray-300">Started: {formatDateTime(jobStartTime)}</p>
+              )}
+              {jobCompleteTime && (
+                <p className="text-sm text-gray-600 dark:text-gray-300">Completed: {formatDateTime(jobCompleteTime)}</p>
+              )}
+              {jobCompleted && (
+                <p className="text-sm text-gray-600 dark:text-gray-300">Duration: {formatElapsed(elapsed)}</p>
+              )}
+              {jobStarted && !jobCompleted && (
+                <button onClick={handleCompleteJob} className="mt-3 w-full bg-green-600 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-green-700 transition">
+                  Complete Job
+                </button>
+              )}
+            </div>
+          )}
+
           {/* Notes */}
           <div>
             <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Notes</p>
@@ -733,8 +794,13 @@ function ClientDetailModal({ client, onClose }) {
               </>
             ) : (
               <>
+                {!isCompleted && !jobStarted && form.status !== 'in-progress' && (
+                  <button onClick={handleStartJob} className="flex-1 bg-teal-600 text-white text-center py-2.5 rounded-lg text-sm font-bold hover:bg-teal-700 transition">
+                    Start Job
+                  </button>
+                )}
                 {form.email && (
-                  <a href={`mailto:${form.email}`} className="flex-1 bg-teal-600 text-white text-center py-2.5 rounded-lg text-sm font-medium hover:bg-teal-700 transition">
+                  <a href={`mailto:${form.email}`} className={`flex-1 ${!isCompleted && !jobStarted && form.status !== 'in-progress' ? 'border border-teal-600 text-teal-600 hover:bg-teal-50 dark:hover:bg-teal-900/20' : 'bg-teal-600 text-white hover:bg-teal-700'} text-center py-2.5 rounded-lg text-sm font-medium transition`}>
                     Email Client
                   </a>
                 )}
