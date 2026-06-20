@@ -13,6 +13,8 @@ export async function seedDatabase(db) {
     { name: 'Anthony Goldstiewn', email: 'anthony@provn.co' },
     { name: 'Zarron', email: 'zarron@provn.co' },
     { name: 'Abner', email: 'abner@provn.co' },
+    { name: 'Sam Jean', email: 'sam@provn.co' },
+    { name: 'Micah Berkley', email: 'micah@provn.co' },
   ];
 
   const password = 'ProvnDemo2026!';
