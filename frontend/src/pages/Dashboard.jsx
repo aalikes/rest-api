@@ -435,12 +435,15 @@ function PerformanceTab({ data }) {
 
 function AdminTab() {
   const technicians = [
-    { name: 'Shah', email: 'shah@provn.co', role: 'Admin', status: 'active', appointments: 142 },
-    { name: 'Jenny', email: 'jenny@provn.co', role: 'Technician', status: 'active', appointments: 98 },
-    { name: 'Sam', email: 'sam@provn.co', role: 'Technician', status: 'active', appointments: 76 },
-    { name: 'Micah', email: 'micah@provn.co', role: 'Technician', status: 'active', appointments: 64 },
-    { name: 'Gary', email: 'gary@provn.co', role: 'Technician', status: 'active', appointments: 51 },
-    { name: 'Nigel', email: 'nigel@provn.co', role: 'Technician', status: 'out of office', appointments: 33 },
+    { name: 'Shah Saint-Cyr', email: 'shah@getproven.us', role: 'Admin', status: 'active', appointments: 142 },
+    { name: 'Gary Pierre', email: 'gary@getproven.us', role: 'Technician', status: 'active', appointments: 98 },
+    { name: 'Nigel Lewis', email: 'nigel@getproven.us', role: 'Technician', status: 'active', appointments: 76 },
+    { name: 'Jenny Jeannot', email: 'jenny@getproven.us', role: 'Technician', status: 'active', appointments: 64 },
+    { name: 'Anthony Goldstiewn', email: 'anthony@getproven.us', role: 'Technician', status: 'active', appointments: 51 },
+    { name: 'Zarron', email: 'zarron@getproven.us', role: 'Technician', status: 'active', appointments: 45 },
+    { name: 'Abner', email: 'abner@getproven.us', role: 'Technician', status: 'active', appointments: 38 },
+    { name: 'Sam Jean', email: 'sam@getproven.us', role: 'Technician', status: 'active', appointments: 33 },
+    { name: 'Micah Berkley', email: 'micah@getproven.us', role: 'Technician', status: 'active', appointments: 27 },
   ];
 
   return (

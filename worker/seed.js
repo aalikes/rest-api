@@ -6,15 +6,15 @@
 
 export async function seedDatabase(db) {
   const accounts = [
-    { name: 'Shah Saint-Cyr', email: 'shah@provn.co' },
-    { name: 'Gary Pierre', email: 'gary@provn.co' },
-    { name: 'Nigel Lewis', email: 'nigel@provn.co' },
-    { name: 'Jenny Jeannot', email: 'jenny@provn.co' },
-    { name: 'Anthony Goldstiewn', email: 'anthony@provn.co' },
-    { name: 'Zarron', email: 'zarron@provn.co' },
-    { name: 'Abner', email: 'abner@provn.co' },
-    { name: 'Sam Jean', email: 'sam@provn.co' },
-    { name: 'Micah Berkley', email: 'micah@provn.co' },
+    { name: 'Shah Saint-Cyr', email: 'shah@getproven.us' },
+    { name: 'Gary Pierre', email: 'gary@getproven.us' },
+    { name: 'Nigel Lewis', email: 'nigel@getproven.us' },
+    { name: 'Jenny Jeannot', email: 'jenny@getproven.us' },
+    { name: 'Anthony Goldstiewn', email: 'anthony@getproven.us' },
+    { name: 'Zarron', email: 'zarron@getproven.us' },
+    { name: 'Abner', email: 'abner@getproven.us' },
+    { name: 'Sam Jean', email: 'sam@getproven.us' },
+    { name: 'Micah Berkley', email: 'micah@getproven.us' },
   ];
 
   const password = 'ProvnDemo2026!';
