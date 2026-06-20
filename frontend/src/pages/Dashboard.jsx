@@ -511,11 +511,39 @@ function AdminTab() {
 }
 
 function ClientDetailModal({ client, onClose }) {
+  const [editing, setEditing] = useState(false);
+  const [form, setForm] = useState({
+    phone: client.phone || '',
+    email: client.email || '',
+    address: client.address || '',
+    addressLine2: client.addressLine2 || '',
+    city: client.city || '',
+    state: client.state || '',
+    zip: client.zip || '',
+    ori: client.ori || '',
+    tcn: client.tcn || '',
+    notes: client.notes || '',
+    bufferBefore: client.bufferBefore ?? 0,
+    bufferAfter: client.bufferAfter ?? 0,
+    status: client.status || 'scheduled',
+    service: client.service || '',
+  });
+  const [saved, setSaved] = useState(false);
+
   const name = client.client || client.name || 'Unknown';
-  const isCompleted = client.status === 'completed' || client.status === 'shipped';
-  const fullAddress = client.city
-    ? `${client.address}${client.addressLine2 ? '\n' + client.addressLine2 : ''}\n${client.city}, ${client.state} ${client.zip}`
-    : client.address || '';
+  const isCompleted = form.status === 'completed' || form.status === 'shipped';
+  const fullAddress = form.city
+    ? `${form.address}${form.addressLine2 ? '\n' + form.addressLine2 : ''}\n${form.city}, ${form.state} ${form.zip}`
+    : form.address || '';
+
+  const handleSave = () => {
+    setSaved(true);
+    setEditing(false);
+    setTimeout(() => setSaved(false), 2000);
+  };
+
+  const inputClass = 'w-full text-sm border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-teal-500';
+  const labelClass = 'text-xs text-gray-500 dark:text-gray-400 mb-1 block';
 
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={onClose}>
@@ -523,21 +551,44 @@ function ClientDetailModal({ client, onClose }) {
 
         {/* Status Badge + Close */}
         <div className="p-5 pb-0 flex items-center justify-between">
-          <span className={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide ${
-            client.status === 'completed' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' :
-            client.status === 'shipped' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' :
-            client.status === 'confirmed' ? 'bg-green-100 text-green-700' :
-            client.status === 'pending' || client.status === 'new' ? 'bg-yellow-100 text-yellow-700' :
-            'bg-gray-100 text-gray-700'
-          }`}>{client.status}</span>
+          {editing ? (
+            <select value={form.status} onChange={(e) => setForm({ ...form, status: e.target.value })} className="text-xs font-bold uppercase px-3 py-1.5 rounded-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white focus:outline-none focus:ring-1 focus:ring-teal-500">
+              <option value="scheduled">Scheduled</option>
+              <option value="confirmed">Confirmed</option>
+              <option value="pending">Pending</option>
+              <option value="completed">Completed</option>
+              <option value="shipped">Shipped</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          ) : (
+            <span className={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide ${
+              form.status === 'completed' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' :
+              form.status === 'shipped' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' :
+              form.status === 'confirmed' ? 'bg-green-100 text-green-700' :
+              form.status === 'pending' || form.status === 'new' ? 'bg-yellow-100 text-yellow-700' :
+              form.status === 'cancelled' ? 'bg-red-100 text-red-700' :
+              'bg-gray-100 text-gray-700'
+            }`}>{form.status}</span>
+          )}
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600 dark:hover:text-white text-2xl leading-none">&times;</button>
         </div>
 
         <div className="p-5 pt-3 space-y-5">
 
+          {/* Saved confirmation */}
+          {saved && (
+            <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 text-green-700 dark:text-green-400 text-sm px-3 py-2 rounded-lg">
+              Changes saved successfully.
+            </div>
+          )}
+
           {/* Service Title + Schedule */}
           <div>
-            <h2 className="text-lg font-bold text-gray-900 dark:text-white">{client.service}</h2>
+            {editing ? (
+              <input type="text" value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })} className={`${inputClass} text-lg font-bold`} />
+            ) : (
+              <h2 className="text-lg font-bold text-gray-900 dark:text-white">{form.service}</h2>
+            )}
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
               Scheduled: {client.scheduledAt || client.time || 'N/A'}
             </p>
@@ -551,90 +602,152 @@ function ClientDetailModal({ client, onClose }) {
             </div>
           )}
 
-          {/* Divider */}
           <hr className="border-gray-200 dark:border-slate-700" />
 
           {/* Client Info */}
           <div className="space-y-2">
             <p className="text-base font-semibold text-gray-900 dark:text-white">{name}</p>
-            {client.phone && (
-              <p className="text-sm text-gray-700 dark:text-gray-300">
-                <a href={`tel:${client.phone.replace(/\D/g, '')}`} className="hover:text-teal-600">{client.phone}</a>
-              </p>
-            )}
-            {client.email && (
-              <p className="text-sm text-gray-700 dark:text-gray-300">
-                <a href={`mailto:${client.email}`} className="hover:text-teal-600">{client.email}</a>
-              </p>
-            )}
-            {fullAddress && (
-              <div className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-line">{fullAddress}</div>
+            {editing ? (
+              <div className="space-y-3">
+                <div>
+                  <label className={labelClass}>Phone</label>
+                  <input type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={inputClass} />
+                </div>
+                <div>
+                  <label className={labelClass}>Email</label>
+                  <input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={inputClass} />
+                </div>
+                <div>
+                  <label className={labelClass}>Address</label>
+                  <input type="text" value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} className={inputClass} />
+                </div>
+                <div>
+                  <label className={labelClass}>Address Line 2</label>
+                  <input type="text" value={form.addressLine2} onChange={(e) => setForm({ ...form, addressLine2: e.target.value })} className={inputClass} placeholder="Suite, Apt, Unit" />
+                </div>
+                <div className="grid grid-cols-3 gap-2">
+                  <div>
+                    <label className={labelClass}>City</label>
+                    <input type="text" value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} className={inputClass} />
+                  </div>
+                  <div>
+                    <label className={labelClass}>State</label>
+                    <input type="text" value={form.state} onChange={(e) => setForm({ ...form, state: e.target.value })} className={inputClass} maxLength={2} />
+                  </div>
+                  <div>
+                    <label className={labelClass}>ZIP</label>
+                    <input type="text" value={form.zip} onChange={(e) => setForm({ ...form, zip: e.target.value })} className={inputClass} maxLength={10} />
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <>
+                {form.phone && (
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                    <a href={`tel:${form.phone.replace(/\D/g, '')}`} className="hover:text-teal-600">{form.phone}</a>
+                  </p>
+                )}
+                {form.email && (
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                    <a href={`mailto:${form.email}`} className="hover:text-teal-600">{form.email}</a>
+                  </p>
+                )}
+                {fullAddress && (
+                  <div className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-line">{fullAddress}</div>
+                )}
+              </>
             )}
           </div>
 
-          {/* Divider */}
           <hr className="border-gray-200 dark:border-slate-700" />
 
           {/* Appointment Buffer */}
           <div>
             <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Appointment Buffer</p>
-            <p className="text-sm text-gray-700 dark:text-gray-300">
-              {client.bufferBefore != null ? `${client.bufferBefore}min before` : '0min before'} / {client.bufferAfter != null ? `${client.bufferAfter}min after` : '0min after'}
-            </p>
+            {editing ? (
+              <div className="flex items-center gap-2">
+                <input type="number" min="0" value={form.bufferBefore} onChange={(e) => setForm({ ...form, bufferBefore: parseInt(e.target.value) || 0 })} className={`${inputClass} w-20 text-center`} />
+                <span className="text-sm text-gray-500">min before /</span>
+                <input type="number" min="0" value={form.bufferAfter} onChange={(e) => setForm({ ...form, bufferAfter: parseInt(e.target.value) || 0 })} className={`${inputClass} w-20 text-center`} />
+                <span className="text-sm text-gray-500">min after</span>
+              </div>
+            ) : (
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                {form.bufferBefore}min before / {form.bufferAfter}min after
+              </p>
+            )}
           </div>
 
           {/* ORI */}
-          {client.ori && (
-            <div>
-              <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">ORI Number</p>
-              <p className="text-sm font-mono text-gray-900 dark:text-white">{client.ori}</p>
-            </div>
-          )}
+          <div>
+            <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">ORI Number</p>
+            {editing ? (
+              <input type="text" value={form.ori} onChange={(e) => setForm({ ...form, ori: e.target.value.toUpperCase() })} className={`${inputClass} font-mono`} placeholder="e.g. FL924680Z" />
+            ) : (
+              <p className="text-sm font-mono text-gray-900 dark:text-white">{form.ori || 'N/A'}</p>
+            )}
+          </div>
 
-          {/* Divider */}
           <hr className="border-gray-200 dark:border-slate-700" />
 
           {/* Completed / TCN */}
-          {isCompleted && (
-            <div className="space-y-2">
+          {(isCompleted || editing) && (
+            <div className="space-y-3">
               {client.completedAt && (
                 <div>
                   <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Completed</p>
                   <p className="text-sm text-gray-700 dark:text-gray-300">{client.completedAt}</p>
                 </div>
               )}
-              {client.tcn && (
-                <div>
-                  <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">TCN</p>
-                  <p className="text-sm font-mono text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-700 px-3 py-2 rounded">{client.tcn}</p>
-                </div>
-              )}
+              <div>
+                <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">TCN</p>
+                {editing ? (
+                  <input type="text" value={form.tcn} onChange={(e) => setForm({ ...form, tcn: e.target.value })} className={`${inputClass} font-mono`} placeholder="e.g. 70CS1419420000000915" />
+                ) : (
+                  form.tcn ? <p className="text-sm font-mono text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-700 px-3 py-2 rounded">{form.tcn}</p> : <p className="text-sm text-gray-400">N/A</p>
+                )}
+              </div>
             </div>
           )}
 
           {/* Notes */}
-          {client.notes && (
-            <div>
-              <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Notes</p>
-              <p className="text-sm text-gray-600 dark:text-gray-300 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded px-3 py-2">{client.notes}</p>
-            </div>
-          )}
+          <div>
+            <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Notes</p>
+            {editing ? (
+              <textarea value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} rows={3} className={`${inputClass} resize-none`} placeholder="Add notes about this appointment..." />
+            ) : (
+              form.notes ? <p className="text-sm text-gray-600 dark:text-gray-300 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded px-3 py-2">{form.notes}</p> : <p className="text-sm text-gray-400">No notes</p>
+            )}
+          </div>
 
           {/* Action Buttons */}
           <div className="flex gap-3 pt-1">
-            {client.email && (
-              <a href={`mailto:${client.email}`} className="flex-1 bg-teal-600 text-white text-center py-2.5 rounded-lg text-sm font-medium hover:bg-teal-700 transition">
-                Email Client
-              </a>
+            {editing ? (
+              <>
+                <button onClick={handleSave} className="flex-1 bg-teal-600 text-white text-center py-2.5 rounded-lg text-sm font-medium hover:bg-teal-700 transition">
+                  Save Changes
+                </button>
+                <button onClick={() => setEditing(false)} className="flex-1 border border-gray-300 dark:border-slate-600 text-gray-700 dark:text-gray-300 text-center py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 dark:hover:bg-slate-700 transition">
+                  Cancel
+                </button>
+              </>
+            ) : (
+              <>
+                {form.email && (
+                  <a href={`mailto:${form.email}`} className="flex-1 bg-teal-600 text-white text-center py-2.5 rounded-lg text-sm font-medium hover:bg-teal-700 transition">
+                    Email Client
+                  </a>
+                )}
+                {form.phone && (
+                  <a href={`tel:${form.phone.replace(/\D/g, '')}`} className="flex-1 border border-teal-600 text-teal-600 text-center py-2.5 rounded-lg text-sm font-medium hover:bg-teal-50 dark:hover:bg-teal-900/20 transition">
+                    Call Client
+                  </a>
+                )}
+                <button onClick={() => setEditing(true)} className="flex-1 border border-gray-300 dark:border-slate-600 text-gray-700 dark:text-gray-300 text-center py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 dark:hover:bg-slate-700 transition">
+                  Edit
+                </button>
+              </>
             )}
-            {client.phone && (
-              <a href={`tel:${client.phone.replace(/\D/g, '')}`} className="flex-1 border border-teal-600 text-teal-600 text-center py-2.5 rounded-lg text-sm font-medium hover:bg-teal-50 dark:hover:bg-teal-900/20 transition">
-                Call Client
-              </a>
-            )}
-            <button className="flex-1 border border-gray-300 dark:border-slate-600 text-gray-700 dark:text-gray-300 text-center py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 dark:hover:bg-slate-700 transition">
-              Edit
-            </button>
           </div>
         </div>
       </div>
