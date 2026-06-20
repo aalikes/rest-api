@@ -2,7 +2,7 @@
 tags: [services, fbi, background-check]
 aliases: [FBI Check, Identity History Summary]
 created: 2026-05-24
-workspace: Proven
+workspace: Provn
 ---
 
 # FBI Background Check

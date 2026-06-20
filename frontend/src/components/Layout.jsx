@@ -42,7 +42,7 @@ export default function Layout() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link to="/" className="flex items-center gap-2">
-              <span className="text-xl font-bold text-teal-600 dark:text-teal-400">Proven</span>
+              <span className="text-xl font-bold text-teal-600 dark:text-teal-400">Provn</span>
               <span className="text-sm text-gray-500 dark:text-gray-400 hidden sm:block">Fingerprints &amp; Apostilles</span>
             </Link>
 
@@ -195,7 +195,7 @@ export default function Layout() {
 
       <footer className="bg-white dark:bg-slate-800 border-t border-gray-200 dark:border-slate-700 py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500 dark:text-gray-400">
-          <p>Proven &mdash; {t.footer.address}</p>
+          <p>Provn &mdash; {t.footer.address}</p>
           <p className="mt-1">{t.footer.tagline}</p>
           <p className="mt-1">
             <a href="tel:+13476355418" className="hover:text-teal-600">(347) 635-5418</a>

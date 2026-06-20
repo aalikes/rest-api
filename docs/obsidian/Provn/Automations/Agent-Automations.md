@@ -2,7 +2,7 @@
 tags: [automation, agents, workflow]
 aliases: [Automations, AI Agents]
 created: 2026-05-24
-workspace: Proven
+workspace: Provn
 ---
 
 # Agent & Automation Opportunities

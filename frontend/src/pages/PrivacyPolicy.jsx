@@ -13,7 +13,7 @@ export default function PrivacyPolicy() {
       </div>
 
       <div className="bg-gray-50 rounded-lg p-5 mb-8">
-        <p className="font-bold text-gray-900">Proven LLC – Fingerprinting & Apostille Services</p>
+        <p className="font-bold text-gray-900">Provn LLC – Fingerprinting & Apostille Services</p>
         <p className="text-sm text-gray-500">Effective Date: August 25, 2025</p>
       </div>
 
@@ -21,7 +21,7 @@ export default function PrivacyPolicy() {
         <section>
           <h2 className="text-xl font-bold text-gray-900">1. Introduction</h2>
           <p className="text-gray-700">
-            Proven LLC ("Company," "we," "our," or "us") values your privacy and is committed to protecting your personal information.
+            Provn LLC ("Company," "we," "our," or "us") values your privacy and is committed to protecting your personal information.
             This Privacy Policy explains how we collect, use, store, and share information when you use our fingerprinting and apostille services.
           </p>
           <p className="text-gray-700">By using our services, you agree to the terms of this Privacy Policy.</p>
@@ -113,7 +113,7 @@ export default function PrivacyPolicy() {
             <strong>Collection and Use of Phone Numbers:</strong> We collect mobile phone numbers to provide appointment confirmations, service updates, and status notifications via SMS text messages.
           </p>
           <p className="text-gray-700">
-            <strong>Consent and Frequency:</strong> By providing your phone number and consenting to receive text messages, you agree to receive recurring automated messages from Proven LLC. Message frequency varies based on appointment activity and service updates.
+            <strong>Consent and Frequency:</strong> By providing your phone number and consenting to receive text messages, you agree to receive recurring automated messages from Provn LLC. Message frequency varies based on appointment activity and service updates.
           </p>
           <p className="text-gray-700">
             <strong>Opt-Out and Help:</strong> You may opt out of text messages at any time by replying STOP to any message or contacting us directly. Reply HELP for assistance. Consent to receive text messages is not a condition of purchasing our services.
@@ -130,7 +130,7 @@ export default function PrivacyPolicy() {
           <h2 className="text-xl font-bold text-gray-900">11. Contact Information</h2>
           <p className="text-gray-700">If you have any questions or concerns regarding this Privacy Policy, please contact:</p>
           <div className="bg-gray-50 rounded-lg p-4 mt-2 text-sm text-gray-700">
-            <p className="font-medium">Proven LLC</p>
+            <p className="font-medium">Provn LLC</p>
             <p>2125 Biscayne Blvd, Suite 336</p>
             <p>Miami, FL 33137</p>
             <p>Phone: +1 (347) 635-5418</p>

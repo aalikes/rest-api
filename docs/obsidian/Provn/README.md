@@ -1,17 +1,17 @@
 ---
 tags: [provn, workspace, index]
-aliases: [Proven Vault, Home]
+aliases: [Provn Vault, Home]
 created: 2026-05-24
 ---
 
-# Proven — Obsidian Workspace
+# Provn — Obsidian Workspace
 
-Welcome to the **Proven** knowledge base. This vault contains all operational documentation for Proven Fingerprints & Apostilles.
+Welcome to the **Provn** knowledge base. This vault contains all operational documentation for Provn Fingerprints & Apostilles.
 
 ## Workspace Structure
 
 ```
-Proven/
+Provn/
 ├── Services/          — Service catalog, descriptions, use cases
 ├── SOPs/              — Standard operating procedures & workflows
 ├── Pricing/           — Pricing sheets, quote logic, scenarios
@@ -35,9 +35,9 @@ Proven/
 - [[Miami-Edgewater]] — Miami office details
 - [[Team-Directory]] — Staff roles and contact info
 
-## About Proven
+## About Provn
 
-**Proven** provides professional fingerprinting, apostille, and FBI background check services from our office at 2125 Biscayne Blvd Suite 336, Miami, FL 33137.
+**Provn** provides professional fingerprinting, apostille, and FBI background check services from our office at 2125 Biscayne Blvd Suite 336, Miami, FL 33137.
 
 - **Phone:** +1 (347) 635-5418
 - **Email:** info@getproven.us

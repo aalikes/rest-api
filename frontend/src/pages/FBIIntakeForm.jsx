@@ -272,7 +272,7 @@ export default function FBIIntakeForm() {
 
             <label className="flex items-start gap-3 mt-4 p-3 border dark:border-slate-600 rounded-lg cursor-pointer">
               <input type="checkbox" name="consentSMS" checked={form.consentSMS} onChange={handleChange} className="mt-0.5 rounded text-teal-600" />
-              <span className="text-sm text-gray-700 dark:text-gray-300">I consent to receive text messages from Proven LLC regarding my appointment status and service updates.</span>
+              <span className="text-sm text-gray-700 dark:text-gray-300">I consent to receive text messages from Provn LLC regarding my appointment status and service updates.</span>
             </label>
           </div>
 
@@ -381,7 +381,7 @@ export default function FBIIntakeForm() {
                 <li>All information provided is accurate and truthful to the best of your knowledge.</li>
                 <li>You understand that fingerprints and personal information will be transmitted to the FBI and/or other authorized agencies.</li>
                 <li>You are responsible for verifying whether you need fingerprinting and for providing the correct ORI and agency information.</li>
-                <li>Proven LLC is not responsible for processing times, results, or decisions made by the FBI or other agencies.</li>
+                <li>Provn LLC is not responsible for processing times, results, or decisions made by the FBI or other agencies.</li>
                 <li>Biometric data is not retained after transmission to the requesting agency.</li>
                 <li>All fees are non-refundable once fingerprinting service has been performed.</li>
               </ul>

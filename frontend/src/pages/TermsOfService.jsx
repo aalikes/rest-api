@@ -13,7 +13,7 @@ export default function TermsOfService() {
       </div>
 
       <div className="bg-gray-50 rounded-lg p-5 mb-8">
-        <p className="font-bold text-gray-900">Proven LLC – Fingerprinting & Apostille Services</p>
+        <p className="font-bold text-gray-900">Provn LLC – Fingerprinting & Apostille Services</p>
         <p className="text-sm text-gray-500">Effective Date: 8.25.2026</p>
       </div>
 
@@ -21,7 +21,7 @@ export default function TermsOfService() {
         <section>
           <h2 className="text-xl font-bold text-gray-900">1. Acceptance of Terms</h2>
           <p className="text-gray-700">
-            By scheduling, purchasing, or receiving fingerprinting services from Proven LLC ("Company," "we," "our," or "us"),
+            By scheduling, purchasing, or receiving fingerprinting services from Provn LLC ("Company," "we," "our," or "us"),
             you ("Client" or "you") agree to be bound by these Terms of Service. If you do not agree, please do not use our services.
           </p>
         </section>
@@ -114,7 +114,7 @@ export default function TermsOfService() {
         <section>
           <h2 className="text-xl font-bold text-gray-900">12. SMS & Text Message Communications</h2>
           <p className="text-gray-700">
-            By providing your phone number and opting in to receive text messages, you consent to receive recurring automated text messages from Proven LLC
+            By providing your phone number and opting in to receive text messages, you consent to receive recurring automated text messages from Provn LLC
             related to service updates and appointment reminders. Message frequency may vary. Consent is not a condition of purchase.
           </p>
           <p className="text-gray-700">
@@ -130,7 +130,7 @@ export default function TermsOfService() {
           <h2 className="text-xl font-bold text-gray-900">13. Contact Information</h2>
           <p className="text-gray-700">For questions about these Terms, please contact:</p>
           <div className="bg-gray-50 rounded-lg p-4 mt-2 text-sm text-gray-700">
-            <p className="font-medium">Proven LLC</p>
+            <p className="font-medium">Provn LLC</p>
             <p>2125 Biscayne Blvd, Suite 336</p>
             <p>Miami, FL 33137</p>
             <p>Phone: +1 (347) 635-5418</p>
