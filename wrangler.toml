@@ -1,0 +1,12 @@
+name = "provn-api"
+main = "worker/index.js"
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "provn-db"
+database_id = "placeholder-will-be-set-on-deploy"
+
+[vars]
+JWT_EXPIRES_IN = "7d"
