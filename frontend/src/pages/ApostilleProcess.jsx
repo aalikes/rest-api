@@ -153,7 +153,7 @@ export default function ApostilleProcess() {
 
       {/* CTA */}
       <div className="mt-8 text-center bg-gray-900 dark:bg-slate-900 rounded-xl p-8">
-        <h3 className="text-xl font-bold text-white mb-2">Let Provn Handle Your Apostille</h3>
+        <h3 className="text-xl font-bold text-white mb-2">Let Proven Handle Your Apostille</h3>
         <p className="text-gray-400 text-sm mb-4">Skip the paperwork — we manage the entire process for you.</p>
         <div className="flex flex-wrap gap-3 justify-center">
           <button

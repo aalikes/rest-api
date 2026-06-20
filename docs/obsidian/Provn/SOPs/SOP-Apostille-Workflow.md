@@ -2,7 +2,7 @@
 tags: [sop, apostille, workflow]
 aliases: [Apostille Process, Apostille SOP]
 created: 2026-05-24
-workspace: Provn
+workspace: Proven
 ---
 
 # SOP: Apostille Workflow

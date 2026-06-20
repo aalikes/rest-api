@@ -2,7 +2,7 @@
 tags: [services, fingerprinting]
 aliases: [Fingerprints, Ink Cards]
 created: 2026-05-24
-workspace: Provn
+workspace: Proven
 ---
 
 # Fingerprinting Services

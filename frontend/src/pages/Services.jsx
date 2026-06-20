@@ -38,7 +38,7 @@ export default function Services() {
       <div className="mb-10 rounded-xl overflow-hidden shadow-lg">
         <img
           src="/provn-hero.jpg"
-          alt="Provn biometric technician capturing fingerprints"
+          alt="Proven biometric technician capturing fingerprints"
           className="w-full h-64 sm:h-80 object-cover"
         />
       </div>

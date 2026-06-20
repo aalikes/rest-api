@@ -29,7 +29,7 @@ An apostille is an international certification that verifies the authenticity of
 
 **The process:** You can't simply take your documents to the destination country. First, they must be authenticated by the issuing authority (state or federal), then apostilled. State-issued documents go through the Secretary of State; federal documents go through the U.S. Department of State.
 
-At Provn, we handle the entire process for you — from document review to apostille procurement to international shipping. Standard processing takes 5-7 business days, with priority options available.`,
+At Proven, we handle the entire process for you — from document review to apostille procurement to international shipping. Standard processing takes 5-7 business days, with priority options available.`,
       date: '2026-05-15',
       category: 'Apostille',
     },
@@ -149,7 +149,7 @@ A federal apostille is issued by the U.S. Department of State in Washington, D.C
 - Some documents need notarization before apostille
 - County-issued documents may need state certification first
 
-At Provn, we determine the correct apostille path for your documents and handle the entire process, so you don't have to worry about routing errors or delays.`,
+At Proven, we determine the correct apostille path for your documents and handle the entire process, so you don't have to worry about routing errors or delays.`,
       date: '2026-04-28',
       category: 'Apostille',
     },
@@ -203,7 +203,7 @@ We recommend starting the document authentication process at least 8-12 weeks be
 
 **Pro tip:** Some documents expire. FBI background checks are typically valid for 6-12 months depending on the requesting country. Time your apostille accordingly.
 
-At Provn, we offer a complete relocation document package. We'll review your destination country's requirements and handle all apostilles, so you can focus on your move.`,
+At Proven, we offer a complete relocation document package. We'll review your destination country's requirements and handle all apostilles, so you can focus on your move.`,
       date: '2026-04-20',
       category: 'General',
     },
@@ -213,7 +213,7 @@ At Provn, we offer a complete relocation document package. We'll review your des
       id: 1,
       title: 'Por Qué Necesita una Apostilla para Mudarse al Extranjero',
       excerpt: '¿Planea reubicarse internacionalmente? Aquí está por qué los documentos apostillados son esenciales para su mudanza.',
-      body: 'Mudarse a otro país es emocionante, pero viene con una montaña de trámites. Uno de los pasos más críticos que muchas personas pasan por alto es apostillar sus documentos.\n\nUna apostilla es una certificación internacional que verifica la autenticidad de documentos públicos. Bajo la Convención de La Haya de 1961, los países miembros reconocen las apostillas como prueba de que un documento es legítimo.\n\nEn Provn, manejamos todo el proceso por usted — desde la revisión de documentos hasta la obtención de la apostilla y el envío internacional.',
+      body: 'Mudarse a otro país es emocionante, pero viene con una montaña de trámites. Uno de los pasos más críticos que muchas personas pasan por alto es apostillar sus documentos.\n\nUna apostilla es una certificación internacional que verifica la autenticidad de documentos públicos. Bajo la Convención de La Haya de 1961, los países miembros reconocen las apostillas como prueba de que un documento es legítimo.\n\nEn Proven, manejamos todo el proceso por usted — desde la revisión de documentos hasta la obtención de la apostilla y el envío internacional.',
       date: '2026-05-15',
       category: 'Apostilla',
     },

@@ -20,7 +20,7 @@ Standard operating procedure for processing FBI Identity History Summary (rap sh
 
 ### 2. Fingerprint Capture
 - Follow [[SOP-Fingerprint-Capture]] procedure
-- Use ORI code provided by client or default Provn ORI
+- Use ORI code provided by client or default Proven ORI
 
 ### 3. FBI Submission
 - Package completed FD-258 card

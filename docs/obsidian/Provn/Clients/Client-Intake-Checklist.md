@@ -2,7 +2,7 @@
 tags: [sop, checklist, intake]
 aliases: [Intake Checklist, New Client Checklist]
 created: 2026-05-24
-workspace: Provn
+workspace: Proven
 ---
 
 # Client Intake Checklist

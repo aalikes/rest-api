@@ -2,7 +2,7 @@
 tags: [api, reference, technical]
 aliases: [API Docs, Endpoints]
 created: 2026-05-24
-workspace: Provn
+workspace: Proven
 ---
 
 # API Reference

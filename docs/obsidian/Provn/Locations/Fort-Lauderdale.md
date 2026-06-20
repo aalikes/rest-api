@@ -9,6 +9,6 @@
 - Apostille Services (state & federal)
 
 ## Notes
-- Second location for Provn
+- Second location for Proven
 - Will share same pricing and service catalog as Miami
 - Exact address TBD

@@ -41,7 +41,7 @@ const usStates = [
   'Wisconsin', 'Wyoming',
 ];
 
-const referralSources = ['Google Search', 'Social Media', 'Friend/Referral', 'Provn Fingerprinting Client', 'Other'];
+const referralSources = ['Google Search', 'Social Media', 'Friend/Referral', 'Proven Fingerprinting Client', 'Other'];
 
 export default function ApostilleOrder() {
   const navigate = useNavigate();
