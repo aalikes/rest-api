@@ -146,13 +146,19 @@ function StatCard({ label, value, sub, color }) {
 }
 
 function TodayTab({ data, onClientClick }) {
-  const appointments = [
+  const [appointments, setAppointments] = useState([
     { time: '9:00 AM', client: 'Maria Rodriguez', service: 'Fingerprinting', status: 'confirmed', email: 'maria.rodriguez@gmail.com', phone: '(305) 555-0101', dob: '1988-04-12', address: '1250 NE 2nd Ave', addressLine2: '', city: 'Miami', state: 'FL', zip: '33132', ori: '', scheduledAt: 'Jun 20, 2026 - 9:00 AM', bufferBefore: 0, bufferAfter: 0, notes: 'Regular client, prefers morning appointments' },
     { time: '10:30 AM', client: 'Jean Baptiste', service: 'FBI Background Check', status: 'confirmed', email: 'jean.baptiste@gmail.com', phone: '(305) 555-0102', dob: '1995-08-23', address: '3400 Biscayne Blvd', addressLine2: 'Suite 200', city: 'Miami', state: 'FL', zip: '33137', ori: 'FL924680Z', scheduledAt: 'Jun 20, 2026 - 10:30 AM', bufferBefore: 15, bufferAfter: 15, notes: 'Immigration application — needs expedited processing' },
     { time: '11:00 AM', client: 'Carlos Mejia', service: 'Apostille', status: 'pending', email: 'cmejia@outlook.com', phone: '(786) 555-0103', dob: '1979-11-05', address: '800 NE 71st St', addressLine2: 'Apt 4', city: 'Miami', state: 'FL', zip: '33138', ori: '', scheduledAt: 'Jun 20, 2026 - 11:00 AM', bufferBefore: 0, bufferAfter: 0, notes: 'Birth certificate apostille for Colombia' },
     { time: '1:00 PM', client: 'Ana Silva', service: 'FBI + Apostille', status: 'confirmed', email: 'ana.silva@yahoo.com', phone: '(954) 555-0104', dob: '1990-02-17', address: '2200 N Ocean Blvd', addressLine2: '', city: 'Ft. Lauderdale', state: 'FL', zip: '33305', ori: 'FL113355X', scheduledAt: 'Jun 20, 2026 - 1:00 PM', bufferBefore: 15, bufferAfter: 15, notes: 'Work visa for Portugal — FBI + federal apostille' },
     { time: '2:30 PM', client: 'Robert Johnson', service: 'Fingerprinting', status: 'confirmed', email: 'rjohnson@mail.com', phone: '(305) 555-0105', dob: '1983-06-30', address: '500 Brickell Ave', addressLine2: 'Floor 12', city: 'Miami', state: 'FL', zip: '33131', ori: '', scheduledAt: 'Jun 20, 2026 - 2:30 PM', bufferBefore: 0, bufferAfter: 0, notes: 'Security guard license renewal — 2 FD-258 cards needed' },
-  ];
+  ]);
+
+  const handleStartJob = (index) => {
+    const updated = [...appointments];
+    updated[index] = { ...updated[index], status: 'in-progress', jobStartTime: new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) };
+    setAppointments(updated);
+  };
 
   return (
     <div>
@@ -162,19 +168,39 @@ function TodayTab({ data, onClientClick }) {
       </div>
       <div className="space-y-3">
         {appointments.map((apt, i) => (
-          <div key={i} className="bg-white border border-gray-200 rounded-lg p-4 flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="text-sm font-medium text-gray-500 w-20">{apt.time}</div>
-              <div>
-                <button onClick={() => onClientClick(apt)} className="text-sm font-medium text-teal-700 hover:text-teal-900 hover:underline cursor-pointer text-left">{apt.client}</button>
-                <p className="text-xs text-gray-500">{apt.service}</p>
+          <div key={i} className="bg-white border border-gray-200 rounded-lg p-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="text-sm font-medium text-gray-500 w-20">{apt.time}</div>
+                <div>
+                  <button onClick={() => onClientClick(apt)} className="text-sm font-medium text-teal-700 hover:text-teal-900 hover:underline cursor-pointer text-left">{apt.client}</button>
+                  <p className="text-xs text-gray-500">{apt.service}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                  apt.status === 'in-progress' ? 'bg-teal-100 text-teal-700' :
+                  apt.status === 'confirmed' ? 'bg-green-100 text-green-700' :
+                  apt.status === 'completed' ? 'bg-green-100 text-green-700' :
+                  'bg-yellow-100 text-yellow-700'
+                }`}>
+                  {apt.status === 'in-progress' ? 'In Progress' : apt.status}
+                </span>
+                {apt.status !== 'in-progress' && apt.status !== 'completed' && (
+                  <button onClick={(e) => { e.stopPropagation(); handleStartJob(i); }} className="px-3 py-1 bg-teal-600 text-white text-xs font-medium rounded-lg hover:bg-teal-700 transition">
+                    Start Job
+                  </button>
+                )}
               </div>
             </div>
-            <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-              apt.status === 'confirmed' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'
-            }`}>
-              {apt.status}
-            </span>
+            {apt.status === 'in-progress' && (
+              <div className="mt-2 pt-2 border-t border-gray-100 flex items-center justify-between">
+                <span className="text-xs text-teal-600 font-medium">Started at {apt.jobStartTime}</span>
+                <button onClick={() => onClientClick(apt)} className="text-xs bg-teal-600 text-white px-3 py-1 rounded-lg hover:bg-teal-700 transition font-medium">
+                  View Job
+                </button>
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -183,14 +209,20 @@ function TodayTab({ data, onClientClick }) {
 }
 
 function ScheduledTab({ data, onClientClick }) {
-  const upcoming = [
-    { date: 'Mon, Jun 2', time: '9:00 AM', client: 'David Chen', service: 'FBI Background Check', email: 'david.chen@gmail.com', phone: '(305) 555-0201', dob: '1992-01-15', address: '900 NE 125th St', addressLine2: '', city: 'North Miami', state: 'FL', zip: '33161', ori: 'FL778899A', scheduledAt: 'Jun 2, 2026 - 9:00 AM', bufferBefore: 15, bufferAfter: 15, notes: 'Employment background check' },
-    { date: 'Mon, Jun 2', time: '11:00 AM', client: 'Marie Dupont', service: 'Apostille (2 docs)', email: 'marie.dupont@outlook.com', phone: '(786) 555-0202', dob: '1985-07-22', address: '1500 Bay Rd', addressLine2: 'Unit 3A', city: 'Miami Beach', state: 'FL', zip: '33139', ori: '', scheduledAt: 'Jun 2, 2026 - 11:00 AM', bufferBefore: 0, bufferAfter: 0, notes: 'Marriage certificate + birth certificate for France' },
-    { date: 'Tue, Jun 3', time: '10:00 AM', client: 'Jose Martinez', service: 'Fingerprinting', email: 'jose.m@yahoo.com', phone: '(305) 555-0203', dob: '1998-03-08', address: '7400 SW 8th St', addressLine2: '', city: 'Miami', state: 'FL', zip: '33144', ori: '', scheduledAt: 'Jun 3, 2026 - 10:00 AM', bufferBefore: 0, bufferAfter: 0, notes: 'Concealed weapons permit' },
-    { date: 'Tue, Jun 3', time: '2:00 PM', client: 'Lisa Wong', service: 'FBI + Apostille', email: 'lwong@mail.com', phone: '(954) 555-0204', dob: '1987-12-01', address: '3000 E Commercial Blvd', addressLine2: 'Suite 100', city: 'Ft. Lauderdale', state: 'FL', zip: '33308', ori: 'FL445566B', scheduledAt: 'Jun 3, 2026 - 2:00 PM', bufferBefore: 15, bufferAfter: 15, notes: 'Teaching position in Dubai' },
-    { date: 'Wed, Jun 4', time: '9:30 AM', client: 'Pierre Louis', service: 'Fingerprinting', email: 'pierre.l@gmail.com', phone: '(305) 555-0205', dob: '2001-09-14', address: '200 NE 36th St', addressLine2: '', city: 'Miami', state: 'FL', zip: '33137', ori: '', scheduledAt: 'Jun 4, 2026 - 9:30 AM', bufferBefore: 0, bufferAfter: 0, notes: 'Security guard license — first time' },
-    { date: 'Thu, Jun 5', time: '1:00 PM', client: 'Sarah Brown', service: 'Apostille (1 doc)', email: 'sarah.b@gmail.com', phone: '(305) 555-0206', dob: '1976-05-19', address: '1200 Brickell Ave', addressLine2: 'Floor 28', city: 'Miami', state: 'FL', zip: '33131', ori: '', scheduledAt: 'Jun 5, 2026 - 1:00 PM', bufferBefore: 0, bufferAfter: 0, notes: 'Corporate document for UK business registration' },
-  ];
+  const [upcoming, setUpcoming] = useState([
+    { date: 'Mon, Jun 2', time: '9:00 AM', client: 'David Chen', service: 'FBI Background Check', status: 'confirmed', email: 'david.chen@gmail.com', phone: '(305) 555-0201', dob: '1992-01-15', address: '900 NE 125th St', addressLine2: '', city: 'North Miami', state: 'FL', zip: '33161', ori: 'FL778899A', scheduledAt: 'Jun 2, 2026 - 9:00 AM', bufferBefore: 15, bufferAfter: 15, notes: 'Employment background check' },
+    { date: 'Mon, Jun 2', time: '11:00 AM', client: 'Marie Dupont', service: 'Apostille (2 docs)', status: 'confirmed', email: 'marie.dupont@outlook.com', phone: '(786) 555-0202', dob: '1985-07-22', address: '1500 Bay Rd', addressLine2: 'Unit 3A', city: 'Miami Beach', state: 'FL', zip: '33139', ori: '', scheduledAt: 'Jun 2, 2026 - 11:00 AM', bufferBefore: 0, bufferAfter: 0, notes: 'Marriage certificate + birth certificate for France' },
+    { date: 'Tue, Jun 3', time: '10:00 AM', client: 'Jose Martinez', service: 'Fingerprinting', status: 'confirmed', email: 'jose.m@yahoo.com', phone: '(305) 555-0203', dob: '1998-03-08', address: '7400 SW 8th St', addressLine2: '', city: 'Miami', state: 'FL', zip: '33144', ori: '', scheduledAt: 'Jun 3, 2026 - 10:00 AM', bufferBefore: 0, bufferAfter: 0, notes: 'Concealed weapons permit' },
+    { date: 'Tue, Jun 3', time: '2:00 PM', client: 'Lisa Wong', service: 'FBI + Apostille', status: 'confirmed', email: 'lwong@mail.com', phone: '(954) 555-0204', dob: '1987-12-01', address: '3000 E Commercial Blvd', addressLine2: 'Suite 100', city: 'Ft. Lauderdale', state: 'FL', zip: '33308', ori: 'FL445566B', scheduledAt: 'Jun 3, 2026 - 2:00 PM', bufferBefore: 15, bufferAfter: 15, notes: 'Teaching position in Dubai' },
+    { date: 'Wed, Jun 4', time: '9:30 AM', client: 'Pierre Louis', service: 'Fingerprinting', status: 'confirmed', email: 'pierre.l@gmail.com', phone: '(305) 555-0205', dob: '2001-09-14', address: '200 NE 36th St', addressLine2: '', city: 'Miami', state: 'FL', zip: '33137', ori: '', scheduledAt: 'Jun 4, 2026 - 9:30 AM', bufferBefore: 0, bufferAfter: 0, notes: 'Security guard license — first time' },
+    { date: 'Thu, Jun 5', time: '1:00 PM', client: 'Sarah Brown', service: 'Apostille (1 doc)', status: 'confirmed', email: 'sarah.b@gmail.com', phone: '(305) 555-0206', dob: '1976-05-19', address: '1200 Brickell Ave', addressLine2: 'Floor 28', city: 'Miami', state: 'FL', zip: '33131', ori: '', scheduledAt: 'Jun 5, 2026 - 1:00 PM', bufferBefore: 0, bufferAfter: 0, notes: 'Corporate document for UK business registration' },
+  ]);
+
+  const handleStartJob = (index) => {
+    const updated = [...upcoming];
+    updated[index] = { ...updated[index], status: 'in-progress', jobStartTime: new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) };
+    setUpcoming(updated);
+  };
 
   return (
     <div>
@@ -200,18 +232,41 @@ function ScheduledTab({ data, onClientClick }) {
       </div>
       <div className="space-y-3">
         {upcoming.map((apt, i) => (
-          <div key={i} className="bg-white border border-gray-200 rounded-lg p-4 flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="text-center min-w-[80px]">
-                <p className="text-xs text-gray-500">{apt.date}</p>
-                <p className="text-sm font-medium text-gray-700">{apt.time}</p>
+          <div key={i} className="bg-white border border-gray-200 rounded-lg p-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="text-center min-w-[80px]">
+                  <p className="text-xs text-gray-500">{apt.date}</p>
+                  <p className="text-sm font-medium text-gray-700">{apt.time}</p>
+                </div>
+                <div>
+                  <button onClick={() => onClientClick(apt)} className="text-sm font-medium text-teal-700 hover:text-teal-900 hover:underline cursor-pointer text-left">{apt.client}</button>
+                  <p className="text-xs text-gray-500">{apt.service}</p>
+                </div>
               </div>
-              <div>
-                <button onClick={() => onClientClick(apt)} className="text-sm font-medium text-teal-700 hover:text-teal-900 hover:underline cursor-pointer text-left">{apt.client}</button>
-                <p className="text-xs text-gray-500">{apt.service}</p>
+              <div className="flex items-center gap-2">
+                <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                  apt.status === 'in-progress' ? 'bg-teal-100 text-teal-700' :
+                  apt.status === 'completed' ? 'bg-green-100 text-green-700' :
+                  'bg-green-100 text-green-700'
+                }`}>
+                  {apt.status === 'in-progress' ? 'In Progress' : apt.status}
+                </span>
+                {apt.status !== 'in-progress' && apt.status !== 'completed' && (
+                  <button onClick={(e) => { e.stopPropagation(); handleStartJob(i); }} className="px-3 py-1 bg-teal-600 text-white text-xs font-medium rounded-lg hover:bg-teal-700 transition">
+                    Start Job
+                  </button>
+                )}
               </div>
             </div>
-            <button onClick={() => onClientClick(apt)} className="text-xs text-teal-600 hover:text-teal-800 font-medium">View</button>
+            {apt.status === 'in-progress' && (
+              <div className="mt-2 pt-2 border-t border-gray-100 flex items-center justify-between">
+                <span className="text-xs text-teal-600 font-medium">Started at {apt.jobStartTime}</span>
+                <button onClick={() => onClientClick(apt)} className="text-xs bg-teal-600 text-white px-3 py-1 rounded-lg hover:bg-teal-700 transition font-medium">
+                  View Job
+                </button>
+              </div>
+            )}
           </div>
         ))}
       </div>
