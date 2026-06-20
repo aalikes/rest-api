@@ -1,25 +1,15 @@
-# Provn Team Directory
+# Team Directory
 
 | Name | Email | Role | Status |
 |------|-------|------|--------|
-| Shah | shah@provn.co | Admin | Active |
-| Jenny | jenny@provn.co | Technician | Active |
-| Sam | sam@provn.co | Technician | Active |
-| Micah | micah@provn.co | Technician | Active |
-| Gary | gary@provn.co | Technician | Active |
-| Nigel | nigel@provn.co | Technician | Active |
+| Shah Saint-Cyr | shah@getproven.us | Admin | Active |
+| Gary Pierre | gary@getproven.us | Technician | Active |
+| Nigel Lewis | nigel@getproven.us | Technician | Active |
+| Jenny Jeannot | jenny@getproven.us | Technician | Active |
+| Anthony Goldstiewn | anthony@getproven.us | Technician | Active |
+| Zarron | zarron@getproven.us | Technician | Active |
+| Abner | abner@getproven.us | Technician | Active |
+| Sam Jean | sam@getproven.us | Technician | Active |
+| Micah Berkley | micah@getproven.us | Technician | Active |
 
-## Roles
-
-### Admin
-- Full dashboard access (all tabs including Admin)
-- Team management
-- Revenue & performance overview
-- Location management
-
-### Technician
-- Dashboard access (Today, Scheduled, Intakes, Calendar, Earnings, History, Performance)
-- Client intake processing
-- ORI code lookup
-- Fingerprint capture
-- Appointment management
+All accounts use password: `ProvnDemo2026!`

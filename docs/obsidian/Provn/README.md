@@ -39,6 +39,6 @@ Provn/
 
 **Provn** provides professional fingerprinting, apostille, and FBI background check services from our office at 2125 Biscayne Blvd Suite 336, Miami, FL 33137.
 
-- **Phone:** +1 (305) 340-2911
-- **Email:** info@provn.co
-- **Website:** provn.co
+- **Phone:** +1 (347) 635-5418
+- **Email:** info@getproven.us
+- **Website:** getproven.us

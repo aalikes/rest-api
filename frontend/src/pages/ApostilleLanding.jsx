@@ -130,10 +130,10 @@ export default function ApostilleLanding() {
               Get Your Apostille Now →
             </button>
             <a
-              href="tel:+13053402911"
+              href="tel:+13476355418"
               className="border border-gray-400 text-gray-200 hover:bg-gray-800 px-6 py-3 rounded-lg font-medium transition flex items-center gap-2"
             >
-              📞 Call +1 (305) 340-2911
+              📞 Call +1 (347) 635-5418
             </a>
           </div>
         </div>
@@ -316,7 +316,7 @@ export default function ApostilleLanding() {
         <h2 className="text-2xl font-bold">Ready to Get Your Documents Apostilled?</h2>
         <p className="mt-2 text-blue-100">Start your order in under 5 minutes. No government offices, no confusing paperwork.</p>
         <p className="mt-2 text-sm text-blue-200">
-          Questions? Call us at <a href="tel:+13053402911" className="underline">+1 (305) 340-2911</a>
+          Questions? Call us at <a href="tel:+13476355418" className="underline">+1 (347) 635-5418</a>
         </p>
         <button
           onClick={() => navigate('/apostille-order')}
@@ -355,7 +355,7 @@ function ApostilleFAQ() {
     },
     {
       q: 'What documents can be apostilled?',
-      a: "Most public documents can be apostilled, including: birth certificates, marriage certificates, death certificates, divorce decrees, court documents, FBI background checks, diplomas and transcripts, corporate documents (Articles of Incorporation, Certificates of Good Standing), powers of attorney, and notarized documents. If you're unsure whether your document qualifies, contact us at +1 (305) 340-2911.",
+      a: "Most public documents can be apostilled, including: birth certificates, marriage certificates, death certificates, divorce decrees, court documents, FBI background checks, diplomas and transcripts, corporate documents (Articles of Incorporation, Certificates of Good Standing), powers of attorney, and notarized documents. If you're unsure whether your document qualifies, contact us at +1 (347) 635-5418.",
     },
     {
       q: "What's the difference between a federal and state apostille?",

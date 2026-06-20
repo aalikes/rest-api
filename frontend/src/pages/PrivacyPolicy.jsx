@@ -84,7 +84,7 @@ export default function PrivacyPolicy() {
             As a client, you have the right to: request a copy of the information we maintain about you (excluding data controlled by FDLE/FBI once submitted),
             correct or update inaccurate personal information in our records, and request clarification on how your data is being used.
           </p>
-          <p className="text-gray-700">To exercise these rights, contact us at info@provn.co.</p>
+          <p className="text-gray-700">To exercise these rights, contact us at info@getproven.us.</p>
         </section>
 
         <section>
@@ -133,8 +133,8 @@ export default function PrivacyPolicy() {
             <p className="font-medium">Provn LLC</p>
             <p>2125 Biscayne Blvd, Suite 336</p>
             <p>Miami, FL 33137</p>
-            <p>Phone: +1 (305) 340-2911</p>
-            <p>Email: info@provn.co</p>
+            <p>Phone: +1 (347) 635-5418</p>
+            <p>Email: info@getproven.us</p>
           </div>
         </section>
       </div>

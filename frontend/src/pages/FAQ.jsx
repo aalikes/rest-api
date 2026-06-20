@@ -144,8 +144,8 @@ export default function FAQ() {
       <div className="mb-6 bg-teal-50 dark:bg-teal-900/20 border border-teal-200 dark:border-teal-700 rounded-xl p-4 flex items-start gap-3">
         <svg className="w-5 h-5 text-teal-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
         <div>
-          <p className="text-sm font-medium text-teal-800 dark:text-teal-300">Need help? Call us at <a href="tel:+13053402911" className="underline">(305) 340-2911</a></p>
-          <p className="text-xs text-teal-600 dark:text-teal-400 mt-0.5">Or email <a href="mailto:info@provn.co" className="underline">info@provn.co</a> — we respond within 2 business hours.</p>
+          <p className="text-sm font-medium text-teal-800 dark:text-teal-300">Need help? Call us at <a href="tel:+13476355418" className="underline">(347) 635-5418</a></p>
+          <p className="text-xs text-teal-600 dark:text-teal-400 mt-0.5">Or email <a href="mailto:info@getproven.us" className="underline">info@getproven.us</a> — we respond within 2 business hours.</p>
         </div>
       </div>
 

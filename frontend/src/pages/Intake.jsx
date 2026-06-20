@@ -382,7 +382,7 @@ export default function Intake() {
           <div className="mb-6 p-4 bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg">
             <p className="text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Privacy & Disclaimer</p>
             <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
-              By completing this booking, you consent to the collection and processing of your personal information for the purpose of providing the requested service. Your data is handled in accordance with the Privacy Act of 1974 (5 U.S.C. § 552a) and the Fair Credit Reporting Act (FCRA). Fingerprint data and personal identifiers are transmitted securely and are not shared with unauthorized third parties. You have the right to request access to, correction of, or deletion of your personal data at any time by contacting us at info@provn.co or (305) 340-2911.
+              By completing this booking, you consent to the collection and processing of your personal information for the purpose of providing the requested service. Your data is handled in accordance with the Privacy Act of 1974 (5 U.S.C. § 552a) and the Fair Credit Reporting Act (FCRA). Fingerprint data and personal identifiers are transmitted securely and are not shared with unauthorized third parties. You have the right to request access to, correction of, or deletion of your personal data at any time by contacting us at info@getproven.us or (347) 635-5418.
             </p>
           </div>
 

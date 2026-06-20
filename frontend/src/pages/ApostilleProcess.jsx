@@ -163,10 +163,10 @@ export default function ApostilleProcess() {
             Start Your Apostille →
           </button>
           <a
-            href="tel:+13053402911"
+            href="tel:+13476355418"
             className="border border-gray-600 text-gray-300 hover:bg-gray-800 px-6 py-2.5 rounded-lg text-sm font-medium transition"
           >
-            Call (305) 340-2911
+            Call (347) 635-5418
           </a>
         </div>
       </div>

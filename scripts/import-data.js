@@ -25,12 +25,15 @@ async function main() {
 
   // ── Create all technician accounts ──────────────────────────────
   const demoAccounts = [
-    { name: 'Shah Saint-Cyr', email: 'shah@provn.co' },
-    { name: 'Jenny', email: 'jenny@provn.co' },
-    { name: 'Sam', email: 'sam@provn.co' },
-    { name: 'Micah', email: 'micah@provn.co' },
-    { name: 'Gary', email: 'gary@provn.co' },
-    { name: 'Nigel', email: 'nigel@provn.co' },
+    { name: 'Shah Saint-Cyr', email: 'shah@getproven.us' },
+    { name: 'Gary Pierre', email: 'gary@getproven.us' },
+    { name: 'Nigel Lewis', email: 'nigel@getproven.us' },
+    { name: 'Jenny Jeannot', email: 'jenny@getproven.us' },
+    { name: 'Anthony Goldstiewn', email: 'anthony@getproven.us' },
+    { name: 'Zarron', email: 'zarron@getproven.us' },
+    { name: 'Abner', email: 'abner@getproven.us' },
+    { name: 'Sam Jean', email: 'sam@getproven.us' },
+    { name: 'Micah Berkley', email: 'micah@getproven.us' },
   ];
 
   const demoPassword = 'ProvnDemo2026!';
@@ -50,7 +53,7 @@ async function main() {
     }
   }
 
-  const defaultUserEmail = 'shah@provn.co';
+  const defaultUserEmail = 'shah@getproven.us';
   let user = db.prepare('SELECT * FROM users WHERE email = ?').get(defaultUserEmail);
   console.log('  ✓ All accounts set to password: ProvnDemo2026!');
 

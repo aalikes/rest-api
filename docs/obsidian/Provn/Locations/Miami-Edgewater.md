@@ -5,8 +5,8 @@
 Miami, FL 33137
 
 ## Contact
-- **Phone:** (305) 340-2911
-- **Email:** info@provn.co
+- **Phone:** (347) 635-5418
+- **Email:** info@getproven.us
 
 ## Hours
 Monday–Friday: 8:00 AM – 8:30 PM

@@ -119,7 +119,7 @@ export default function TermsOfService() {
           </p>
           <p className="text-gray-700">
             Message and data rates may apply according to your mobile carrier's plan. We are not responsible for carrier charges.
-            To opt out of text messages at any time, reply STOP to any message or contact us directly at +1 (305) 340-2911 or info@provn.co.
+            To opt out of text messages at any time, reply STOP to any message or contact us directly at +1 (347) 635-5418 or info@getproven.us.
           </p>
           <p className="text-gray-700">
             You may also receive help information by replying HELP to any message. Our text messaging system is operated in compliance with TCPA (Telephone Consumer Protection Act) regulations.
@@ -133,8 +133,8 @@ export default function TermsOfService() {
             <p className="font-medium">Provn LLC</p>
             <p>2125 Biscayne Blvd, Suite 336</p>
             <p>Miami, FL 33137</p>
-            <p>Phone: +1 (305) 340-2911</p>
-            <p>Email: info@provn.co</p>
+            <p>Phone: +1 (347) 635-5418</p>
+            <p>Email: info@getproven.us</p>
           </div>
         </section>
       </div>
