@@ -12,6 +12,7 @@ export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('Today');
   const [outOfOffice, setOutOfOffice] = useState(false);
   const [role, setRole] = useState('technician');
+  const [selectedClient, setSelectedClient] = useState(null);
   const TABS = role === 'admin' ? ADMIN_TABS : TECH_TABS;
 
   useEffect(() => {
@@ -112,15 +113,19 @@ export default function Dashboard() {
 
       {/* Tab Content */}
       <div className="min-h-[300px]">
-        {activeTab === 'Today' && <TodayTab data={data} />}
-        {activeTab === 'Scheduled' && <ScheduledTab data={data} />}
-        {activeTab === 'Intakes' && <IntakesTab data={data} />}
+        {activeTab === 'Today' && <TodayTab data={data} onClientClick={setSelectedClient} />}
+        {activeTab === 'Scheduled' && <ScheduledTab data={data} onClientClick={setSelectedClient} />}
+        {activeTab === 'Intakes' && <IntakesTab data={data} onClientClick={setSelectedClient} />}
         {activeTab === 'Calendar' && <CalendarTab />}
         {activeTab === 'Earnings' && <EarningsTab data={data} />}
-        {activeTab === 'History' && <HistoryTab data={data} />}
+        {activeTab === 'History' && <HistoryTab data={data} onClientClick={setSelectedClient} />}
         {activeTab === 'Performance' && <PerformanceTab data={data} />}
         {activeTab === 'Admin' && <AdminTab />}
       </div>
+
+      {selectedClient && (
+        <ClientDetailModal client={selectedClient} onClose={() => setSelectedClient(null)} />
+      )}
     </div>
   );
 }
@@ -140,13 +145,13 @@ function StatCard({ label, value, sub, color }) {
   );
 }
 
-function TodayTab({ data }) {
+function TodayTab({ data, onClientClick }) {
   const appointments = [
-    { time: '9:00 AM', client: 'Maria Rodriguez', service: 'Fingerprinting', status: 'confirmed' },
-    { time: '10:30 AM', client: 'Jean Baptiste', service: 'FBI Background Check', status: 'confirmed' },
-    { time: '11:00 AM', client: 'Carlos Mejia', service: 'Apostille', status: 'pending' },
-    { time: '1:00 PM', client: 'Ana Silva', service: 'FBI + Apostille', status: 'confirmed' },
-    { time: '2:30 PM', client: 'Robert Johnson', service: 'Fingerprinting', status: 'confirmed' },
+    { time: '9:00 AM', client: 'Maria Rodriguez', service: 'Fingerprinting', status: 'confirmed', email: 'maria.rodriguez@gmail.com', phone: '(305) 555-0101', dob: '1988-04-12', address: '1250 NE 2nd Ave, Miami, FL 33132', ori: '', notes: 'Regular client, prefers morning appointments' },
+    { time: '10:30 AM', client: 'Jean Baptiste', service: 'FBI Background Check', status: 'confirmed', email: 'jean.baptiste@gmail.com', phone: '(305) 555-0102', dob: '1995-08-23', address: '3400 Biscayne Blvd, Miami, FL 33137', ori: 'FL924680Z', notes: 'Immigration application — needs expedited processing' },
+    { time: '11:00 AM', client: 'Carlos Mejia', service: 'Apostille', status: 'pending', email: 'cmejia@outlook.com', phone: '(786) 555-0103', dob: '1979-11-05', address: '800 NE 71st St, Miami, FL 33138', ori: '', notes: 'Birth certificate apostille for Colombia' },
+    { time: '1:00 PM', client: 'Ana Silva', service: 'FBI + Apostille', status: 'confirmed', email: 'ana.silva@yahoo.com', phone: '(954) 555-0104', dob: '1990-02-17', address: '2200 N Ocean Blvd, Ft. Lauderdale, FL 33305', ori: 'FL113355X', notes: 'Work visa for Portugal — FBI + federal apostille' },
+    { time: '2:30 PM', client: 'Robert Johnson', service: 'Fingerprinting', status: 'confirmed', email: 'rjohnson@mail.com', phone: '(305) 555-0105', dob: '1983-06-30', address: '500 Brickell Ave, Miami, FL 33131', ori: '', notes: 'Security guard license renewal — 2 FD-258 cards needed' },
   ];
 
   return (
@@ -161,7 +166,7 @@ function TodayTab({ data }) {
             <div className="flex items-center gap-4">
               <div className="text-sm font-medium text-gray-500 w-20">{apt.time}</div>
               <div>
-                <p className="text-sm font-medium text-gray-900">{apt.client}</p>
+                <button onClick={() => onClientClick(apt)} className="text-sm font-medium text-teal-700 hover:text-teal-900 hover:underline cursor-pointer text-left">{apt.client}</button>
                 <p className="text-xs text-gray-500">{apt.service}</p>
               </div>
             </div>
@@ -177,14 +182,14 @@ function TodayTab({ data }) {
   );
 }
 
-function ScheduledTab({ data }) {
+function ScheduledTab({ data, onClientClick }) {
   const upcoming = [
-    { date: 'Mon, Jun 2', time: '9:00 AM', client: 'David Chen', service: 'FBI Background Check' },
-    { date: 'Mon, Jun 2', time: '11:00 AM', client: 'Marie Dupont', service: 'Apostille (2 docs)' },
-    { date: 'Tue, Jun 3', time: '10:00 AM', client: 'Jose Martinez', service: 'Fingerprinting' },
-    { date: 'Tue, Jun 3', time: '2:00 PM', client: 'Lisa Wong', service: 'FBI + Apostille' },
-    { date: 'Wed, Jun 4', time: '9:30 AM', client: 'Pierre Louis', service: 'Fingerprinting' },
-    { date: 'Thu, Jun 5', time: '1:00 PM', client: 'Sarah Brown', service: 'Apostille (1 doc)' },
+    { date: 'Mon, Jun 2', time: '9:00 AM', client: 'David Chen', service: 'FBI Background Check', email: 'david.chen@gmail.com', phone: '(305) 555-0201', dob: '1992-01-15', address: '900 NE 125th St, North Miami, FL 33161', ori: 'FL778899A', notes: 'Employment background check' },
+    { date: 'Mon, Jun 2', time: '11:00 AM', client: 'Marie Dupont', service: 'Apostille (2 docs)', email: 'marie.dupont@outlook.com', phone: '(786) 555-0202', dob: '1985-07-22', address: '1500 Bay Rd, Miami Beach, FL 33139', ori: '', notes: 'Marriage certificate + birth certificate for France' },
+    { date: 'Tue, Jun 3', time: '10:00 AM', client: 'Jose Martinez', service: 'Fingerprinting', email: 'jose.m@yahoo.com', phone: '(305) 555-0203', dob: '1998-03-08', address: '7400 SW 8th St, Miami, FL 33144', ori: '', notes: 'Concealed weapons permit' },
+    { date: 'Tue, Jun 3', time: '2:00 PM', client: 'Lisa Wong', service: 'FBI + Apostille', email: 'lwong@mail.com', phone: '(954) 555-0204', dob: '1987-12-01', address: '3000 E Commercial Blvd, Ft. Lauderdale, FL 33308', ori: 'FL445566B', notes: 'Teaching position in Dubai' },
+    { date: 'Wed, Jun 4', time: '9:30 AM', client: 'Pierre Louis', service: 'Fingerprinting', email: 'pierre.l@gmail.com', phone: '(305) 555-0205', dob: '2001-09-14', address: '200 NE 36th St, Miami, FL 33137', ori: '', notes: 'Security guard license — first time' },
+    { date: 'Thu, Jun 5', time: '1:00 PM', client: 'Sarah Brown', service: 'Apostille (1 doc)', email: 'sarah.b@gmail.com', phone: '(305) 555-0206', dob: '1976-05-19', address: '1200 Brickell Ave, Miami, FL 33131', ori: '', notes: 'Corporate document for UK business registration' },
   ];
 
   return (
@@ -202,11 +207,11 @@ function ScheduledTab({ data }) {
                 <p className="text-sm font-medium text-gray-700">{apt.time}</p>
               </div>
               <div>
-                <p className="text-sm font-medium text-gray-900">{apt.client}</p>
+                <button onClick={() => onClientClick(apt)} className="text-sm font-medium text-teal-700 hover:text-teal-900 hover:underline cursor-pointer text-left">{apt.client}</button>
                 <p className="text-xs text-gray-500">{apt.service}</p>
               </div>
             </div>
-            <button className="text-xs text-teal-600 hover:text-teal-800 font-medium">View</button>
+            <button onClick={() => onClientClick(apt)} className="text-xs text-teal-600 hover:text-teal-800 font-medium">View</button>
           </div>
         ))}
       </div>
@@ -214,13 +219,13 @@ function ScheduledTab({ data }) {
   );
 }
 
-function IntakesTab({ data }) {
+function IntakesTab({ data, onClientClick }) {
   const intakes = [
-    { name: 'James Wilson', service: 'FBI Background Check', submitted: '2 hours ago', status: 'new' },
-    { name: 'Sophie Laurent', service: 'Apostille', submitted: '5 hours ago', status: 'new' },
-    { name: 'Miguel Santos', service: 'Fingerprinting', submitted: '1 day ago', status: 'reviewed' },
-    { name: 'Fatima Hassan', service: 'FBI + Apostille', submitted: '1 day ago', status: 'reviewed' },
-    { name: 'John Peters', service: 'Fingerprinting', submitted: '2 days ago', status: 'contacted' },
+    { name: 'James Wilson', client: 'James Wilson', service: 'FBI Background Check', submitted: '2 hours ago', status: 'new', email: 'james.wilson@gmail.com', phone: '(305) 555-0301', dob: '1991-10-22', address: '600 NE 27th St, Miami, FL 33137', ori: 'FL998877C', notes: 'Needs FBI check for state licensing board' },
+    { name: 'Sophie Laurent', client: 'Sophie Laurent', service: 'Apostille', submitted: '5 hours ago', status: 'new', email: 'sophie.l@outlook.com', phone: '(786) 555-0302', dob: '1993-04-11', address: '1800 NW 7th Ave, Miami, FL 33136', ori: '', notes: 'Diploma apostille for French university' },
+    { name: 'Miguel Santos', client: 'Miguel Santos', service: 'Fingerprinting', submitted: '1 day ago', status: 'reviewed', email: 'miguel.s@yahoo.com', phone: '(305) 555-0303', dob: '1986-08-03', address: '4500 NW 27th Ave, Miami, FL 33142', ori: '', notes: 'Out-of-state submission — needs PDF + ink card' },
+    { name: 'Fatima Hassan', client: 'Fatima Hassan', service: 'FBI + Apostille', submitted: '1 day ago', status: 'reviewed', email: 'fatima.h@gmail.com', phone: '(954) 555-0304', dob: '1989-12-25', address: '2700 N Federal Hwy, Ft. Lauderdale, FL 33306', ori: 'FL223344D', notes: 'Immigration to UAE — expedite if possible' },
+    { name: 'John Peters', client: 'John Peters', service: 'Fingerprinting', submitted: '2 days ago', status: 'contacted', email: 'jpeters@mail.com', phone: '(305) 555-0305', dob: '1975-02-28', address: '8900 SW 107th Ave, Miami, FL 33176', ori: '', notes: 'Private investigator license — 2 cards' },
   ];
 
   return (
@@ -241,8 +246,8 @@ function IntakesTab({ data }) {
           </thead>
           <tbody className="divide-y divide-gray-200">
             {intakes.map((item, i) => (
-              <tr key={i} className="hover:bg-gray-50">
-                <td className="px-4 py-3 text-sm font-medium text-gray-900">{item.name}</td>
+              <tr key={i} className="hover:bg-gray-50 cursor-pointer" onClick={() => onClientClick(item)}>
+                <td className="px-4 py-3 text-sm font-medium text-teal-700 hover:text-teal-900">{item.name}</td>
                 <td className="px-4 py-3 text-sm text-gray-600">{item.service}</td>
                 <td className="px-4 py-3 text-sm text-gray-500">{item.submitted}</td>
                 <td className="px-4 py-3">
@@ -361,15 +366,15 @@ function EarningsTab({ data }) {
   );
 }
 
-function HistoryTab({ data }) {
+function HistoryTab({ data, onClientClick }) {
   const history = [
-    { date: 'May 23', client: 'Ana Garcia', service: 'Fingerprinting', amount: '$99', status: 'completed' },
-    { date: 'May 22', client: 'Tom Harris', service: 'FBI + Apostille', amount: '$329', status: 'completed' },
-    { date: 'May 22', client: 'Marie Jean', service: 'Apostille', amount: '$200', status: 'shipped' },
-    { date: 'May 21', client: 'Kevin Brown', service: 'Fingerprinting', amount: '$99', status: 'completed' },
-    { date: 'May 21', client: 'Laura Chen', service: 'FBI Background Check', amount: '$129', status: 'completed' },
-    { date: 'May 20', client: 'Pierre Blanc', service: 'Apostille (2 docs)', amount: '$400', status: 'shipped' },
-    { date: 'May 19', client: 'Sofia Ramos', service: 'FBI + Apostille', amount: '$379', status: 'completed' },
+    { date: 'May 23', client: 'Ana Garcia', service: 'Fingerprinting', amount: '$99', status: 'completed', email: 'ana.garcia@gmail.com', phone: '(305) 555-0401', dob: '1994-06-18', address: '3200 NE 1st Ave, Miami, FL 33137', ori: '', notes: 'Completed — 2 FD-258 cards mailed' },
+    { date: 'May 22', client: 'Tom Harris', service: 'FBI + Apostille', amount: '$329', status: 'completed', email: 'tom.harris@outlook.com', phone: '(786) 555-0402', dob: '1980-11-30', address: '1700 NW 10th Ave, Miami, FL 33136', ori: 'FL556677E', notes: 'FBI results received, apostille shipped' },
+    { date: 'May 22', client: 'Marie Jean', service: 'Apostille', amount: '$200', status: 'shipped', email: 'marie.jean@yahoo.com', phone: '(305) 555-0403', dob: '1996-03-07', address: '5600 SW 72nd St, Miami, FL 33143', ori: '', notes: 'Birth certificate — shipped to Haiti consulate' },
+    { date: 'May 21', client: 'Kevin Brown', service: 'Fingerprinting', amount: '$99', status: 'completed', email: 'kbrown@gmail.com', phone: '(954) 555-0404', dob: '1982-09-22', address: '4400 N Federal Hwy, Ft. Lauderdale, FL 33308', ori: '', notes: 'Real estate license application' },
+    { date: 'May 21', client: 'Laura Chen', service: 'FBI Background Check', amount: '$129', status: 'completed', email: 'laura.chen@mail.com', phone: '(305) 555-0405', dob: '1999-01-14', address: '1000 NE 2nd Ave, Miami, FL 33132', ori: 'FL889900F', notes: 'Adoption background check' },
+    { date: 'May 20', client: 'Pierre Blanc', service: 'Apostille (2 docs)', amount: '$400', status: 'shipped', email: 'pierre.blanc@outlook.com', phone: '(786) 555-0406', dob: '1973-07-02', address: '2900 Collins Ave, Miami Beach, FL 33140', ori: '', notes: 'Divorce decree + court order — France' },
+    { date: 'May 19', client: 'Sofia Ramos', service: 'FBI + Apostille', amount: '$379', status: 'completed', email: 'sofia.r@gmail.com', phone: '(305) 555-0407', dob: '1988-05-25', address: '7200 NW 36th St, Miami, FL 33166', ori: 'FL112233G', notes: 'Work visa for Spain — all documents received' },
   ];
 
   return (
@@ -388,9 +393,9 @@ function HistoryTab({ data }) {
           </thead>
           <tbody className="divide-y divide-gray-200">
             {history.map((item, i) => (
-              <tr key={i} className="hover:bg-gray-50">
+              <tr key={i} className="hover:bg-gray-50 cursor-pointer" onClick={() => onClientClick(item)}>
                 <td className="px-4 py-3 text-sm text-gray-500">{item.date}</td>
-                <td className="px-4 py-3 text-sm font-medium text-gray-900">{item.client}</td>
+                <td className="px-4 py-3 text-sm font-medium text-teal-700 hover:text-teal-900">{item.client}</td>
                 <td className="px-4 py-3 text-sm text-gray-600">{item.service}</td>
                 <td className="px-4 py-3 text-sm text-gray-900 text-right">{item.amount}</td>
                 <td className="px-4 py-3">
@@ -499,6 +504,147 @@ function AdminTab() {
           <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">Locations</p>
           <p className="text-2xl font-bold text-gray-900 dark:text-white mt-1">1 Active</p>
           <p className="text-xs text-amber-600 mt-1">Ft. Lauderdale opening Q3 2026</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ClientDetailModal({ client, onClose }) {
+  const name = client.client || client.name || 'Unknown';
+  const serviceHistory = [
+    { date: 'Jun 20, 2026', service: client.service, status: client.status || 'scheduled' },
+  ];
+
+  return (
+    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={onClose}>
+      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+        {/* Header */}
+        <div className="bg-teal-600 text-white p-6 rounded-t-xl">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center text-2xl font-bold">
+                {name.split(' ').map(n => n[0]).join('').toUpperCase()}
+              </div>
+              <div>
+                <h2 className="text-xl font-bold">{name}</h2>
+                <p className="text-teal-100 text-sm">{client.service}</p>
+              </div>
+            </div>
+            <button onClick={onClose} className="text-white/80 hover:text-white text-2xl leading-none">&times;</button>
+          </div>
+        </div>
+
+        <div className="p-6 space-y-6">
+          {/* Contact Info */}
+          <div>
+            <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">Contact Information</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="bg-gray-50 dark:bg-slate-700 rounded-lg p-3">
+                <p className="text-xs text-gray-500 dark:text-gray-400">Email</p>
+                <p className="text-sm font-medium text-gray-900 dark:text-white">{client.email || 'Not provided'}</p>
+              </div>
+              <div className="bg-gray-50 dark:bg-slate-700 rounded-lg p-3">
+                <p className="text-xs text-gray-500 dark:text-gray-400">Phone</p>
+                <p className="text-sm font-medium text-gray-900 dark:text-white">{client.phone || 'Not provided'}</p>
+              </div>
+              <div className="bg-gray-50 dark:bg-slate-700 rounded-lg p-3">
+                <p className="text-xs text-gray-500 dark:text-gray-400">Date of Birth</p>
+                <p className="text-sm font-medium text-gray-900 dark:text-white">{client.dob ? new Date(client.dob + 'T00:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'Not provided'}</p>
+              </div>
+              <div className="bg-gray-50 dark:bg-slate-700 rounded-lg p-3">
+                <p className="text-xs text-gray-500 dark:text-gray-400">Address</p>
+                <p className="text-sm font-medium text-gray-900 dark:text-white">{client.address || 'Not provided'}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Service Details */}
+          <div>
+            <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">Service Details</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="bg-gray-50 dark:bg-slate-700 rounded-lg p-3">
+                <p className="text-xs text-gray-500 dark:text-gray-400">Service Type</p>
+                <p className="text-sm font-medium text-gray-900 dark:text-white">{client.service}</p>
+              </div>
+              <div className="bg-gray-50 dark:bg-slate-700 rounded-lg p-3">
+                <p className="text-xs text-gray-500 dark:text-gray-400">ORI Number</p>
+                <p className="text-sm font-medium text-gray-900 dark:text-white">{client.ori || 'N/A'}</p>
+              </div>
+              {client.time && (
+                <div className="bg-gray-50 dark:bg-slate-700 rounded-lg p-3">
+                  <p className="text-xs text-gray-500 dark:text-gray-400">Appointment Time</p>
+                  <p className="text-sm font-medium text-gray-900 dark:text-white">{client.time}{client.date ? ` — ${client.date}` : ''}</p>
+                </div>
+              )}
+              {client.status && (
+                <div className="bg-gray-50 dark:bg-slate-700 rounded-lg p-3">
+                  <p className="text-xs text-gray-500 dark:text-gray-400">Status</p>
+                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                    client.status === 'confirmed' || client.status === 'completed' ? 'bg-green-100 text-green-700' :
+                    client.status === 'pending' || client.status === 'new' ? 'bg-yellow-100 text-yellow-700' :
+                    client.status === 'shipped' ? 'bg-blue-100 text-blue-700' :
+                    'bg-gray-100 text-gray-700'
+                  }`}>{client.status}</span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Notes */}
+          {client.notes && (
+            <div>
+              <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">Notes</h3>
+              <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-lg p-4">
+                <p className="text-sm text-amber-900 dark:text-amber-200">{client.notes}</p>
+              </div>
+            </div>
+          )}
+
+          {/* Service History */}
+          <div>
+            <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">Service History</h3>
+            <div className="bg-white dark:bg-slate-700 border dark:border-slate-600 rounded-lg overflow-hidden">
+              <table className="min-w-full divide-y divide-gray-200 dark:divide-slate-600">
+                <thead className="bg-gray-50 dark:bg-slate-800">
+                  <tr>
+                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Date</th>
+                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Service</th>
+                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Status</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200 dark:divide-slate-600">
+                  {serviceHistory.map((h, i) => (
+                    <tr key={i}>
+                      <td className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">{h.date}</td>
+                      <td className="px-4 py-2 text-sm text-gray-900 dark:text-white">{h.service}</td>
+                      <td className="px-4 py-2">
+                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                          h.status === 'confirmed' || h.status === 'completed' ? 'bg-green-100 text-green-700' :
+                          h.status === 'shipped' ? 'bg-blue-100 text-blue-700' :
+                          'bg-yellow-100 text-yellow-700'
+                        }`}>{h.status}</span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex gap-3 pt-2">
+            {client.email && (
+              <a href={`mailto:${client.email}`} className="flex-1 bg-teal-600 text-white text-center py-2.5 rounded-lg text-sm font-medium hover:bg-teal-700 transition">
+                Email Client
+              </a>
+            )}
+            {client.phone && (
+              <a href={`tel:${client.phone.replace(/\D/g, '')}`} className="flex-1 border border-teal-600 text-teal-600 text-center py-2.5 rounded-lg text-sm font-medium hover:bg-teal-50 transition">
+                Call Client
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </div>
