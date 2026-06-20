@@ -368,13 +368,13 @@ function EarningsTab({ data }) {
 
 function HistoryTab({ data, onClientClick }) {
   const history = [
-    { date: 'May 23', client: 'Ana Garcia', service: 'Fingerprinting', amount: '$99', status: 'completed', email: 'ana.garcia@gmail.com', phone: '(305) 555-0401', dob: '1994-06-18', address: '3200 NE 1st Ave, Miami, FL 33137', ori: '', notes: 'Completed — 2 FD-258 cards mailed' },
-    { date: 'May 22', client: 'Tom Harris', service: 'FBI + Apostille', amount: '$329', status: 'completed', email: 'tom.harris@outlook.com', phone: '(786) 555-0402', dob: '1980-11-30', address: '1700 NW 10th Ave, Miami, FL 33136', ori: 'FL556677E', notes: 'FBI results received, apostille shipped' },
-    { date: 'May 22', client: 'Marie Jean', service: 'Apostille', amount: '$200', status: 'shipped', email: 'marie.jean@yahoo.com', phone: '(305) 555-0403', dob: '1996-03-07', address: '5600 SW 72nd St, Miami, FL 33143', ori: '', notes: 'Birth certificate — shipped to Haiti consulate' },
-    { date: 'May 21', client: 'Kevin Brown', service: 'Fingerprinting', amount: '$99', status: 'completed', email: 'kbrown@gmail.com', phone: '(954) 555-0404', dob: '1982-09-22', address: '4400 N Federal Hwy, Ft. Lauderdale, FL 33308', ori: '', notes: 'Real estate license application' },
-    { date: 'May 21', client: 'Laura Chen', service: 'FBI Background Check', amount: '$129', status: 'completed', email: 'laura.chen@mail.com', phone: '(305) 555-0405', dob: '1999-01-14', address: '1000 NE 2nd Ave, Miami, FL 33132', ori: 'FL889900F', notes: 'Adoption background check' },
-    { date: 'May 20', client: 'Pierre Blanc', service: 'Apostille (2 docs)', amount: '$400', status: 'shipped', email: 'pierre.blanc@outlook.com', phone: '(786) 555-0406', dob: '1973-07-02', address: '2900 Collins Ave, Miami Beach, FL 33140', ori: '', notes: 'Divorce decree + court order — France' },
-    { date: 'May 19', client: 'Sofia Ramos', service: 'FBI + Apostille', amount: '$379', status: 'completed', email: 'sofia.r@gmail.com', phone: '(305) 555-0407', dob: '1988-05-25', address: '7200 NW 36th St, Miami, FL 33166', ori: 'FL112233G', notes: 'Work visa for Spain — all documents received' },
+    { date: 'Jun 19', client: 'Andrea Cano', service: 'Live Scan Fingerprinting Service', amount: '$20.00', status: 'completed', email: 'acinsurancemiami@gmail.com', phone: '6462887906', dob: '1990-03-22', address: '2125 Biscayne Blvd', addressLine2: 'Suite 336', city: 'Miami', state: 'FL', zip: '33137', ori: '', tcn: '70CS1419420000000915', scheduledAt: 'Jun 19, 2026 - 6:23 PM', completedAt: 'Jun 19, 2026 - 6:30 PM', earned: '+$20.00', bufferBefore: 0, bufferAfter: 0, notes: 'Live scan completed successfully' },
+    { date: 'Jun 18', client: 'Tom Harris', service: 'FBI Background Check + Apostille', amount: '$329.00', status: 'completed', email: 'tom.harris@outlook.com', phone: '7865550402', dob: '1980-11-30', address: '1700 NW 10th Ave', addressLine2: '', city: 'Miami', state: 'FL', zip: '33136', ori: 'FL556677E', tcn: '70CS1419420000000908', scheduledAt: 'Jun 18, 2026 - 10:00 AM', completedAt: 'Jun 18, 2026 - 10:45 AM', earned: '+$329.00', bufferBefore: 15, bufferAfter: 15, notes: 'FBI results received, apostille shipped' },
+    { date: 'Jun 18', client: 'Marie Jean', service: 'State Apostille Service', amount: '$200.00', status: 'shipped', email: 'marie.jean@yahoo.com', phone: '3055550403', dob: '1996-03-07', address: '5600 SW 72nd St', addressLine2: '', city: 'Miami', state: 'FL', zip: '33143', ori: '', tcn: '', scheduledAt: 'Jun 18, 2026 - 2:00 PM', completedAt: 'Jun 18, 2026 - 2:20 PM', earned: '+$200.00', bufferBefore: 0, bufferAfter: 0, notes: 'Birth certificate — shipped to Haiti consulate' },
+    { date: 'Jun 17', client: 'Kevin Brown', service: 'Ink Card Fingerprinting Service', amount: '$99.00', status: 'completed', email: 'kbrown@gmail.com', phone: '9545550404', dob: '1982-09-22', address: '4400 N Federal Hwy', addressLine2: '', city: 'Ft. Lauderdale', state: 'FL', zip: '33308', ori: '', tcn: '70CS1419420000000891', scheduledAt: 'Jun 17, 2026 - 11:00 AM', completedAt: 'Jun 17, 2026 - 11:15 AM', earned: '+$99.00', bufferBefore: 0, bufferAfter: 0, notes: 'Real estate license application — 2 FD-258 cards' },
+    { date: 'Jun 17', client: 'Laura Chen', service: 'FBI Background Check', amount: '$129.00', status: 'completed', email: 'laura.chen@mail.com', phone: '3055550405', dob: '1999-01-14', address: '1000 NE 2nd Ave', addressLine2: 'Apt 4B', city: 'Miami', state: 'FL', zip: '33132', ori: 'FL889900F', tcn: '70CS1419420000000884', scheduledAt: 'Jun 17, 2026 - 3:00 PM', completedAt: 'Jun 17, 2026 - 3:25 PM', earned: '+$129.00', bufferBefore: 10, bufferAfter: 10, notes: 'Adoption background check' },
+    { date: 'Jun 16', client: 'Pierre Blanc', service: 'State Apostille Service (2 docs)', amount: '$400.00', status: 'shipped', email: 'pierre.blanc@outlook.com', phone: '7865550406', dob: '1973-07-02', address: '2900 Collins Ave', addressLine2: 'Unit 1802', city: 'Miami Beach', state: 'FL', zip: '33140', ori: '', tcn: '', scheduledAt: 'Jun 16, 2026 - 9:00 AM', completedAt: 'Jun 16, 2026 - 9:30 AM', earned: '+$400.00', bufferBefore: 0, bufferAfter: 0, notes: 'Divorce decree + court order — France' },
+    { date: 'Jun 15', client: 'Sofia Ramos', service: 'FBI Background Check + Federal Apostille', amount: '$379.00', status: 'completed', email: 'sofia.r@gmail.com', phone: '3055550407', dob: '1988-05-25', address: '7200 NW 36th St', addressLine2: '', city: 'Miami', state: 'FL', zip: '33166', ori: 'FL112233G', tcn: '70CS1419420000000877', scheduledAt: 'Jun 15, 2026 - 1:00 PM', completedAt: 'Jun 15, 2026 - 1:40 PM', earned: '+$379.00', bufferBefore: 15, bufferAfter: 15, notes: 'Work visa for Spain — all documents received' },
   ];
 
   return (
@@ -512,138 +512,129 @@ function AdminTab() {
 
 function ClientDetailModal({ client, onClose }) {
   const name = client.client || client.name || 'Unknown';
-  const serviceHistory = [
-    { date: 'Jun 20, 2026', service: client.service, status: client.status || 'scheduled' },
-  ];
+  const isCompleted = client.status === 'completed' || client.status === 'shipped';
+  const fullAddress = client.city
+    ? `${client.address}${client.addressLine2 ? '\n' + client.addressLine2 : ''}\n${client.city}, ${client.state} ${client.zip}`
+    : client.address || '';
 
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={onClose}>
-      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-        {/* Header */}
-        <div className="bg-teal-600 text-white p-6 rounded-t-xl">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center text-2xl font-bold">
-                {name.split(' ').map(n => n[0]).join('').toUpperCase()}
-              </div>
-              <div>
-                <h2 className="text-xl font-bold">{name}</h2>
-                <p className="text-teal-100 text-sm">{client.service}</p>
-              </div>
-            </div>
-            <button onClick={onClose} className="text-white/80 hover:text-white text-2xl leading-none">&times;</button>
-          </div>
+      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+
+        {/* Status Badge + Close */}
+        <div className="p-5 pb-0 flex items-center justify-between">
+          <span className={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide ${
+            client.status === 'completed' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' :
+            client.status === 'shipped' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' :
+            client.status === 'confirmed' ? 'bg-green-100 text-green-700' :
+            client.status === 'pending' || client.status === 'new' ? 'bg-yellow-100 text-yellow-700' :
+            'bg-gray-100 text-gray-700'
+          }`}>{client.status}</span>
+          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 dark:hover:text-white text-2xl leading-none">&times;</button>
         </div>
 
-        <div className="p-6 space-y-6">
-          {/* Contact Info */}
+        <div className="p-5 pt-3 space-y-5">
+
+          {/* Service Title + Schedule */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">Contact Information</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="bg-gray-50 dark:bg-slate-700 rounded-lg p-3">
-                <p className="text-xs text-gray-500 dark:text-gray-400">Email</p>
-                <p className="text-sm font-medium text-gray-900 dark:text-white">{client.email || 'Not provided'}</p>
-              </div>
-              <div className="bg-gray-50 dark:bg-slate-700 rounded-lg p-3">
-                <p className="text-xs text-gray-500 dark:text-gray-400">Phone</p>
-                <p className="text-sm font-medium text-gray-900 dark:text-white">{client.phone || 'Not provided'}</p>
-              </div>
-              <div className="bg-gray-50 dark:bg-slate-700 rounded-lg p-3">
-                <p className="text-xs text-gray-500 dark:text-gray-400">Date of Birth</p>
-                <p className="text-sm font-medium text-gray-900 dark:text-white">{client.dob ? new Date(client.dob + 'T00:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'Not provided'}</p>
-              </div>
-              <div className="bg-gray-50 dark:bg-slate-700 rounded-lg p-3">
-                <p className="text-xs text-gray-500 dark:text-gray-400">Address</p>
-                <p className="text-sm font-medium text-gray-900 dark:text-white">{client.address || 'Not provided'}</p>
-              </div>
-            </div>
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white">{client.service}</h2>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+              Scheduled: {client.scheduledAt || client.time || 'N/A'}
+            </p>
           </div>
 
-          {/* Service Details */}
+          {/* Earned */}
+          {(client.earned || client.amount) && (
+            <div className="flex items-center gap-2">
+              <span className="text-lg font-bold text-green-600">{client.earned || client.amount}</span>
+              <span className="text-xs text-gray-500 dark:text-gray-400 uppercase">Earned</span>
+            </div>
+          )}
+
+          {/* Divider */}
+          <hr className="border-gray-200 dark:border-slate-700" />
+
+          {/* Client Info */}
+          <div className="space-y-2">
+            <p className="text-base font-semibold text-gray-900 dark:text-white">{name}</p>
+            {client.phone && (
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                <a href={`tel:${client.phone.replace(/\D/g, '')}`} className="hover:text-teal-600">{client.phone}</a>
+              </p>
+            )}
+            {client.email && (
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                <a href={`mailto:${client.email}`} className="hover:text-teal-600">{client.email}</a>
+              </p>
+            )}
+            {fullAddress && (
+              <div className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-line">{fullAddress}</div>
+            )}
+          </div>
+
+          {/* Divider */}
+          <hr className="border-gray-200 dark:border-slate-700" />
+
+          {/* Appointment Buffer */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">Service Details</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="bg-gray-50 dark:bg-slate-700 rounded-lg p-3">
-                <p className="text-xs text-gray-500 dark:text-gray-400">Service Type</p>
-                <p className="text-sm font-medium text-gray-900 dark:text-white">{client.service}</p>
-              </div>
-              <div className="bg-gray-50 dark:bg-slate-700 rounded-lg p-3">
-                <p className="text-xs text-gray-500 dark:text-gray-400">ORI Number</p>
-                <p className="text-sm font-medium text-gray-900 dark:text-white">{client.ori || 'N/A'}</p>
-              </div>
-              {client.time && (
-                <div className="bg-gray-50 dark:bg-slate-700 rounded-lg p-3">
-                  <p className="text-xs text-gray-500 dark:text-gray-400">Appointment Time</p>
-                  <p className="text-sm font-medium text-gray-900 dark:text-white">{client.time}{client.date ? ` — ${client.date}` : ''}</p>
+            <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Appointment Buffer</p>
+            <p className="text-sm text-gray-700 dark:text-gray-300">
+              {client.bufferBefore != null ? `${client.bufferBefore}min before` : '0min before'} / {client.bufferAfter != null ? `${client.bufferAfter}min after` : '0min after'}
+            </p>
+          </div>
+
+          {/* ORI */}
+          {client.ori && (
+            <div>
+              <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">ORI Number</p>
+              <p className="text-sm font-mono text-gray-900 dark:text-white">{client.ori}</p>
+            </div>
+          )}
+
+          {/* Divider */}
+          <hr className="border-gray-200 dark:border-slate-700" />
+
+          {/* Completed / TCN */}
+          {isCompleted && (
+            <div className="space-y-2">
+              {client.completedAt && (
+                <div>
+                  <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Completed</p>
+                  <p className="text-sm text-gray-700 dark:text-gray-300">{client.completedAt}</p>
                 </div>
               )}
-              {client.status && (
-                <div className="bg-gray-50 dark:bg-slate-700 rounded-lg p-3">
-                  <p className="text-xs text-gray-500 dark:text-gray-400">Status</p>
-                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                    client.status === 'confirmed' || client.status === 'completed' ? 'bg-green-100 text-green-700' :
-                    client.status === 'pending' || client.status === 'new' ? 'bg-yellow-100 text-yellow-700' :
-                    client.status === 'shipped' ? 'bg-blue-100 text-blue-700' :
-                    'bg-gray-100 text-gray-700'
-                  }`}>{client.status}</span>
+              {client.tcn && (
+                <div>
+                  <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">TCN</p>
+                  <p className="text-sm font-mono text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-700 px-3 py-2 rounded">{client.tcn}</p>
                 </div>
               )}
             </div>
-          </div>
+          )}
 
           {/* Notes */}
           {client.notes && (
             <div>
-              <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">Notes</h3>
-              <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-lg p-4">
-                <p className="text-sm text-amber-900 dark:text-amber-200">{client.notes}</p>
-              </div>
+              <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Notes</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded px-3 py-2">{client.notes}</p>
             </div>
           )}
 
-          {/* Service History */}
-          <div>
-            <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">Service History</h3>
-            <div className="bg-white dark:bg-slate-700 border dark:border-slate-600 rounded-lg overflow-hidden">
-              <table className="min-w-full divide-y divide-gray-200 dark:divide-slate-600">
-                <thead className="bg-gray-50 dark:bg-slate-800">
-                  <tr>
-                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Date</th>
-                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Service</th>
-                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Status</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200 dark:divide-slate-600">
-                  {serviceHistory.map((h, i) => (
-                    <tr key={i}>
-                      <td className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">{h.date}</td>
-                      <td className="px-4 py-2 text-sm text-gray-900 dark:text-white">{h.service}</td>
-                      <td className="px-4 py-2">
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                          h.status === 'confirmed' || h.status === 'completed' ? 'bg-green-100 text-green-700' :
-                          h.status === 'shipped' ? 'bg-blue-100 text-blue-700' :
-                          'bg-yellow-100 text-yellow-700'
-                        }`}>{h.status}</span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
           {/* Action Buttons */}
-          <div className="flex gap-3 pt-2">
+          <div className="flex gap-3 pt-1">
             {client.email && (
               <a href={`mailto:${client.email}`} className="flex-1 bg-teal-600 text-white text-center py-2.5 rounded-lg text-sm font-medium hover:bg-teal-700 transition">
                 Email Client
               </a>
             )}
             {client.phone && (
-              <a href={`tel:${client.phone.replace(/\D/g, '')}`} className="flex-1 border border-teal-600 text-teal-600 text-center py-2.5 rounded-lg text-sm font-medium hover:bg-teal-50 transition">
+              <a href={`tel:${client.phone.replace(/\D/g, '')}`} className="flex-1 border border-teal-600 text-teal-600 text-center py-2.5 rounded-lg text-sm font-medium hover:bg-teal-50 dark:hover:bg-teal-900/20 transition">
                 Call Client
               </a>
             )}
+            <button className="flex-1 border border-gray-300 dark:border-slate-600 text-gray-700 dark:text-gray-300 text-center py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 dark:hover:bg-slate-700 transition">
+              Edit
+            </button>
           </div>
         </div>
       </div>
