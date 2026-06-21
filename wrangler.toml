@@ -1,0 +1,15 @@
+name = "provn-api"
+main = "worker/index.js"
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+account_id = "b00e9b8e78a5ff6f69986d3cc057b473"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "provn-db"
+database_id = "f1d394d7-13d5-41ea-8266-5f0d8bde0319"
+
+[vars]
+JWT_EXPIRES_IN = "7d"
+
+# JWT_SECRET must be set via: wrangler secret put JWT_SECRET

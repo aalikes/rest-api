@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
@@ -14,6 +15,13 @@ const dashboardRoutes = require('./routes/dashboard');
 const adminRoutes = require('./routes/admin');
 const searchRoutes = require('./routes/search');
 const hookRoutes = require('./routes/hooks');
+const serviceRoutes = require('./routes/services');
+const clientRoutes = require('./routes/clients');
+const appointmentRoutes = require('./routes/appointments');
+const orderRoutes = require('./routes/orders');
+const documentRoutes = require('./routes/documents');
+const businessDashboardRoutes = require('./routes/businessDashboard');
+const apostilleWorkflowRoutes = require('./routes/apostilleWorkflow');
 const errorHandler = require('./middleware/errorHandler');
 const AppError = require('./utils/AppError');
 
@@ -49,6 +57,23 @@ app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/hooks', hookRoutes);
+app.use('/api/services', serviceRoutes);
+app.use('/api/clients', clientRoutes);
+app.use('/api/appointments', appointmentRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/documents', documentRoutes);
+app.use('/api/business/dashboard', businessDashboardRoutes);
+app.use('/api/apostille', apostilleWorkflowRoutes);
+
+// ── Frontend (production) ─────────────────────────────────────────
+const frontendDist = path.join(__dirname, '..', 'frontend', 'dist');
+app.use(express.static(frontendDist));
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api/')) return next();
+  res.sendFile(path.join(frontendDist, 'index.html'), (err) => {
+    if (err) next();
+  });
+});
 
 // ── 404 Handler ───────────────────────────────────────────────────
 app.use((_req, _res, next) => {
