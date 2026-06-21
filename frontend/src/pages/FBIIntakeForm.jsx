@@ -37,6 +37,7 @@ export default function FBIIntakeForm() {
   const navigate = useNavigate();
   const { t } = useI18n();
   const [step, setStep] = useState(1);
+  const [subTab, setSubTab] = useState('applicant');
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
     firstName: '',
@@ -49,6 +50,8 @@ export default function FBIIntakeForm() {
     gender: '',
     race: '',
     height: '',
+    heightFeet: '',
+    heightInches: '',
     weight: '',
     eyeColor: '',
     hairColor: '',
@@ -120,119 +123,194 @@ export default function FBIIntakeForm() {
         ))}
       </div>
 
-      {/* Step 1: Personal Information */}
+      {/* Step 1: Applicant Info & Physical Description (2 tabs) */}
       {step === 1 && (
         <div className="space-y-6">
-          <div className="bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-xl p-6">
-            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-1">Personal Information</h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">Required for FBI background check processing</p>
-
-            <div className="grid sm:grid-cols-3 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">First Name *</label>
-                <input type="text" name="firstName" value={form.firstName} onChange={handleChange} required className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Middle Name</label>
-                <input type="text" name="middleName" value={form.middleName} onChange={handleChange} className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Last Name *</label>
-                <input type="text" name="lastName" value={form.lastName} onChange={handleChange} required className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm" />
-              </div>
-            </div>
-
-            <div className="grid sm:grid-cols-2 gap-4 mt-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Maiden Name / Aliases</label>
-                <input type="text" name="aliases" value={form.aliases} onChange={handleChange} placeholder="If applicable" className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Date of Birth *</label>
-                <input type="date" name="dateOfBirth" value={form.dateOfBirth} onChange={handleChange} required className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm" />
-              </div>
-            </div>
-
-            <div className="grid sm:grid-cols-2 gap-4 mt-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Social Security Number *</label>
-                <input type="text" name="ssn" value={form.ssn} onChange={handleChange} placeholder="XXX-XX-XXXX" required className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm" />
-                <p className="text-xs text-gray-400 mt-1">Required by federal law for FBI submissions</p>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Place of Birth *</label>
-                <input type="text" name="placeOfBirth" value={form.placeOfBirth} onChange={handleChange} placeholder="City, State or Country" required className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm" />
-              </div>
-            </div>
-
-            <div className="grid sm:grid-cols-3 gap-4 mt-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Gender *</label>
-                <select name="gender" value={form.gender} onChange={handleChange} required className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm">
-                  <option value="">Select</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Citizenship *</label>
-                <input type="text" name="countryOfCitizenship" value={form.countryOfCitizenship} onChange={handleChange} placeholder="e.g. United States" required className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Race</label>
-                <select name="race" value={form.race} onChange={handleChange} className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm">
-                  <option value="">Select</option>
-                  <option value="white">White</option>
-                  <option value="black">Black</option>
-                  <option value="asian">Asian / Pacific Islander</option>
-                  <option value="hispanic">Hispanic</option>
-                  <option value="native">American Indian / Alaska Native</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="grid sm:grid-cols-4 gap-4 mt-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Height</label>
-                <input type="text" name="height" value={form.height} onChange={handleChange} placeholder="5'10&quot;" className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Weight (lbs)</label>
-                <input type="text" name="weight" value={form.weight} onChange={handleChange} placeholder="170" className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Eye Color</label>
-                <select name="eyeColor" value={form.eyeColor} onChange={handleChange} className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm">
-                  <option value="">Select</option>
-                  <option value="brown">Brown</option>
-                  <option value="blue">Blue</option>
-                  <option value="green">Green</option>
-                  <option value="hazel">Hazel</option>
-                  <option value="black">Black</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Hair Color</label>
-                <select name="hairColor" value={form.hairColor} onChange={handleChange} className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm">
-                  <option value="">Select</option>
-                  <option value="black">Black</option>
-                  <option value="brown">Brown</option>
-                  <option value="blonde">Blonde</option>
-                  <option value="red">Red</option>
-                  <option value="gray">Gray</option>
-                  <option value="bald">Bald</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-            </div>
+          {/* Sub-tabs */}
+          <div className="flex border-b border-gray-200 dark:border-slate-700">
+            <button onClick={() => setSubTab('applicant')} className={`px-5 py-3 text-sm font-medium border-b-2 transition ${subTab === 'applicant' ? 'border-teal-600 text-teal-600' : 'border-transparent text-gray-500 hover:text-gray-700'}`}>
+              Applicant Information
+            </button>
+            <button onClick={() => setSubTab('physical')} className={`px-5 py-3 text-sm font-medium border-b-2 transition ${subTab === 'physical' ? 'border-teal-600 text-teal-600' : 'border-transparent text-gray-500 hover:text-gray-700'}`}>
+              Physical Description
+            </button>
           </div>
 
-          <button onClick={() => setStep(2)} disabled={!form.firstName || !form.lastName || !form.dateOfBirth || !form.ssn}
-            className="w-full bg-teal-600 hover:bg-teal-700 disabled:bg-gray-300 text-white py-3 rounded-lg font-medium transition">
-            Continue →
-          </button>
+          {/* Applicant Information Tab */}
+          {subTab === 'applicant' && (
+            <div className="bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-xl p-6">
+              <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-1">Applicant Information</h2>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">Personal details required for FBI background check</p>
+
+              <div className="grid sm:grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">First Name *</label>
+                  <input type="text" name="firstName" value={form.firstName} onChange={handleChange} required className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Middle Name</label>
+                  <input type="text" name="middleName" value={form.middleName} onChange={handleChange} className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Last Name *</label>
+                  <input type="text" name="lastName" value={form.lastName} onChange={handleChange} required className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm" />
+                </div>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-4 mt-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Maiden Name / Aliases</label>
+                  <input type="text" name="aliases" value={form.aliases} onChange={handleChange} placeholder="If applicable" className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Date of Birth *</label>
+                  <input type="date" name="dateOfBirth" value={form.dateOfBirth} onChange={handleChange} required className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm" />
+                </div>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-4 mt-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Social Security Number *</label>
+                  <input type="text" name="ssn" value={form.ssn} onChange={handleChange} placeholder="XXX-XX-XXXX" required className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm" />
+                  <p className="text-xs text-gray-400 mt-1">Required by federal law for FBI submissions</p>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Place of Birth *</label>
+                  <input type="text" name="placeOfBirth" value={form.placeOfBirth} onChange={handleChange} placeholder="City, State or Country" required className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm" />
+                </div>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-4 mt-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Sex *</label>
+                  <select name="gender" value={form.gender} onChange={handleChange} required className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm">
+                    <option value="">Select</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Country of Citizenship *</label>
+                  <input type="text" name="countryOfCitizenship" value={form.countryOfCitizenship} onChange={handleChange} placeholder="e.g. United States" required className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm" />
+                </div>
+              </div>
+
+              <div className="mt-4">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Reason Enrolled *</label>
+                <select name="reason" value={form.reason} onChange={handleChange} className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm">
+                  <option value="">Select a reason</option>
+                  {reasonOptions.map((r) => <option key={r} value={r}>{r}</option>)}
+                </select>
+                {form.reason === 'Other Reason - Please Describe' && (
+                  <input type="text" name="reasonOther" value={form.reasonOther} onChange={handleChange} placeholder="Describe your reason" className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm mt-2" />
+                )}
+              </div>
+
+              <div className="mt-6 flex justify-end">
+                <button onClick={() => setSubTab('physical')} className="bg-teal-600 hover:bg-teal-700 text-white px-6 py-2.5 rounded-lg text-sm font-medium transition">
+                  Next: Physical Description →
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Physical Description Tab */}
+          {subTab === 'physical' && (
+            <div className="bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-xl p-6">
+              <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-1">Physical Description</h2>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">Required for FD-258 fingerprint card</p>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Race</label>
+                  <select name="race" value={form.race} onChange={handleChange} className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm">
+                    <option value="">Select</option>
+                    <option value="white">White</option>
+                    <option value="black">Black</option>
+                    <option value="asian">Asian / Pacific Islander</option>
+                    <option value="hispanic">Hispanic</option>
+                    <option value="native">American Indian / Alaska Native</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Sex *</label>
+                  <select name="gender" value={form.gender} onChange={handleChange} required className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm">
+                    <option value="">Select</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-4 mt-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Height *</label>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <select name="heightFeet" value={form.heightFeet} onChange={handleChange} className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm">
+                        <option value="">Feet</option>
+                        {[4, 5, 6, 7].map(f => <option key={f} value={f}>{f} ft</option>)}
+                      </select>
+                    </div>
+                    <div>
+                      <select name="heightInches" value={form.heightInches} onChange={handleChange} className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm">
+                        <option value="">Inches</option>
+                        {[0,1,2,3,4,5,6,7,8,9,10,11].map(i => <option key={i} value={i}>{i} in</option>)}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Weight (lbs) *</label>
+                  <input type="number" name="weight" value={form.weight} onChange={handleChange} placeholder="170" className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm" />
+                </div>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-4 mt-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Eye Color *</label>
+                  <select name="eyeColor" value={form.eyeColor} onChange={handleChange} className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm">
+                    <option value="">Select</option>
+                    <option value="brown">Brown</option>
+                    <option value="blue">Blue</option>
+                    <option value="green">Green</option>
+                    <option value="hazel">Hazel</option>
+                    <option value="black">Black</option>
+                    <option value="gray">Gray</option>
+                    <option value="maroon">Maroon</option>
+                    <option value="multicolor">Multicolor</option>
+                    <option value="pink">Pink</option>
+                    <option value="unknown">Unknown</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Hair Color *</label>
+                  <select name="hairColor" value={form.hairColor} onChange={handleChange} className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm">
+                    <option value="">Select</option>
+                    <option value="black">Black</option>
+                    <option value="brown">Brown</option>
+                    <option value="blonde">Blonde</option>
+                    <option value="red">Red</option>
+                    <option value="gray">Gray / White</option>
+                    <option value="sandy">Sandy</option>
+                    <option value="bald">Bald</option>
+                    <option value="unknown">Unknown</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="mt-6 flex justify-between">
+                <button onClick={() => setSubTab('applicant')} className="border border-gray-300 dark:border-slate-600 text-gray-700 dark:text-gray-300 px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 dark:hover:bg-slate-700 transition">
+                  ← Back to Applicant
+                </button>
+                <button onClick={() => setStep(2)} disabled={!form.firstName || !form.lastName || !form.dateOfBirth || !form.ssn}
+                  className="bg-teal-600 hover:bg-teal-700 disabled:bg-gray-300 text-white px-6 py-2.5 rounded-lg text-sm font-medium transition">
+                  Continue to Contact Info →
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       )}
 
@@ -287,17 +365,6 @@ export default function FBIIntakeForm() {
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">ORI Number</label>
                 <input type="text" name="ori" value={form.ori} onChange={handleChange} placeholder="FL123456789" className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm uppercase" />
                 <p className="text-xs text-teal-600 dark:text-teal-400 mt-1">If you have an ORI number for your organization, you can provide it here. Ask your employer for the ORI code to expedite processing.</p>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Reason for fingerprint - Choose one that best describes</label>
-                <select name="reason" value={form.reason} onChange={handleChange} className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm">
-                  <option value="">Select a reason</option>
-                  {reasonOptions.map((r) => <option key={r} value={r}>{r}</option>)}
-                </select>
-                {form.reason === 'Other Reason - Please Describe' && (
-                  <input type="text" name="reasonOther" value={form.reasonOther} onChange={handleChange} placeholder="Describe your reason" className="w-full border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-3 py-2 text-sm mt-2" />
-                )}
               </div>
 
               <div>

@@ -147,11 +147,11 @@ function StatCard({ label, value, sub, color }) {
 
 function TodayTab({ data, onClientClick }) {
   const [appointments, setAppointments] = useState([
-    { time: '9:00 AM', client: 'Maria Rodriguez', service: 'Fingerprinting', status: 'confirmed', email: 'maria.rodriguez@gmail.com', phone: '(305) 555-0101', dob: '1988-04-12', address: '1250 NE 2nd Ave', addressLine2: '', city: 'Miami', state: 'FL', zip: '33132', ori: '', scheduledAt: 'Jun 20, 2026 - 9:00 AM', bufferBefore: 0, bufferAfter: 0, notes: 'Regular client, prefers morning appointments' },
-    { time: '10:30 AM', client: 'Jean Baptiste', service: 'FBI Background Check', status: 'confirmed', email: 'jean.baptiste@gmail.com', phone: '(305) 555-0102', dob: '1995-08-23', address: '3400 Biscayne Blvd', addressLine2: 'Suite 200', city: 'Miami', state: 'FL', zip: '33137', ori: 'FL924680Z', scheduledAt: 'Jun 20, 2026 - 10:30 AM', bufferBefore: 15, bufferAfter: 15, notes: 'Immigration application — needs expedited processing' },
-    { time: '11:00 AM', client: 'Carlos Mejia', service: 'Apostille', status: 'pending', email: 'cmejia@outlook.com', phone: '(786) 555-0103', dob: '1979-11-05', address: '800 NE 71st St', addressLine2: 'Apt 4', city: 'Miami', state: 'FL', zip: '33138', ori: '', scheduledAt: 'Jun 20, 2026 - 11:00 AM', bufferBefore: 0, bufferAfter: 0, notes: 'Birth certificate apostille for Colombia' },
-    { time: '1:00 PM', client: 'Ana Silva', service: 'FBI + Apostille', status: 'confirmed', email: 'ana.silva@yahoo.com', phone: '(954) 555-0104', dob: '1990-02-17', address: '2200 N Ocean Blvd', addressLine2: '', city: 'Ft. Lauderdale', state: 'FL', zip: '33305', ori: 'FL113355X', scheduledAt: 'Jun 20, 2026 - 1:00 PM', bufferBefore: 15, bufferAfter: 15, notes: 'Work visa for Portugal — FBI + federal apostille' },
-    { time: '2:30 PM', client: 'Robert Johnson', service: 'Fingerprinting', status: 'confirmed', email: 'rjohnson@mail.com', phone: '(305) 555-0105', dob: '1983-06-30', address: '500 Brickell Ave', addressLine2: 'Floor 12', city: 'Miami', state: 'FL', zip: '33131', ori: '', scheduledAt: 'Jun 20, 2026 - 2:30 PM', bufferBefore: 0, bufferAfter: 0, notes: 'Security guard license renewal — 2 FD-258 cards needed' },
+    { time: '9:00 AM', client: 'Maria Rodriguez', service: 'Fingerprinting', status: 'confirmed', email: 'maria.rodriguez@gmail.com', phone: '(305) 555-0101', dob: '1988-04-12', sex: 'female', placeOfBirth: 'Bogota, Colombia', race: 'Hispanic', height: "5'4\"", weight: '130', eyeColor: 'Brown', hairColor: 'Black', countryOfCitizenship: 'United States', reasonEnrolled: 'Employment', address: '1250 NE 2nd Ave', addressLine2: '', city: 'Miami', state: 'FL', zip: '33132', ori: '', scheduledAt: 'Jun 20, 2026 - 9:00 AM', bufferBefore: 0, bufferAfter: 0, notes: 'Regular client, prefers morning appointments' },
+    { time: '10:30 AM', client: 'Jean Baptiste', service: 'FBI Background Check', status: 'confirmed', email: 'jean.baptiste@gmail.com', phone: '(305) 555-0102', dob: '1995-08-23', sex: 'male', placeOfBirth: 'Port-au-Prince, Haiti', race: 'Black', height: "5'11\"", weight: '175', eyeColor: 'Brown', hairColor: 'Black', countryOfCitizenship: 'Haiti', reasonEnrolled: 'Immigration', address: '3400 Biscayne Blvd', addressLine2: 'Suite 200', city: 'Miami', state: 'FL', zip: '33137', ori: 'FL924680Z', scheduledAt: 'Jun 20, 2026 - 10:30 AM', bufferBefore: 15, bufferAfter: 15, notes: 'Immigration application — needs expedited processing' },
+    { time: '11:00 AM', client: 'Carlos Mejia', service: 'Apostille', status: 'pending', email: 'cmejia@outlook.com', phone: '(786) 555-0103', dob: '1979-11-05', sex: 'male', placeOfBirth: 'Medellin, Colombia', race: 'Hispanic', height: "5'9\"", weight: '165', eyeColor: 'Brown', hairColor: 'Brown', countryOfCitizenship: 'Colombia', reasonEnrolled: 'Other', address: '800 NE 71st St', addressLine2: 'Apt 4', city: 'Miami', state: 'FL', zip: '33138', ori: '', scheduledAt: 'Jun 20, 2026 - 11:00 AM', bufferBefore: 0, bufferAfter: 0, notes: 'Birth certificate apostille for Colombia' },
+    { time: '1:00 PM', client: 'Ana Silva', service: 'FBI + Apostille', status: 'confirmed', email: 'ana.silva@yahoo.com', phone: '(954) 555-0104', dob: '1990-02-17', sex: 'female', placeOfBirth: 'Lisbon, Portugal', race: 'White', height: "5'6\"", weight: '140', eyeColor: 'Green', hairColor: 'Brown', countryOfCitizenship: 'Portugal', reasonEnrolled: 'Immigration', address: '2200 N Ocean Blvd', addressLine2: '', city: 'Ft. Lauderdale', state: 'FL', zip: '33305', ori: 'FL113355X', scheduledAt: 'Jun 20, 2026 - 1:00 PM', bufferBefore: 15, bufferAfter: 15, notes: 'Work visa for Portugal — FBI + federal apostille' },
+    { time: '2:30 PM', client: 'Robert Johnson', service: 'Fingerprinting', status: 'confirmed', email: 'rjohnson@mail.com', phone: '(305) 555-0105', dob: '1983-06-30', sex: 'male', placeOfBirth: 'Miami, FL', race: 'White', height: "6'1\"", weight: '195', eyeColor: 'Blue', hairColor: 'Brown', countryOfCitizenship: 'United States', reasonEnrolled: 'Security Guard License', address: '500 Brickell Ave', addressLine2: 'Floor 12', city: 'Miami', state: 'FL', zip: '33131', ori: '', scheduledAt: 'Jun 20, 2026 - 2:30 PM', bufferBefore: 0, bufferAfter: 0, notes: 'Security guard license renewal — 2 FD-258 cards needed' },
   ]);
 
   const handleStartJob = (index) => {
@@ -210,12 +210,12 @@ function TodayTab({ data, onClientClick }) {
 
 function ScheduledTab({ data, onClientClick }) {
   const [upcoming, setUpcoming] = useState([
-    { date: 'Mon, Jun 2', time: '9:00 AM', client: 'David Chen', service: 'FBI Background Check', status: 'confirmed', email: 'david.chen@gmail.com', phone: '(305) 555-0201', dob: '1992-01-15', address: '900 NE 125th St', addressLine2: '', city: 'North Miami', state: 'FL', zip: '33161', ori: 'FL778899A', scheduledAt: 'Jun 2, 2026 - 9:00 AM', bufferBefore: 15, bufferAfter: 15, notes: 'Employment background check' },
-    { date: 'Mon, Jun 2', time: '11:00 AM', client: 'Marie Dupont', service: 'Apostille (2 docs)', status: 'confirmed', email: 'marie.dupont@outlook.com', phone: '(786) 555-0202', dob: '1985-07-22', address: '1500 Bay Rd', addressLine2: 'Unit 3A', city: 'Miami Beach', state: 'FL', zip: '33139', ori: '', scheduledAt: 'Jun 2, 2026 - 11:00 AM', bufferBefore: 0, bufferAfter: 0, notes: 'Marriage certificate + birth certificate for France' },
-    { date: 'Tue, Jun 3', time: '10:00 AM', client: 'Jose Martinez', service: 'Fingerprinting', status: 'confirmed', email: 'jose.m@yahoo.com', phone: '(305) 555-0203', dob: '1998-03-08', address: '7400 SW 8th St', addressLine2: '', city: 'Miami', state: 'FL', zip: '33144', ori: '', scheduledAt: 'Jun 3, 2026 - 10:00 AM', bufferBefore: 0, bufferAfter: 0, notes: 'Concealed weapons permit' },
-    { date: 'Tue, Jun 3', time: '2:00 PM', client: 'Lisa Wong', service: 'FBI + Apostille', status: 'confirmed', email: 'lwong@mail.com', phone: '(954) 555-0204', dob: '1987-12-01', address: '3000 E Commercial Blvd', addressLine2: 'Suite 100', city: 'Ft. Lauderdale', state: 'FL', zip: '33308', ori: 'FL445566B', scheduledAt: 'Jun 3, 2026 - 2:00 PM', bufferBefore: 15, bufferAfter: 15, notes: 'Teaching position in Dubai' },
-    { date: 'Wed, Jun 4', time: '9:30 AM', client: 'Pierre Louis', service: 'Fingerprinting', status: 'confirmed', email: 'pierre.l@gmail.com', phone: '(305) 555-0205', dob: '2001-09-14', address: '200 NE 36th St', addressLine2: '', city: 'Miami', state: 'FL', zip: '33137', ori: '', scheduledAt: 'Jun 4, 2026 - 9:30 AM', bufferBefore: 0, bufferAfter: 0, notes: 'Security guard license — first time' },
-    { date: 'Thu, Jun 5', time: '1:00 PM', client: 'Sarah Brown', service: 'Apostille (1 doc)', status: 'confirmed', email: 'sarah.b@gmail.com', phone: '(305) 555-0206', dob: '1976-05-19', address: '1200 Brickell Ave', addressLine2: 'Floor 28', city: 'Miami', state: 'FL', zip: '33131', ori: '', scheduledAt: 'Jun 5, 2026 - 1:00 PM', bufferBefore: 0, bufferAfter: 0, notes: 'Corporate document for UK business registration' },
+    { date: 'Mon, Jun 2', time: '9:00 AM', client: 'David Chen', service: 'FBI Background Check', status: 'confirmed', email: 'david.chen@gmail.com', phone: '(305) 555-0201', dob: '1992-01-15', sex: 'male', placeOfBirth: 'Shanghai, China', race: 'Asian / Pacific Islander', height: "5'8\"", weight: '155', eyeColor: 'Brown', hairColor: 'Black', countryOfCitizenship: 'United States', reasonEnrolled: 'Employment', address: '900 NE 125th St', addressLine2: '', city: 'North Miami', state: 'FL', zip: '33161', ori: 'FL778899A', scheduledAt: 'Jun 2, 2026 - 9:00 AM', bufferBefore: 15, bufferAfter: 15, notes: 'Employment background check' },
+    { date: 'Mon, Jun 2', time: '11:00 AM', client: 'Marie Dupont', service: 'Apostille (2 docs)', status: 'confirmed', email: 'marie.dupont@outlook.com', phone: '(786) 555-0202', dob: '1985-07-22', sex: 'female', placeOfBirth: 'Paris, France', race: 'White', height: "5'5\"", weight: '125', eyeColor: 'Blue', hairColor: 'Blonde', countryOfCitizenship: 'France', reasonEnrolled: 'Other', address: '1500 Bay Rd', addressLine2: 'Unit 3A', city: 'Miami Beach', state: 'FL', zip: '33139', ori: '', scheduledAt: 'Jun 2, 2026 - 11:00 AM', bufferBefore: 0, bufferAfter: 0, notes: 'Marriage certificate + birth certificate for France' },
+    { date: 'Tue, Jun 3', time: '10:00 AM', client: 'Jose Martinez', service: 'Fingerprinting', status: 'confirmed', email: 'jose.m@yahoo.com', phone: '(305) 555-0203', dob: '1998-03-08', sex: 'male', placeOfBirth: 'Havana, Cuba', race: 'Hispanic', height: "5'10\"", weight: '180', eyeColor: 'Brown', hairColor: 'Black', countryOfCitizenship: 'United States', reasonEnrolled: 'ATF / Gun License', address: '7400 SW 8th St', addressLine2: '', city: 'Miami', state: 'FL', zip: '33144', ori: '', scheduledAt: 'Jun 3, 2026 - 10:00 AM', bufferBefore: 0, bufferAfter: 0, notes: 'Concealed weapons permit' },
+    { date: 'Tue, Jun 3', time: '2:00 PM', client: 'Lisa Wong', service: 'FBI + Apostille', status: 'confirmed', email: 'lwong@mail.com', phone: '(954) 555-0204', dob: '1987-12-01', sex: 'female', placeOfBirth: 'Hong Kong', race: 'Asian / Pacific Islander', height: "5'3\"", weight: '115', eyeColor: 'Brown', hairColor: 'Black', countryOfCitizenship: 'United States', reasonEnrolled: 'Employment', address: '3000 E Commercial Blvd', addressLine2: 'Suite 100', city: 'Ft. Lauderdale', state: 'FL', zip: '33308', ori: 'FL445566B', scheduledAt: 'Jun 3, 2026 - 2:00 PM', bufferBefore: 15, bufferAfter: 15, notes: 'Teaching position in Dubai' },
+    { date: 'Wed, Jun 4', time: '9:30 AM', client: 'Pierre Louis', service: 'Fingerprinting', status: 'confirmed', email: 'pierre.l@gmail.com', phone: '(305) 555-0205', dob: '2001-09-14', sex: 'male', placeOfBirth: 'Cap-Haitien, Haiti', race: 'Black', height: "6'0\"", weight: '185', eyeColor: 'Brown', hairColor: 'Black', countryOfCitizenship: 'United States', reasonEnrolled: 'Security Guard License', address: '200 NE 36th St', addressLine2: '', city: 'Miami', state: 'FL', zip: '33137', ori: '', scheduledAt: 'Jun 4, 2026 - 9:30 AM', bufferBefore: 0, bufferAfter: 0, notes: 'Security guard license — first time' },
+    { date: 'Thu, Jun 5', time: '1:00 PM', client: 'Sarah Brown', service: 'Apostille (1 doc)', status: 'confirmed', email: 'sarah.b@gmail.com', phone: '(305) 555-0206', dob: '1976-05-19', sex: 'female', placeOfBirth: 'London, UK', race: 'White', height: "5'7\"", weight: '145', eyeColor: 'Hazel', hairColor: 'Brown', countryOfCitizenship: 'United Kingdom', reasonEnrolled: 'Other', address: '1200 Brickell Ave', addressLine2: 'Floor 28', city: 'Miami', state: 'FL', zip: '33131', ori: '', scheduledAt: 'Jun 5, 2026 - 1:00 PM', bufferBefore: 0, bufferAfter: 0, notes: 'Corporate document for UK business registration' },
   ]);
 
   const handleStartJob = (index) => {
@@ -276,11 +276,11 @@ function ScheduledTab({ data, onClientClick }) {
 
 function IntakesTab({ data, onClientClick }) {
   const intakes = [
-    { name: 'James Wilson', client: 'James Wilson', service: 'FBI Background Check', submitted: '2 hours ago', status: 'new', email: 'james.wilson@gmail.com', phone: '(305) 555-0301', dob: '1991-10-22', address: '600 NE 27th St', addressLine2: '', city: 'Miami', state: 'FL', zip: '33137', ori: 'FL998877C', scheduledAt: 'Jun 21, 2026 - 10:00 AM', bufferBefore: 15, bufferAfter: 15, notes: 'Needs FBI check for state licensing board' },
-    { name: 'Sophie Laurent', client: 'Sophie Laurent', service: 'Apostille', submitted: '5 hours ago', status: 'new', email: 'sophie.l@outlook.com', phone: '(786) 555-0302', dob: '1993-04-11', address: '1800 NW 7th Ave', addressLine2: 'Apt 12B', city: 'Miami', state: 'FL', zip: '33136', ori: '', scheduledAt: 'Jun 21, 2026 - 11:30 AM', bufferBefore: 0, bufferAfter: 0, notes: 'Diploma apostille for French university' },
-    { name: 'Miguel Santos', client: 'Miguel Santos', service: 'Fingerprinting', submitted: '1 day ago', status: 'reviewed', email: 'miguel.s@yahoo.com', phone: '(305) 555-0303', dob: '1986-08-03', address: '4500 NW 27th Ave', addressLine2: '', city: 'Miami', state: 'FL', zip: '33142', ori: '', scheduledAt: 'Jun 22, 2026 - 9:00 AM', bufferBefore: 0, bufferAfter: 0, notes: 'Out-of-state submission — needs PDF + ink card' },
-    { name: 'Fatima Hassan', client: 'Fatima Hassan', service: 'FBI + Apostille', submitted: '1 day ago', status: 'reviewed', email: 'fatima.h@gmail.com', phone: '(954) 555-0304', dob: '1989-12-25', address: '2700 N Federal Hwy', addressLine2: 'Suite 310', city: 'Ft. Lauderdale', state: 'FL', zip: '33306', ori: 'FL223344D', scheduledAt: 'Jun 22, 2026 - 1:00 PM', bufferBefore: 15, bufferAfter: 15, notes: 'Immigration to UAE — expedite if possible' },
-    { name: 'John Peters', client: 'John Peters', service: 'Fingerprinting', submitted: '2 days ago', status: 'contacted', email: 'jpeters@mail.com', phone: '(305) 555-0305', dob: '1975-02-28', address: '8900 SW 107th Ave', addressLine2: '', city: 'Miami', state: 'FL', zip: '33176', ori: '', scheduledAt: 'Jun 23, 2026 - 2:00 PM', bufferBefore: 0, bufferAfter: 0, notes: 'Private investigator license — 2 cards' },
+    { name: 'James Wilson', client: 'James Wilson', service: 'FBI Background Check', submitted: '2 hours ago', status: 'new', email: 'james.wilson@gmail.com', phone: '(305) 555-0301', dob: '1991-10-22', sex: 'male', placeOfBirth: 'Atlanta, GA', race: 'Black', height: "6'2\"", weight: '200', eyeColor: 'Brown', hairColor: 'Black', countryOfCitizenship: 'United States', reasonEnrolled: 'Livescan', address: '600 NE 27th St', addressLine2: '', city: 'Miami', state: 'FL', zip: '33137', ori: 'FL998877C', scheduledAt: 'Jun 21, 2026 - 10:00 AM', bufferBefore: 15, bufferAfter: 15, notes: 'Needs FBI check for state licensing board' },
+    { name: 'Sophie Laurent', client: 'Sophie Laurent', service: 'Apostille', submitted: '5 hours ago', status: 'new', email: 'sophie.l@outlook.com', phone: '(786) 555-0302', dob: '1993-04-11', sex: 'female', placeOfBirth: 'Lyon, France', race: 'White', height: "5'6\"", weight: '128', eyeColor: 'Green', hairColor: 'Brown', countryOfCitizenship: 'France', reasonEnrolled: 'Other', address: '1800 NW 7th Ave', addressLine2: 'Apt 12B', city: 'Miami', state: 'FL', zip: '33136', ori: '', scheduledAt: 'Jun 21, 2026 - 11:30 AM', bufferBefore: 0, bufferAfter: 0, notes: 'Diploma apostille for French university' },
+    { name: 'Miguel Santos', client: 'Miguel Santos', service: 'Fingerprinting', submitted: '1 day ago', status: 'reviewed', email: 'miguel.s@yahoo.com', phone: '(305) 555-0303', dob: '1986-08-03', sex: 'male', placeOfBirth: 'Santo Domingo, DR', race: 'Hispanic', height: "5'7\"", weight: '160', eyeColor: 'Brown', hairColor: 'Black', countryOfCitizenship: 'Dominican Republic', reasonEnrolled: 'Fingerprint Card', address: '4500 NW 27th Ave', addressLine2: '', city: 'Miami', state: 'FL', zip: '33142', ori: '', scheduledAt: 'Jun 22, 2026 - 9:00 AM', bufferBefore: 0, bufferAfter: 0, notes: 'Out-of-state submission — needs PDF + ink card' },
+    { name: 'Fatima Hassan', client: 'Fatima Hassan', service: 'FBI + Apostille', submitted: '1 day ago', status: 'reviewed', email: 'fatima.h@gmail.com', phone: '(954) 555-0304', dob: '1989-12-25', sex: 'female', placeOfBirth: 'Cairo, Egypt', race: 'White', height: "5'4\"", weight: '120', eyeColor: 'Brown', hairColor: 'Black', countryOfCitizenship: 'Egypt', reasonEnrolled: 'Immigration', address: '2700 N Federal Hwy', addressLine2: 'Suite 310', city: 'Ft. Lauderdale', state: 'FL', zip: '33306', ori: 'FL223344D', scheduledAt: 'Jun 22, 2026 - 1:00 PM', bufferBefore: 15, bufferAfter: 15, notes: 'Immigration to UAE — expedite if possible' },
+    { name: 'John Peters', client: 'John Peters', service: 'Fingerprinting', submitted: '2 days ago', status: 'contacted', email: 'jpeters@mail.com', phone: '(305) 555-0305', dob: '1975-02-28', sex: 'male', placeOfBirth: 'Boston, MA', race: 'White', height: "5'11\"", weight: '190', eyeColor: 'Blue', hairColor: 'Gray', countryOfCitizenship: 'United States', reasonEnrolled: 'Other Occupation', address: '8900 SW 107th Ave', addressLine2: '', city: 'Miami', state: 'FL', zip: '33176', ori: '', scheduledAt: 'Jun 23, 2026 - 2:00 PM', bufferBefore: 0, bufferAfter: 0, notes: 'Private investigator license — 2 cards' },
   ];
 
   return (
@@ -567,6 +567,7 @@ function AdminTab() {
 
 function ClientDetailModal({ client, onClose }) {
   const [editing, setEditing] = useState(false);
+  const [modalTab, setModalTab] = useState('applicant');
   const [form, setForm] = useState({
     phone: client.phone || '',
     email: client.email || '',
@@ -582,6 +583,16 @@ function ClientDetailModal({ client, onClose }) {
     bufferAfter: client.bufferAfter ?? 0,
     status: client.status || 'scheduled',
     service: client.service || '',
+    sex: client.sex || client.gender || '',
+    dob: client.dob || '',
+    placeOfBirth: client.placeOfBirth || '',
+    race: client.race || '',
+    height: client.height || '',
+    weight: client.weight || '',
+    countryOfCitizenship: client.countryOfCitizenship || '',
+    eyeColor: client.eyeColor || '',
+    hairColor: client.hairColor || '',
+    reasonEnrolled: client.reasonEnrolled || client.reason || '',
   });
   const [saved, setSaved] = useState(false);
   const [jobStarted, setJobStarted] = useState(false);
@@ -690,111 +701,251 @@ function ClientDetailModal({ client, onClose }) {
             </div>
           )}
 
-          <hr className="border-gray-200 dark:border-slate-700" />
+          {/* Tab Switcher */}
+          <div className="flex border-b border-gray-200 dark:border-slate-700">
+            <button onClick={() => setModalTab('applicant')} className={`px-4 py-2 text-sm font-medium border-b-2 transition ${modalTab === 'applicant' ? 'border-teal-600 text-teal-600' : 'border-transparent text-gray-500 hover:text-gray-700'}`}>
+              Applicant
+            </button>
+            <button onClick={() => setModalTab('physical')} className={`px-4 py-2 text-sm font-medium border-b-2 transition ${modalTab === 'physical' ? 'border-teal-600 text-teal-600' : 'border-transparent text-gray-500 hover:text-gray-700'}`}>
+              Physical Description
+            </button>
+          </div>
 
-          {/* Client Info */}
-          <div className="space-y-2">
-            <p className="text-base font-semibold text-gray-900 dark:text-white">{name}</p>
-            {editing ? (
-              <div className="space-y-3">
-                <div>
-                  <label className={labelClass}>Phone</label>
-                  <input type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={inputClass} />
-                </div>
-                <div>
-                  <label className={labelClass}>Email</label>
-                  <input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={inputClass} />
-                </div>
-                <div>
-                  <label className={labelClass}>Address</label>
-                  <input type="text" value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} className={inputClass} />
-                </div>
-                <div>
-                  <label className={labelClass}>Address Line 2</label>
-                  <input type="text" value={form.addressLine2} onChange={(e) => setForm({ ...form, addressLine2: e.target.value })} className={inputClass} placeholder="Suite, Apt, Unit" />
-                </div>
-                <div className="grid grid-cols-3 gap-2">
-                  <div>
-                    <label className={labelClass}>City</label>
-                    <input type="text" value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} className={inputClass} />
+          {/* Applicant Tab */}
+          {modalTab === 'applicant' && (
+            <div className="space-y-4">
+              {/* Client Info */}
+              <div className="space-y-2">
+                <p className="text-base font-semibold text-gray-900 dark:text-white">{name}</p>
+                {editing ? (
+                  <div className="space-y-3">
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <label className={labelClass}>Phone</label>
+                        <input type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={inputClass} />
+                      </div>
+                      <div>
+                        <label className={labelClass}>Email</label>
+                        <input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={inputClass} />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <label className={labelClass}>Date of Birth</label>
+                        <input type="date" value={form.dob} onChange={(e) => setForm({ ...form, dob: e.target.value })} className={inputClass} />
+                      </div>
+                      <div>
+                        <label className={labelClass}>Sex</label>
+                        <select value={form.sex} onChange={(e) => setForm({ ...form, sex: e.target.value })} className={inputClass}>
+                          <option value="">Select</option>
+                          <option value="male">Male</option>
+                          <option value="female">Female</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <label className={labelClass}>Place of Birth</label>
+                        <input type="text" value={form.placeOfBirth} onChange={(e) => setForm({ ...form, placeOfBirth: e.target.value })} className={inputClass} placeholder="City, State or Country" />
+                      </div>
+                      <div>
+                        <label className={labelClass}>Country of Citizenship</label>
+                        <input type="text" value={form.countryOfCitizenship} onChange={(e) => setForm({ ...form, countryOfCitizenship: e.target.value })} className={inputClass} placeholder="e.g. United States" />
+                      </div>
+                    </div>
+                    <div>
+                      <label className={labelClass}>Reason Enrolled</label>
+                      <input type="text" value={form.reasonEnrolled} onChange={(e) => setForm({ ...form, reasonEnrolled: e.target.value })} className={inputClass} placeholder="e.g. Employment, Immigration" />
+                    </div>
+                    <div>
+                      <label className={labelClass}>Address</label>
+                      <input type="text" value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} className={inputClass} />
+                    </div>
+                    <div>
+                      <label className={labelClass}>Address Line 2</label>
+                      <input type="text" value={form.addressLine2} onChange={(e) => setForm({ ...form, addressLine2: e.target.value })} className={inputClass} placeholder="Suite, Apt, Unit" />
+                    </div>
+                    <div className="grid grid-cols-3 gap-2">
+                      <div>
+                        <label className={labelClass}>City</label>
+                        <input type="text" value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} className={inputClass} />
+                      </div>
+                      <div>
+                        <label className={labelClass}>State</label>
+                        <input type="text" value={form.state} onChange={(e) => setForm({ ...form, state: e.target.value })} className={inputClass} maxLength={2} />
+                      </div>
+                      <div>
+                        <label className={labelClass}>ZIP</label>
+                        <input type="text" value={form.zip} onChange={(e) => setForm({ ...form, zip: e.target.value })} className={inputClass} maxLength={10} />
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <label className={labelClass}>State</label>
-                    <input type="text" value={form.state} onChange={(e) => setForm({ ...form, state: e.target.value })} className={inputClass} maxLength={2} />
+                ) : (
+                  <div className="space-y-2">
+                    <div className="grid grid-cols-2 gap-x-4 gap-y-1">
+                      {form.phone && <div><span className="text-xs text-gray-500">Phone</span><p className="text-sm text-gray-700 dark:text-gray-300"><a href={`tel:${form.phone.replace(/\D/g, '')}`} className="hover:text-teal-600">{form.phone}</a></p></div>}
+                      {form.email && <div><span className="text-xs text-gray-500">Email</span><p className="text-sm text-gray-700 dark:text-gray-300"><a href={`mailto:${form.email}`} className="hover:text-teal-600">{form.email}</a></p></div>}
+                      {form.dob && <div><span className="text-xs text-gray-500">DOB</span><p className="text-sm text-gray-700 dark:text-gray-300">{form.dob}</p></div>}
+                      {form.sex && <div><span className="text-xs text-gray-500">Sex</span><p className="text-sm text-gray-700 dark:text-gray-300 capitalize">{form.sex}</p></div>}
+                      {form.placeOfBirth && <div><span className="text-xs text-gray-500">Place of Birth</span><p className="text-sm text-gray-700 dark:text-gray-300">{form.placeOfBirth}</p></div>}
+                      {form.countryOfCitizenship && <div><span className="text-xs text-gray-500">Citizenship</span><p className="text-sm text-gray-700 dark:text-gray-300">{form.countryOfCitizenship}</p></div>}
+                      {form.reasonEnrolled && <div className="col-span-2"><span className="text-xs text-gray-500">Reason Enrolled</span><p className="text-sm text-gray-700 dark:text-gray-300">{form.reasonEnrolled}</p></div>}
+                    </div>
+                    {fullAddress && (
+                      <div className="mt-2"><span className="text-xs text-gray-500">Address</span><div className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-line">{fullAddress}</div></div>
+                    )}
                   </div>
-                  <div>
-                    <label className={labelClass}>ZIP</label>
-                    <input type="text" value={form.zip} onChange={(e) => setForm({ ...form, zip: e.target.value })} className={inputClass} maxLength={10} />
-                  </div>
-                </div>
+                )}
               </div>
-            ) : (
-              <>
-                {form.phone && (
+
+              <hr className="border-gray-200 dark:border-slate-700" />
+
+              {/* Appointment Buffer */}
+              <div>
+                <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Appointment Buffer</p>
+                {editing ? (
+                  <div className="flex items-center gap-2">
+                    <input type="number" min="0" value={form.bufferBefore} onChange={(e) => setForm({ ...form, bufferBefore: parseInt(e.target.value) || 0 })} className={`${inputClass} w-20 text-center`} />
+                    <span className="text-sm text-gray-500">min before /</span>
+                    <input type="number" min="0" value={form.bufferAfter} onChange={(e) => setForm({ ...form, bufferAfter: parseInt(e.target.value) || 0 })} className={`${inputClass} w-20 text-center`} />
+                    <span className="text-sm text-gray-500">min after</span>
+                  </div>
+                ) : (
                   <p className="text-sm text-gray-700 dark:text-gray-300">
-                    <a href={`tel:${form.phone.replace(/\D/g, '')}`} className="hover:text-teal-600">{form.phone}</a>
+                    {form.bufferBefore}min before / {form.bufferAfter}min after
                   </p>
                 )}
-                {form.email && (
-                  <p className="text-sm text-gray-700 dark:text-gray-300">
-                    <a href={`mailto:${form.email}`} className="hover:text-teal-600">{form.email}</a>
-                  </p>
-                )}
-                {fullAddress && (
-                  <div className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-line">{fullAddress}</div>
-                )}
-              </>
-            )}
-          </div>
-
-          <hr className="border-gray-200 dark:border-slate-700" />
-
-          {/* Appointment Buffer */}
-          <div>
-            <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Appointment Buffer</p>
-            {editing ? (
-              <div className="flex items-center gap-2">
-                <input type="number" min="0" value={form.bufferBefore} onChange={(e) => setForm({ ...form, bufferBefore: parseInt(e.target.value) || 0 })} className={`${inputClass} w-20 text-center`} />
-                <span className="text-sm text-gray-500">min before /</span>
-                <input type="number" min="0" value={form.bufferAfter} onChange={(e) => setForm({ ...form, bufferAfter: parseInt(e.target.value) || 0 })} className={`${inputClass} w-20 text-center`} />
-                <span className="text-sm text-gray-500">min after</span>
               </div>
-            ) : (
-              <p className="text-sm text-gray-700 dark:text-gray-300">
-                {form.bufferBefore}min before / {form.bufferAfter}min after
-              </p>
-            )}
-          </div>
 
-          {/* ORI */}
-          <div>
-            <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">ORI Number</p>
-            {editing ? (
-              <input type="text" value={form.ori} onChange={(e) => setForm({ ...form, ori: e.target.value.toUpperCase() })} className={`${inputClass} font-mono`} placeholder="e.g. FL924680Z" />
-            ) : (
-              <p className="text-sm font-mono text-gray-900 dark:text-white">{form.ori || 'N/A'}</p>
-            )}
-          </div>
+              {/* ORI */}
+              <div>
+                <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">ORI Number</p>
+                {editing ? (
+                  <input type="text" value={form.ori} onChange={(e) => setForm({ ...form, ori: e.target.value.toUpperCase() })} className={`${inputClass} font-mono`} placeholder="e.g. FL924680Z" />
+                ) : (
+                  <p className="text-sm font-mono text-gray-900 dark:text-white">{form.ori || 'N/A'}</p>
+                )}
+              </div>
 
-          <hr className="border-gray-200 dark:border-slate-700" />
+              <hr className="border-gray-200 dark:border-slate-700" />
 
-          {/* Completed / TCN */}
-          {(isCompleted || editing) && (
-            <div className="space-y-3">
-              {client.completedAt && (
-                <div>
-                  <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Completed</p>
-                  <p className="text-sm text-gray-700 dark:text-gray-300">{client.completedAt}</p>
+              {/* Completed / TCN */}
+              {(isCompleted || editing) && (
+                <div className="space-y-3">
+                  {client.completedAt && (
+                    <div>
+                      <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Completed</p>
+                      <p className="text-sm text-gray-700 dark:text-gray-300">{client.completedAt}</p>
+                    </div>
+                  )}
+                  <div>
+                    <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">TCN</p>
+                    {editing ? (
+                      <input type="text" value={form.tcn} onChange={(e) => setForm({ ...form, tcn: e.target.value })} className={`${inputClass} font-mono`} placeholder="e.g. 70CS1419420000000915" />
+                    ) : (
+                      form.tcn ? <p className="text-sm font-mono text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-700 px-3 py-2 rounded">{form.tcn}</p> : <p className="text-sm text-gray-400">N/A</p>
+                    )}
+                  </div>
                 </div>
               )}
-              <div>
-                <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">TCN</p>
-                {editing ? (
-                  <input type="text" value={form.tcn} onChange={(e) => setForm({ ...form, tcn: e.target.value })} className={`${inputClass} font-mono`} placeholder="e.g. 70CS1419420000000915" />
-                ) : (
-                  form.tcn ? <p className="text-sm font-mono text-gray-900 dark:text-white bg-gray-50 dark:bg-slate-700 px-3 py-2 rounded">{form.tcn}</p> : <p className="text-sm text-gray-400">N/A</p>
-                )}
-              </div>
+            </div>
+          )}
+
+          {/* Physical Description Tab */}
+          {modalTab === 'physical' && (
+            <div className="space-y-4">
+              <p className="text-xs text-gray-500 dark:text-gray-400">Physical descriptors for FD-258 fingerprint card</p>
+              {editing ? (
+                <div className="space-y-3">
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <label className={labelClass}>Sex</label>
+                      <select value={form.sex} onChange={(e) => setForm({ ...form, sex: e.target.value })} className={inputClass}>
+                        <option value="">Select</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className={labelClass}>Race</label>
+                      <select value={form.race} onChange={(e) => setForm({ ...form, race: e.target.value })} className={inputClass}>
+                        <option value="">Select</option>
+                        <option value="White">White</option>
+                        <option value="Black">Black</option>
+                        <option value="Asian / Pacific Islander">Asian / Pacific Islander</option>
+                        <option value="Hispanic">Hispanic</option>
+                        <option value="American Indian / Alaska Native">American Indian / Alaska Native</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <label className={labelClass}>Height</label>
+                      <input type="text" value={form.height} onChange={(e) => setForm({ ...form, height: e.target.value })} className={inputClass} placeholder="5'10&quot;" />
+                    </div>
+                    <div>
+                      <label className={labelClass}>Weight (lbs)</label>
+                      <input type="text" value={form.weight} onChange={(e) => setForm({ ...form, weight: e.target.value })} className={inputClass} placeholder="170" />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <label className={labelClass}>Eye Color</label>
+                      <select value={form.eyeColor} onChange={(e) => setForm({ ...form, eyeColor: e.target.value })} className={inputClass}>
+                        <option value="">Select</option>
+                        <option value="Brown">Brown</option>
+                        <option value="Blue">Blue</option>
+                        <option value="Green">Green</option>
+                        <option value="Hazel">Hazel</option>
+                        <option value="Black">Black</option>
+                        <option value="Gray">Gray</option>
+                        <option value="Maroon">Maroon</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className={labelClass}>Hair Color</label>
+                      <select value={form.hairColor} onChange={(e) => setForm({ ...form, hairColor: e.target.value })} className={inputClass}>
+                        <option value="">Select</option>
+                        <option value="Black">Black</option>
+                        <option value="Brown">Brown</option>
+                        <option value="Blonde">Blonde</option>
+                        <option value="Red">Red</option>
+                        <option value="Gray">Gray / White</option>
+                        <option value="Sandy">Sandy</option>
+                        <option value="Bald">Bald</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <label className={labelClass}>DOB</label>
+                      <input type="date" value={form.dob} onChange={(e) => setForm({ ...form, dob: e.target.value })} className={inputClass} />
+                    </div>
+                    <div>
+                      <label className={labelClass}>Place of Birth</label>
+                      <input type="text" value={form.placeOfBirth} onChange={(e) => setForm({ ...form, placeOfBirth: e.target.value })} className={inputClass} placeholder="City, State or Country" />
+                    </div>
+                  </div>
+                  <div>
+                    <label className={labelClass}>Country of Citizenship</label>
+                    <input type="text" value={form.countryOfCitizenship} onChange={(e) => setForm({ ...form, countryOfCitizenship: e.target.value })} className={inputClass} placeholder="e.g. United States" />
+                  </div>
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 gap-x-4 gap-y-3">
+                  <div><span className="text-xs text-gray-500">Sex</span><p className="text-sm text-gray-700 dark:text-gray-300 capitalize">{form.sex || 'N/A'}</p></div>
+                  <div><span className="text-xs text-gray-500">DOB</span><p className="text-sm text-gray-700 dark:text-gray-300">{form.dob || 'N/A'}</p></div>
+                  <div><span className="text-xs text-gray-500">Place of Birth</span><p className="text-sm text-gray-700 dark:text-gray-300">{form.placeOfBirth || 'N/A'}</p></div>
+                  <div><span className="text-xs text-gray-500">Race</span><p className="text-sm text-gray-700 dark:text-gray-300">{form.race || 'N/A'}</p></div>
+                  <div><span className="text-xs text-gray-500">Height</span><p className="text-sm text-gray-700 dark:text-gray-300">{form.height || 'N/A'}</p></div>
+                  <div><span className="text-xs text-gray-500">Weight</span><p className="text-sm text-gray-700 dark:text-gray-300">{form.weight ? `${form.weight} lbs` : 'N/A'}</p></div>
+                  <div><span className="text-xs text-gray-500">Eye Color</span><p className="text-sm text-gray-700 dark:text-gray-300">{form.eyeColor || 'N/A'}</p></div>
+                  <div><span className="text-xs text-gray-500">Hair Color</span><p className="text-sm text-gray-700 dark:text-gray-300">{form.hairColor || 'N/A'}</p></div>
+                  <div><span className="text-xs text-gray-500">Country of Citizenship</span><p className="text-sm text-gray-700 dark:text-gray-300">{form.countryOfCitizenship || 'N/A'}</p></div>
+                  <div><span className="text-xs text-gray-500">Reason Enrolled</span><p className="text-sm text-gray-700 dark:text-gray-300">{form.reasonEnrolled || 'N/A'}</p></div>
+                </div>
+              )}
             </div>
           )}
 
